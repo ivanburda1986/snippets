@@ -1,0 +1,25 @@
+The application allows storing code snippets and commands, so that I can access them easily from anywhere anytime.
+
+Version1 
+An option to add a new entry: Title, snippets/command
+Code gets displayed like code
+Edit an entry 
+Delete an entry
+Display all entries by default
+Firebase CRUD of entries
+
+Version2 
+Predefined tags for major topics: HTML, CSS, JS, React, Redux, TS, NPM, GIT, Linux, Bash
+The predefined tags get displayed at the top 
+Each entry must be assigned at least one tag
+Selecting tags at the top filters the entries
+URL deeplinking for label-based searching
+De-select tags option
+
+Version3
+Searchbar that searches titles of all entries and returns matching results
+URL deeplinking for text-based searching
+Protect Firebase
+
+Techstact: 
+React, TypeScript, Firebase

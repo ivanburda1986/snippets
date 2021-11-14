@@ -19,7 +19,12 @@ De-select tags option
 Version3
 Searchbar that searches titles of all entries and returns matching results
 URL deeplinking for text-based searching
+Dark/white mode
 Protect Firebase
 
 Techstact: 
-React, TypeScript, Firebase
+React, TypeScript, Firebase, Google Code Pretify, Jest
+
+https://code.google.com/archive/p/google-code-prettify/downloads
+https://www.youtube.com/watch?v=1op-PqCGdIA
+https://w3bits.com/google-code-prettify/

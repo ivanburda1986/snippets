@@ -8,7 +8,9 @@ export function Header() {
     <div className={classes.header}>
       <div className={classes.headerTitle}>Snippets</div>
       <div className={sharedStyles.container}>
-        <Label name={"javascript"} bgColor={"orange"} />
+        <Label name={"JavaScript"} bgColor={"gold"} />
+        <Label name={"HTML"} bgColor={"orange"} />
+        <Label name={"CSS"} bgColor={"mediumpurple"} />
       </div>
     </div>
   );

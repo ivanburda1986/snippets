@@ -1,0 +1,9 @@
+.Label {
+  max-width: 100px;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+label {
+  cursor: pointer;
+}

@@ -1,11 +1,11 @@
 The application allows storing code snippets and commands, so that I can access them easily from anywhere anytime.
 
 Version1 
+Display all entries by default
 An option to add a new entry: Title, snippets/command
 Code gets displayed like code
 Edit an entry 
 Delete an entry
-Display all entries by default
 Firebase CRUD of entries
 
 Version2 

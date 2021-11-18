@@ -9,6 +9,10 @@
   padding: 0.1em 0.5em;
 }
 
+.Label + .Label {
+  margin-left: 0.5em;
+}
+
 label {
   display: flex;
   width: 100%;

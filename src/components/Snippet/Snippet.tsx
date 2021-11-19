@@ -1,18 +1,12 @@
 import React from "react";
 
-export default function Snippet() {
-  const obj = `{
-    <div>
-    <div id="snippetBody">
-      <pre className="prettyprint">{obj}</pre>
-    </div>
-  </div>
-}`;
+export default function Snippet({ snippetContent, language }: { snippetContent: string; language: string }) {
+  const obj = snippetContent;
   return (
     <div>
       <div id="snippetBody">
         <pre className="prettyprint">
-          <code className="lang-js"> {obj}</code>
+          <code className={`lang-${language}`}> {obj}</code>
         </pre>
       </div>
     </div>

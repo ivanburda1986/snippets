@@ -1,8 +1,9 @@
-import React from "react";
+import React, { useState } from "react";
+import { AddSnippetForm } from "./components/AddSnippetForm/AddSnippetForm";
 import { Header } from "./components/Header/Header";
-import Snippet from "./components/Snippet/Snippet";
+import { Snippet } from "./components/Snippet/Snippet";
 
-const snippets = [
+const snippetsMock = [
   {
     content: `{
       <div>
@@ -27,9 +28,11 @@ const snippets = [
 ];
 
 function App() {
+  const [snippets, setSnippets] = useState(snippetsMock);
   return (
     <div className="App">
       <Header />
+      <AddSnippetForm />
       {snippets.map((snippet) => (
         <Snippet snippetContent={snippet.content} language={snippet.language} />
       ))}

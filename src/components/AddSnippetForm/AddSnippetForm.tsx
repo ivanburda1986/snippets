@@ -1,12 +1,13 @@
 import React, { useContext } from "react";
 import sharedStyles from "../sharedStyles/sharedStyles.module.css";
+import styles from "./AddSnippetForm.module.css";
 import { AppContext } from "../../context/context";
 
 export function AddSnippetForm() {
   const mycontext = useContext(AppContext);
   return (
     <div className={sharedStyles.container}>
-      <form>
+      <form onSubmit={mycontext.submitHandler} className={styles.AddSnippetForm}>
         <label htmlFor="SnippetInputName">Title</label>
         <input type="text" id="SnippetInputName" name="SnippetInputName" />
         <label htmlFor="SnippetInputDescription">Description</label>

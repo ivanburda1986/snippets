@@ -1,0 +1,26 @@
+.header {
+  border: 1px solid black;
+}
+
+.header p {
+  margin: 0;
+  padding: 0;
+}
+
+.title {
+  font-size: 1.2rem;
+  font-weight: 600;
+}
+
+.description {
+  font-size: 0.9rem;
+}
+
+.body pre {
+  margin: 0;
+  padding: 0;
+}
+
+.snippet {
+  margin-bottom: 1rem;
+}

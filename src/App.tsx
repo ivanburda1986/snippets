@@ -6,7 +6,9 @@ import { Snippet } from "./components/Snippet/Snippet";
 
 const snippetsMock = [
   {
-    id: 1,
+    id: "1ab",
+    title: "My snippet number one",
+    description: "This is how props get loaded",
     content: `{
       <div>
         <div id="snippetBody">
@@ -17,7 +19,9 @@ const snippetsMock = [
     language: "js",
   },
   {
-    id: 2,
+    id: "2ac",
+    title: "My snippet number two",
+    description: "Some rainbow magic",
     content: `{
       const user = {
         firstName: "Angela",
@@ -30,12 +34,23 @@ const snippetsMock = [
   },
 ];
 
+interface newSnippet {
+  title: string;
+  description: string;
+  content: string;
+  language: string;
+}
+
 function App() {
   const [snippets, setSnippets] = useState(snippetsMock);
   const [showAddSnippetForm, setShowAddSnippetForm] = useState(false);
 
-  function toggleAddSnippetFormDisplay() {
+  function toggleAddSnippetFormDisplay(): void {
     setShowAddSnippetForm(!showAddSnippetForm);
+  }
+
+  function addSnippet({ title, description, content, language }: newSnippet) {
+    setSnippets((prevSnippets) => [...prevSnippets, { id: Math.random().toString(), title: title, description: description, content: content, language: language }]);
   }
 
   return (
@@ -44,7 +59,7 @@ function App() {
         <Header />
         {showAddSnippetForm && <AddSnippetForm />}
         {snippets.map((snippet) => (
-          <Snippet key={snippet.id} snippetContent={snippet.content} language={snippet.language} />
+          <Snippet key={snippet.id} id={snippet.id} title={snippet.title} description={snippet.description} content={snippet.content} language={snippet.language} />
         ))}
       </AppContext.Provider>
     </div>

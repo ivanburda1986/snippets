@@ -50,12 +50,13 @@ function App() {
   }
 
   function addSnippet({ title, description, content, language }: newSnippet) {
+    //console.log(title, description, content, language);
     setSnippets((prevSnippets) => [...prevSnippets, { id: Math.random().toString(), title: title, description: description, content: content, language: language }]);
   }
 
   return (
     <div className="App">
-      <AppContext.Provider value={{ snippets, toggleAddSnippetFormDisplay }}>
+      <AppContext.Provider value={{ snippets, toggleAddSnippetFormDisplay, submitHandler: addSnippet }}>
         <Header />
         {showAddSnippetForm && <AddSnippetForm />}
         {snippets.map((snippet) => (

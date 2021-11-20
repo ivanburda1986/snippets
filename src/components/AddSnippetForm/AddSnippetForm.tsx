@@ -1,7 +1,9 @@
-import React from "react";
+import React, { useContext } from "react";
 import sharedStyles from "../sharedStyles/sharedStyles.module.css";
+import { AppContext } from "../../context/context";
 
 export function AddSnippetForm() {
+  const mycontext = useContext(AppContext);
   return (
     <div className={sharedStyles.container}>
       <form>
@@ -11,6 +13,12 @@ export function AddSnippetForm() {
         <input type="text" id="SnippetInputDescription" name="SnippetInputDescription" />
         <label htmlFor="SnippetInputContent">Snippet</label>
         <textarea id="SnippetInputDescription" name="SnippetInputDescription" rows={4} cols={50} />
+        <div>
+          <button type="submit">Submit</button>
+          <button type="button" onClick={mycontext.toggleAddSnippetFormDisplay}>
+            Cancel
+          </button>
+        </div>
       </form>
     </div>
   );

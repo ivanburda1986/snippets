@@ -1,9 +1,11 @@
 import React, { useContext, useState } from "react";
+import { labels } from "../../config/config";
 import sharedStyles from "../sharedStyles/sharedStyles.module.css";
 import styles from "./AddSnippetForm.module.css";
 import { AppContext } from "../../context/context";
+import { Label } from "../Label/Label";
 
-export function AddSnippetForm() {
+export const AddSnippetForm = React.memo(() => {
   const mycontext = useContext(AppContext);
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
@@ -36,6 +38,11 @@ export function AddSnippetForm() {
         <input type="text" id="SnippetInputDescription" name="SnippetInputDescription" value={description} onChange={(event) => setDescription(event.target.value)} />
         <label htmlFor="SnippetInputContent">Snippet</label>
         <textarea id="SnippetInputDescription" name="SnippetInputDescription" rows={4} cols={50} value={content} onChange={(event) => setContent(event.target.value)} />
+        <div className={styles.labelSelection}>
+          {labels.map((label) => (
+            <Label name={label.name} bgColor={label.bgColor} />
+          ))}
+        </div>
         <div>
           <button type="submit">Submit</button>
           <button type="button" onClick={mycontext.toggleAddSnippetFormDisplay}>
@@ -45,4 +52,4 @@ export function AddSnippetForm() {
       </form>
     </div>
   );
-}
+});

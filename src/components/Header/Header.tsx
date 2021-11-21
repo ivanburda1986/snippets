@@ -1,4 +1,5 @@
 import React, { useContext } from "react";
+import { labels } from "../../config/config";
 import classes from "./Header.module.css";
 import sharedStyles from "../sharedStyles/sharedStyles.module.css";
 import { Label } from "../Label/Label";
@@ -13,10 +14,10 @@ export function Header() {
       <div className={classes.headerTitle}>Snippets</div>
       <div className={sharedStyles.container}>
         <div className={classes.headerOptions}>
-          <Label name={"JavaScript"} bgColor={"gold"} />
-          <Label name={"HTML"} bgColor={"orange"} />
-          <Label name={"CSS"} bgColor={"mediumpurple"} />
-          <Button title={"Add snippet"} onClick={mycontext.toggleAddSnippetFormDisplay} disabled={mycontext.showAddSnippetForm} />
+          {labels.map((label) => (
+            <Label name={label.name} bgColor={label.bgColor} />
+          ))}
+          <Button title={"Add snippet"} onClick={mycontext.toggleAddSnippetFormDisplay} disabled={mycontext.showAddSnippetForm} displayed="flex" />
         </div>
       </div>
     </div>

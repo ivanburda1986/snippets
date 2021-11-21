@@ -1,3 +1,7 @@
 .AddSnippetForm {
   margin-bottom: 1rem;
 }
+
+.labelSelection {
+  display: flex;
+}

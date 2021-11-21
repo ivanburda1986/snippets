@@ -16,7 +16,7 @@ export function Header() {
           <Label name={"JavaScript"} bgColor={"gold"} />
           <Label name={"HTML"} bgColor={"orange"} />
           <Label name={"CSS"} bgColor={"mediumpurple"} />
-          <Button title={"Add snippet"} onClick={mycontext.toggleAddSnippetFormDisplay} />
+          <Button title={"Add snippet"} onClick={mycontext.toggleAddSnippetFormDisplay} disabled={mycontext.showAddSnippetForm} />
         </div>
       </div>
     </div>

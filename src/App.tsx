@@ -56,7 +56,7 @@ function App() {
 
   return (
     <div className="App">
-      <AppContext.Provider value={{ snippets, toggleAddSnippetFormDisplay, submitHandler: addSnippet }}>
+      <AppContext.Provider value={{ snippets, showAddSnippetForm, toggleAddSnippetFormDisplay, submitHandler: addSnippet }}>
         <Header />
         {showAddSnippetForm && <AddSnippetForm />}
         {snippets.map((snippet) => (

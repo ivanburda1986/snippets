@@ -1,5 +1,5 @@
 import React, { useContext, useState } from "react";
-import { labels, labelAbbreviation } from "../../config/config";
+import { labels, label, labelAbbreviation } from "../../config/config";
 import sharedStyles from "../sharedStyles/sharedStyles.module.css";
 import styles from "./AddSnippetForm.module.css";
 import { AppContext } from "../../context/context";
@@ -10,7 +10,7 @@ export const AddSnippetForm = React.memo(() => {
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
   const [content, setContent] = useState("");
-  const [assignedLabels, setAssignedLabels] = useState([]);
+  const [assignedLabels, setAssignedLabels] = useState<label[]>([]);
 
   const clearInputs = () => {
     setTitle("");
@@ -18,7 +18,9 @@ export const AddSnippetForm = React.memo(() => {
     setContent("");
   };
 
-  const toggleAssignedLabel = (labelAbbreviation: labelAbbreviation) => {};
+  const toggleAssignedLabel = () => {
+    setAssignedLabels((prevAssignedLabels) => [...prevAssignedLabels].concat(labelName));
+  };
 
   const submitHandler = (event: React.ChangeEvent<HTMLFormElement>) => {
     event.preventDefault();
@@ -27,6 +29,7 @@ export const AddSnippetForm = React.memo(() => {
       description: description,
       content: `${content}`,
       language: "js",
+      assignedLabels: assignedLabels,
     });
     clearInputs();
     mycontext.toggleAddSnippetFormDisplay();
@@ -43,7 +46,7 @@ export const AddSnippetForm = React.memo(() => {
         <textarea id="SnippetInputDescription" name="SnippetInputDescription" rows={4} cols={50} value={content} onChange={(event) => setContent(event.target.value)} />
         <div className={styles.labelSelection}>
           {labels.map((label) => (
-            <Label name={label.name} bgColor={label.bgColor} />
+            <Label name={label.name} bgColor={label.bgColor} onToggle={toggleAssignedLabel} />
           ))}
         </div>
         <div>

@@ -3,12 +3,14 @@ import { AppContext } from "./context/context";
 import { AddSnippetForm } from "./components/AddSnippetForm/AddSnippetForm";
 import { Header } from "./components/Header/Header";
 import { Snippet } from "./components/Snippet/Snippet";
+import { label } from "./config/config";
 
 const snippetsMock = [
   {
     id: "1ab",
     title: "My snippet number one",
     description: "This is how props get loaded",
+    assignedLabels: [{ name: "Javascript", abbreviation: "js", bgColor: "gold" }],
     content: `{
       <div>
         <div id="snippetBody">
@@ -22,6 +24,7 @@ const snippetsMock = [
     id: "2ac",
     title: "My snippet number two",
     description: "Some rainbow magic",
+    assignedLabels: [{ name: "Javascript", abbreviation: "js", bgColor: "gold" }],
     content: `{
       const user = {
         firstName: "Angela",
@@ -39,6 +42,7 @@ interface newSnippet {
   description: string;
   content: string;
   language: string;
+  assignedLabels: label[];
 }
 
 function App() {
@@ -49,9 +53,9 @@ function App() {
     setShowAddSnippetForm(!showAddSnippetForm);
   }
 
-  function addSnippet({ title, description, content, language }: newSnippet) {
+  function addSnippet({ title, description, content, language, assignedLabels }: newSnippet) {
     //console.log(title, description, content, language);
-    setSnippets((prevSnippets) => [...prevSnippets, { id: Math.random().toString(), title: title, description: description, content: content, language: language }]);
+    setSnippets((prevSnippets) => [...prevSnippets, { id: Math.random().toString(), title: title, description: description, content: content, language: language, assignedLabels: assignedLabels }]);
   }
 
   return (

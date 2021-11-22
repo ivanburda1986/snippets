@@ -1,5 +1,7 @@
 .AddSnippetForm {
   margin-bottom: 1rem;
+  background-color: mediumaquamarine;
+  padding: 0.5em;
 }
 
 .labelSelection {

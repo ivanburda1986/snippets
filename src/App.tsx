@@ -1,9 +1,9 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { AppContext } from "./context/context";
 import { AddSnippetForm } from "./components/AddSnippetForm/AddSnippetForm";
 import { Header } from "./components/Header/Header";
 import { Snippet } from "./components/Snippet/Snippet";
-import { labelData } from "./config/config";
+import { labelData, supportedLanguages } from "./config/config";
 
 const snippetsMock = [
   {
@@ -48,23 +48,32 @@ interface newSnippet {
 function App() {
   const [snippets, setSnippets] = useState(snippetsMock);
   const [showAddSnippetForm, setShowAddSnippetForm] = useState(false);
+  const [filterSnippetsByLanguages, setFilterSnippetsByLanguages] = useState<supportedLanguages[]>([]);
 
   function toggleAddSnippetFormDisplay(): void {
     setShowAddSnippetForm(!showAddSnippetForm);
   }
 
   function addSnippet({ title, description, content, language, assignedLabels }: newSnippet) {
-    //console.log(title, description, content, language);
     setSnippets((prevSnippets) => [...prevSnippets, { id: Math.random().toString(), title: title, description: description, content: content, language: language, assignedLabels: assignedLabels }]);
   }
 
+  function addFilter(filterLanguage: supportedLanguages) {
+    setFilterSnippetsByLanguages((filterSnippetsByLanguages) => [...filterSnippetsByLanguages].concat(filterLanguage));
+    return;
+  }
+
+  useEffect(() => {
+    console.log(filterSnippetsByLanguages);
+  }, [filterSnippetsByLanguages]);
+
   return (
     <div className="App">
-      <AppContext.Provider value={{ snippets, showAddSnippetForm, toggleAddSnippetFormDisplay, submitHandler: addSnippet }}>
+      <AppContext.Provider value={{ snippets, showAddSnippetForm, toggleAddSnippetFormDisplay, submitHandler: addSnippet, addFilter }}>
         <Header />
         {showAddSnippetForm && <AddSnippetForm />}
         {snippets.map((snippet) => (
-          <Snippet key={snippet.id} id={snippet.id} title={snippet.title} description={snippet.description} content={snippet.content} language={snippet.language} />
+          <Snippet key={snippet.id} id={snippet.id} title={snippet.title} description={snippet.description} content={snippet.content} language={snippet.language} assignedLabels={snippet.assignedLabels} />
         ))}
       </AppContext.Provider>
     </div>

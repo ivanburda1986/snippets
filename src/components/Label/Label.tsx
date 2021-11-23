@@ -6,7 +6,6 @@ export function Label({ name, language, bgColor, toggleAction }: labelData) {
   function onToggleHandler() {
     if (toggleAction) {
       toggleAction();
-      console.log("hello");
     }
   }
   const randomNamePart = Math.floor(Math.random() * 10000);

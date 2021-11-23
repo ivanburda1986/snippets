@@ -1,10 +1,13 @@
 import React, { useState } from "react";
+import { typeSnippet } from "../../config/config";
 import sharedStyles from "../sharedStyles/sharedStyles.module.css";
 import styles from "./Snippet.module.css";
 
 import { Button } from "../Button/Button";
+import { Label } from "../Label/Label";
+import { ReadonlyLabel } from "../ReadonlyLabel/ReadonlyLabel";
 
-export function Snippet({ id, title, description, content, language }: { id: string; title: string; description: string; content: string; language: string }) {
+export function Snippet({ id, title, description, content, language, assignedLabels }: typeSnippet) {
   const [editing, setEditing] = useState(false);
 
   function handleEdit() {
@@ -21,6 +24,9 @@ export function Snippet({ id, title, description, content, language }: { id: str
         <div id="snippetHeader" className={styles.header}>
           <p className={styles.title}>{title}</p>
           <p className={styles.description}>{description}</p>
+          {assignedLabels.map((item) => (
+            <ReadonlyLabel key={item.name} name={item.name} language={item.language} bgColor={item.bgColor} />
+          ))}
         </div>
         <div id="snippetBody" className={styles.body}>
           <pre className="prettyprint">

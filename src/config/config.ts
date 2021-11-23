@@ -10,3 +10,14 @@ export const labels = [
   { name: "HTML", language: "html", bgColor: "orange" },
   { name: "CSS", language: "cs", bgColor: "mediumpurple" },
 ];
+
+export type supportedLanguages = "js" | "html" | "cs";
+
+export interface typeSnippet {
+  id: string;
+  title: string;
+  description: string;
+  content: string;
+  language: string;
+  assignedLabels: labelData[];
+}

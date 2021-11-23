@@ -3,14 +3,14 @@ import { AppContext } from "./context/context";
 import { AddSnippetForm } from "./components/AddSnippetForm/AddSnippetForm";
 import { Header } from "./components/Header/Header";
 import { Snippet } from "./components/Snippet/Snippet";
-import { label } from "./config/config";
+import { labelData } from "./config/config";
 
 const snippetsMock = [
   {
     id: "1ab",
     title: "My snippet number one",
     description: "This is how props get loaded",
-    assignedLabels: [{ name: "Javascript", abbreviation: "js", bgColor: "gold" }],
+    assignedLabels: [{ name: "Javascript", language: "js", bgColor: "gold" }],
     content: `{
       <div>
         <div id="snippetBody">
@@ -24,7 +24,7 @@ const snippetsMock = [
     id: "2ac",
     title: "My snippet number two",
     description: "Some rainbow magic",
-    assignedLabels: [{ name: "Javascript", abbreviation: "js", bgColor: "gold" }],
+    assignedLabels: [{ name: "Javascript", language: "js", bgColor: "gold" }],
     content: `{
       const user = {
         firstName: "Angela",
@@ -42,7 +42,7 @@ interface newSnippet {
   description: string;
   content: string;
   language: string;
-  assignedLabels: label[];
+  assignedLabels: labelData[];
 }
 
 function App() {

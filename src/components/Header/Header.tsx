@@ -14,6 +14,9 @@ export function Header() {
       <div className={classes.headerTitle}>Snippets</div>
       <div className={sharedStyles.container}>
         <div className={classes.headerOptions}>
+          {labels.map((item) => (
+            <Label key={item.name} name={item.name} language={item.language} bgColor={item.bgColor} />
+          ))}
           <Button title={"Add snippet"} onClick={mycontext.toggleAddSnippetFormDisplay} disabled={mycontext.showAddSnippetForm} displayed="flex" />
         </div>
       </div>

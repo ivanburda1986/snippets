@@ -1,5 +1,5 @@
 import React, { useContext, useState } from "react";
-import { labels, label } from "../../config/config";
+import { labels, labelData } from "../../config/config";
 import sharedStyles from "../sharedStyles/sharedStyles.module.css";
 import styles from "./AddSnippetForm.module.css";
 import { AppContext } from "../../context/context";
@@ -10,7 +10,7 @@ export const AddSnippetForm = React.memo(() => {
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
   const [content, setContent] = useState("");
-  const [assignedLabels, setAssignedLabels] = useState<label[]>([]);
+  const [assignedLabels, setAssignedLabels] = useState<labelData[]>([]);
 
   const clearInputs = () => {
     setTitle("");
@@ -18,7 +18,7 @@ export const AddSnippetForm = React.memo(() => {
     setContent("");
   };
 
-  const toggleAssignedLabel = (labelName: label) => {
+  const toggleAssignedLabel = (labelName: labelData) => {
     setAssignedLabels((prevAssignedLabels) => [...prevAssignedLabels].concat(labelName));
   };
 

@@ -1,12 +1,12 @@
-export interface label {
+export interface labelData {
   name: string;
-  abbreviation: "js" | "html" | "cs";
+  language: string;
   bgColor: string;
   toggleAction?: Function;
 }
 
 export const labels = [
-  { name: "Javascript", abbreviation: "js", bgColor: "gold" },
-  { name: "HTML", abbreviation: "html", bgColor: "orange" },
-  { name: "CSS", abbreviation: "cs", bgColor: "mediumpurple" },
+  { name: "Javascript", language: "js", bgColor: "gold" },
+  { name: "HTML", language: "html", bgColor: "orange" },
+  { name: "CSS", language: "cs", bgColor: "mediumpurple" },
 ];

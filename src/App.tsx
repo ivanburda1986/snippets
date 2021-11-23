@@ -59,12 +59,17 @@ function App() {
   }
 
   function addFilter(filterLanguage: supportedLanguages) {
-    setFilterSnippetsByLanguages((filterSnippetsByLanguages) => [...filterSnippetsByLanguages].concat(filterLanguage));
+    if (filterSnippetsByLanguages.includes(filterLanguage)) {
+      setFilterSnippetsByLanguages((filterSnippetsByLanguages) => filterSnippetsByLanguages.filter((language) => language !== filterLanguage));
+    } else {
+      setFilterSnippetsByLanguages((filterSnippetsByLanguages) => [...filterSnippetsByLanguages, filterLanguage]);
+    }
     return;
   }
 
+  //continue here
   useEffect(() => {
-    console.log(filterSnippetsByLanguages);
+    setSnippets((snippets) => [...snippets].filter((snippet) => filterSnippetsByLanguages.includes("js")));
   }, [filterSnippetsByLanguages]);
 
   return (

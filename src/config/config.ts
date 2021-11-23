@@ -1,12 +1,11 @@
 export interface label {
   name: string;
-  abbreviation: labelAbbreviation;
+  abbreviation: "js" | "html" | "cs";
   bgColor: string;
+  toggleAction?: Function;
 }
 
-export type labelAbbreviation = "js" | "html" | "cs";
-
-export const labels: label[] = [
+export const labels = [
   { name: "Javascript", abbreviation: "js", bgColor: "gold" },
   { name: "HTML", abbreviation: "html", bgColor: "orange" },
   { name: "CSS", abbreviation: "cs", bgColor: "mediumpurple" },

@@ -14,9 +14,6 @@ export function Header() {
       <div className={classes.headerTitle}>Snippets</div>
       <div className={sharedStyles.container}>
         <div className={classes.headerOptions}>
-          {labels.map((label) => (
-            <Label name={label.name} bgColor={label.bgColor} />
-          ))}
           <Button title={"Add snippet"} onClick={mycontext.toggleAddSnippetFormDisplay} disabled={mycontext.showAddSnippetForm} displayed="flex" />
         </div>
       </div>

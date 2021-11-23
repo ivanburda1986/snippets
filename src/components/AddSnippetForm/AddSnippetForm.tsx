@@ -1,5 +1,5 @@
 import React, { useContext, useState } from "react";
-import { labels, label, labelAbbreviation } from "../../config/config";
+import { labels, label } from "../../config/config";
 import sharedStyles from "../sharedStyles/sharedStyles.module.css";
 import styles from "./AddSnippetForm.module.css";
 import { AppContext } from "../../context/context";
@@ -18,7 +18,7 @@ export const AddSnippetForm = React.memo(() => {
     setContent("");
   };
 
-  const toggleAssignedLabel = () => {
+  const toggleAssignedLabel = (labelName: label) => {
     setAssignedLabels((prevAssignedLabels) => [...prevAssignedLabels].concat(labelName));
   };
 
@@ -44,11 +44,7 @@ export const AddSnippetForm = React.memo(() => {
         <input type="text" id="SnippetInputDescription" name="SnippetInputDescription" value={description} onChange={(event) => setDescription(event.target.value)} />
         <label htmlFor="SnippetInputContent">Snippet</label>
         <textarea id="SnippetInputDescription" name="SnippetInputDescription" rows={4} cols={50} value={content} onChange={(event) => setContent(event.target.value)} />
-        <div className={styles.labelSelection}>
-          {labels.map((label) => (
-            <Label name={label.name} bgColor={label.bgColor} onToggle={toggleAssignedLabel} />
-          ))}
-        </div>
+        <div className={styles.labelSelection}></div>
         <div>
           <button type="submit">Submit</button>
           <button type="button" onClick={mycontext.toggleAddSnippetFormDisplay}>

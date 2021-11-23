@@ -1,17 +1,19 @@
 import React from "react";
+import { label } from "../../config/config";
 import styles from "./Label.module.css";
 
-export function Label({ name, bgColor, onToggle }: { name: string; bgColor: string; onToggle?: Function }) {
-  function labelStateColor() {
-    if (onToggle) {
-      onToggle(name);
+export function Label(labelContent: label) {
+  function onToggleHandler() {
+    if (labelContent.toggleAction) {
+      labelContent.toggleAction();
+      console.log("hello");
     }
   }
   const randomNamePart = Math.floor(Math.random() * 10000);
   return (
-    <div className={styles.Label} style={{ backgroundColor: bgColor }}>
-      <input type="checkbox" id={`label-${name}-${randomNamePart}`} name={`label-${name}-${randomNamePart}`} value={name} onChange={(e: React.FormEvent<HTMLInputElement>) => labelStateColor()} />
-      <label htmlFor={`label-${name}-${randomNamePart}`}> {name}</label>
+    <div className={styles.Label} style={{ backgroundColor: labelContent.bgColor }}>
+      <input type="checkbox" id={`label-${labelContent.name}-${randomNamePart}`} name={`label-${labelContent.name}-${randomNamePart}`} value={labelContent.name} onChange={(e: React.FormEvent<HTMLInputElement>) => onToggleHandler()} />
+      <label htmlFor={`label-${labelContent.name}-${randomNamePart}`}> {labelContent.name}</label>
     </div>
   );
 }

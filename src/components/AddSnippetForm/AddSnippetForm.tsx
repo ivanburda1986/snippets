@@ -18,8 +18,9 @@ export const AddSnippetForm = React.memo(() => {
     setContent("");
   };
 
-  const toggleAssignedLabel = (assignedLabelData: labelData) => {
-    setAssignedLabels((prevAssignedLabels) => [...prevAssignedLabels].concat(assignedLabelData));
+  const toggleAssignedLabel = (data: labelData) => {
+    setAssignedLabels((prevAssignedLabels) => [...prevAssignedLabels].concat(data));
+    return;
   };
 
   const submitHandler = (event: React.ChangeEvent<HTMLFormElement>) => {
@@ -46,7 +47,7 @@ export const AddSnippetForm = React.memo(() => {
         <textarea id="SnippetInputDescription" name="SnippetInputDescription" rows={4} cols={50} value={content} onChange={(event) => setContent(event.target.value)} />
         <div className={styles.labelSelection}>
           {labels.map((item) => (
-            <Label key={item.name} name={item.name} language={item.language} bgColor={item.bgColor} toggleAction={toggleAssignedLabel} />
+            <Label key={item.name} name={item.name} language={item.language} bgColor={item.bgColor} toggleAction={() => toggleAssignedLabel({ name: item.name, language: item.language, bgColor: item.bgColor })} />
           ))}
         </div>
         <div>

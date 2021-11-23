@@ -2,7 +2,7 @@ export interface labelData {
   name: string;
   language: string;
   bgColor: string;
-  toggleAction?: Function;
+  toggleAction?: Function | void;
 }
 
 export const labels = [

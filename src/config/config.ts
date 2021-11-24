@@ -11,7 +11,7 @@ export const labels = [
   { name: "CSS", language: "cs", bgColor: "mediumpurple" },
 ];
 
-export type supportedLanguages = "js" | "html" | "cs";
+export type supportedLanguages = "js" as string | "html" as string | "cs" as string;
 
 export interface typeSnippet {
   id: string;

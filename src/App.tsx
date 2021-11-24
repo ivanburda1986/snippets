@@ -24,7 +24,7 @@ const snippetsMock = [
     id: "2ac",
     title: "My snippet number two",
     description: "Some rainbow magic",
-    assignedLabels: [{ name: "Javascript", language: "js", bgColor: "gold" }],
+    assignedLabels: [{ name: "HTML", language: "html", bgColor: "orange" }],
     content: `{
       const user = {
         firstName: "Angela",
@@ -33,7 +33,7 @@ const snippetsMock = [
       }
       console.log(user.name)
     }`,
-    language: "js",
+    language: "html",
   },
 ];
 
@@ -46,6 +46,7 @@ interface newSnippet {
 }
 
 function App() {
+  const [mockedSnippets, setMockedSnippets] = useState(snippetsMock);
   const [snippets, setSnippets] = useState(snippetsMock);
   const [showAddSnippetForm, setShowAddSnippetForm] = useState(false);
   const [filterSnippetsByLanguages, setFilterSnippetsByLanguages] = useState<supportedLanguages[]>([]);
@@ -69,7 +70,8 @@ function App() {
 
   //continue here
   useEffect(() => {
-    setSnippets((snippets) => [...snippets].filter((snippet) => filterSnippetsByLanguages.includes("js")));
+    setSnippets(mockedSnippets.filter((mockedSnippet) => mockedSnippet.language === "html"));
+    snippets.forEach((snippet) => filterSnippetsByLanguages.indexOf(snippet["language"]));
   }, [filterSnippetsByLanguages]);
 
   return (

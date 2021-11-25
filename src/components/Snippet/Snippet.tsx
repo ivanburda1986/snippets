@@ -25,7 +25,7 @@ export function Snippet({ id, title, description, content, language, assignedLab
           <p className={styles.title}>{title}</p>
           <p className={styles.description}>{description}</p>
           {assignedLabels.map((item) => (
-            <ReadonlyLabel key={item.name} name={item.name} language={item.language} bgColor={item.bgColor} />
+            <ReadonlyLabel key={item.name} name={item.name} lang={item.lang} bgColor={item.bgColor} />
           ))}
         </div>
         <div id="snippetBody" className={styles.body}>

@@ -3,53 +3,40 @@ import { AppContext } from "./context/context";
 import { AddSnippetForm } from "./components/AddSnippetForm/AddSnippetForm";
 import { Header } from "./components/Header/Header";
 import { Snippet } from "./components/Snippet/Snippet";
-import { labelData, supportedLanguages } from "./config/config";
+import { labelData, supportedLanguages, typeSnippet } from "./config/config";
 
-const snippetsMock = [
+const snippetsMock = `[
   {
-    id: "1ab",
-    title: "My snippet number one",
-    description: "This is how props get loaded",
-    assignedLabels: [{ name: "Javascript", language: "js", bgColor: "gold" }],
-    content: `{
-      <div>
-        <div id="snippetBody">
-          <pre className="prettyprint">{obj}</pre>
-        </div>
-      </div>
-    }`,
+    id: "123455",
+    title: "Snippet1",
+    description: "My best javascript snippet",
+    content: "ff",
     language: "js",
+    assignedLabels: [{ bgColor: "gold", lang: "js", name: "Javascript" }],
   },
   {
-    id: "2ac",
-    title: "My snippet number two",
-    description: "Some rainbow magic",
-    assignedLabels: [{ name: "HTML", language: "html", bgColor: "orange" }],
-    content: `{
-      const user = {
-        firstName: "Angela",
-        lastName: "Davis",
-        role: "Professor",
-      }
-      console.log(user.name)
-    }`,
+    id: "3432432",
+    title: "Snippet2",
+    description: "My best HTML snippet",
+    content: "ff",
     language: "html",
+    assignedLabels: [{ bgColor: "orange", lang: "html", name: "HTML" }],
   },
-];
+]`;
 
 interface newSnippet {
   title: string;
   description: string;
   content: string;
-  language: string;
+  language: typeof supportedLanguages;
   assignedLabels: labelData[];
 }
 
 function App() {
-  const [mockedSnippets, setMockedSnippets] = useState(snippetsMock);
-  const [snippets, setSnippets] = useState(snippetsMock);
-  const [showAddSnippetForm, setShowAddSnippetForm] = useState(false);
-  const [filterSnippetsByLanguages, setFilterSnippetsByLanguages] = useState<supportedLanguages[]>([]);
+  const [mockedSnippets, setMockedSnippets] = useState<typeSnippet[]>([JSON.parse(snippetsMock)]);
+  const [snippets, setSnippets] = useState<typeSnippet[]>([JSON.parse(snippetsMock)]);
+  const [showAddSnippetForm, setShowAddSnippetForm] = useState<boolean>(false);
+  const [filterSnippetsByLanguages, setFilterSnippetsByLanguages] = useState<typeof supportedLanguages[]>([]);
 
   function toggleAddSnippetFormDisplay(): void {
     setShowAddSnippetForm(!showAddSnippetForm);
@@ -59,7 +46,7 @@ function App() {
     setSnippets((prevSnippets) => [...prevSnippets, { id: Math.random().toString(), title: title, description: description, content: content, language: language, assignedLabels: assignedLabels }]);
   }
 
-  function addFilter(filterLanguage: supportedLanguages) {
+  function addFilter(filterLanguage: typeof supportedLanguages) {
     if (filterSnippetsByLanguages.includes(filterLanguage)) {
       setFilterSnippetsByLanguages((filterSnippetsByLanguages) => filterSnippetsByLanguages.filter((language) => language !== filterLanguage));
     } else {
@@ -70,8 +57,7 @@ function App() {
 
   //continue here
   useEffect(() => {
-    setSnippets(mockedSnippets.filter((mockedSnippet) => mockedSnippet.language === "html"));
-    snippets.forEach((snippet) => filterSnippetsByLanguages.indexOf(snippet["language"]));
+    setSnippets(mockedSnippets.filter((mockedSnippet) => filterSnippetsByLanguages.includes(mockedSnippet.language)));
   }, [filterSnippetsByLanguages]);
 
   return (

@@ -1,9 +1,10 @@
 import React, { useEffect, useState } from "react";
 import { AppContext } from "./context/context";
-import { AddSnippetForm } from "./components/AddSnippetForm/AddSnippetForm";
-import { Header } from "./components/Header/Header";
-import { Snippet } from "./components/Snippet/Snippet";
 import { SupportedLanguages, typeSnippet, newSnippet } from "./config/config";
+
+import { Header } from "./components/Header/Header";
+import { AddSnippetForm } from "./components/AddSnippetForm/AddSnippetForm";
+import { SnippetList } from "./components/SnippetList/SnippetList";
 
 const snippetsMock: typeSnippet[] = [
   {
@@ -22,10 +23,17 @@ const snippetsMock: typeSnippet[] = [
     language: "html",
     assignedLabels: [{ bgColor: "orange", lang: "html", name: "HTML" }],
   },
+  {
+    id: "343243332",
+    title: "Snippet3",
+    description: "My best CSS snippet",
+    content: "ff",
+    language: "cs",
+    assignedLabels: [{ bgColor: "mediumpurple", lang: "cs", name: "CSS" }],
+  },
 ];
 
 function App() {
-  const [mockedSnippets, setMockedSnippets] = useState<typeSnippet[]>([...snippetsMock]);
   const [snippets, setSnippets] = useState<typeSnippet[]>([...snippetsMock]);
   const [showAddSnippetForm, setShowAddSnippetForm] = useState<boolean>(false);
   const [filterSnippetsByLanguages, setFilterSnippetsByLanguages] = useState<SupportedLanguages[]>([]);
@@ -47,19 +55,12 @@ function App() {
     return;
   }
 
-  //continue here
-  useEffect(() => {
-    setSnippets(mockedSnippets.filter((mockedSnippet) => filterSnippetsByLanguages.includes(mockedSnippet.language)));
-  }, [filterSnippetsByLanguages, mockedSnippets]);
-
   return (
     <div className="App">
-      <AppContext.Provider value={{ snippets, showAddSnippetForm, toggleAddSnippetFormDisplay, submitHandler: addSnippet, addFilter }}>
+      <AppContext.Provider value={{ snippets, showAddSnippetForm, toggleAddSnippetFormDisplay, submitHandler: addSnippet, filterSnippetsByLanguages, addFilter }}>
         <Header />
         {showAddSnippetForm && <AddSnippetForm />}
-        {snippets.map((snippet) => (
-          <Snippet key={snippet.id} id={snippet.id} title={snippet.title} description={snippet.description} content={snippet.content} language={snippet.language} assignedLabels={snippet.assignedLabels} />
-        ))}
+        <SnippetList />
       </AppContext.Provider>
     </div>
   );

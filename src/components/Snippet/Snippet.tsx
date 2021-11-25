@@ -4,7 +4,6 @@ import sharedStyles from "../sharedStyles/sharedStyles.module.css";
 import styles from "./Snippet.module.css";
 
 import { Button } from "../Button/Button";
-import { Label } from "../Label/Label";
 import { ReadonlyLabel } from "../ReadonlyLabel/ReadonlyLabel";
 
 export function Snippet({ id, title, description, content, language, assignedLabels }: typeSnippet) {

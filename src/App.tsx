@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { v4 as uuidv4 } from "uuid";
 import { AppContext } from "./context/context";
 import { SupportedLanguages, typeSnippet, newSnippet } from "./config/config";
 
@@ -51,7 +52,7 @@ function App() {
   }
 
   function addSnippet({ title, description, content, language, assignedLabels }: newSnippet) {
-    setSnippets((prevSnippets) => [...prevSnippets, { id: Math.random().toString(), title: title, description: description, content: content, language: language, assignedLabels: assignedLabels }]);
+    setSnippets((prevSnippets) => [...prevSnippets, { id: uuidv4(), title: title, description: description, content: content, language: language, assignedLabels: assignedLabels }]);
   }
 
   function addFilter(filterLanguage: SupportedLanguages) {

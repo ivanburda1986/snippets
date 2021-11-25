@@ -3,9 +3,9 @@ import { AppContext } from "./context/context";
 import { AddSnippetForm } from "./components/AddSnippetForm/AddSnippetForm";
 import { Header } from "./components/Header/Header";
 import { Snippet } from "./components/Snippet/Snippet";
-import { labelData, supportedLanguages, typeSnippet } from "./config/config";
+import { SupportedLanguages, typeSnippet, newSnippet } from "./config/config";
 
-const snippetsMock = `[
+const snippetsMock: typeSnippet[] = [
   {
     id: "123455",
     title: "Snippet1",
@@ -22,21 +22,13 @@ const snippetsMock = `[
     language: "html",
     assignedLabels: [{ bgColor: "orange", lang: "html", name: "HTML" }],
   },
-]`;
-
-interface newSnippet {
-  title: string;
-  description: string;
-  content: string;
-  language: typeof supportedLanguages;
-  assignedLabels: labelData[];
-}
+];
 
 function App() {
-  const [mockedSnippets, setMockedSnippets] = useState<typeSnippet[]>([JSON.parse(snippetsMock)]);
-  const [snippets, setSnippets] = useState<typeSnippet[]>([JSON.parse(snippetsMock)]);
+  const [mockedSnippets, setMockedSnippets] = useState<typeSnippet[]>([...snippetsMock]);
+  const [snippets, setSnippets] = useState<typeSnippet[]>([...snippetsMock]);
   const [showAddSnippetForm, setShowAddSnippetForm] = useState<boolean>(false);
-  const [filterSnippetsByLanguages, setFilterSnippetsByLanguages] = useState<typeof supportedLanguages[]>([]);
+  const [filterSnippetsByLanguages, setFilterSnippetsByLanguages] = useState<SupportedLanguages[]>([]);
 
   function toggleAddSnippetFormDisplay(): void {
     setShowAddSnippetForm(!showAddSnippetForm);
@@ -46,7 +38,7 @@ function App() {
     setSnippets((prevSnippets) => [...prevSnippets, { id: Math.random().toString(), title: title, description: description, content: content, language: language, assignedLabels: assignedLabels }]);
   }
 
-  function addFilter(filterLanguage: typeof supportedLanguages) {
+  function addFilter(filterLanguage: SupportedLanguages) {
     if (filterSnippetsByLanguages.includes(filterLanguage)) {
       setFilterSnippetsByLanguages((filterSnippetsByLanguages) => filterSnippetsByLanguages.filter((language) => language !== filterLanguage));
     } else {
@@ -58,7 +50,7 @@ function App() {
   //continue here
   useEffect(() => {
     setSnippets(mockedSnippets.filter((mockedSnippet) => filterSnippetsByLanguages.includes(mockedSnippet.language)));
-  }, [filterSnippetsByLanguages]);
+  }, [filterSnippetsByLanguages, mockedSnippets]);
 
   return (
     <div className="App">

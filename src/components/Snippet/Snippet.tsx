@@ -1,4 +1,5 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
+import { AppContext } from "../../context/context";
 import { typeSnippet } from "../../config/config";
 import sharedStyles from "../sharedStyles/sharedStyles.module.css";
 import styles from "./Snippet.module.css";
@@ -7,6 +8,7 @@ import { Button } from "../Button/Button";
 import { ReadonlyLabel } from "../ReadonlyLabel/ReadonlyLabel";
 
 export function Snippet({ id, title, description, content, language, assignedLabels }: typeSnippet) {
+  const mycontext = useContext(AppContext);
   const [editing, setEditing] = useState(false);
 
   function handleEdit() {
@@ -36,7 +38,7 @@ export function Snippet({ id, title, description, content, language, assignedLab
           <Button title={"Edit"} onClick={handleEdit} disabled={editing} displayed={editing ? "none" : "flex"} />
           <Button title={"Cancel"} onClick={handleCancel} disabled={false} displayed={editing ? "flex" : "none"} />
           <Button title={"Save"} onClick={() => console.log("hello")} disabled={false} displayed={editing ? "flex" : "none"} />
-          <Button title={"Delete"} onClick={() => console.log("hello")} disabled={false} displayed={"flex"} />
+          <Button title={"Delete"} onClick={() => mycontext.deleteSnippetHandler(id)} disabled={false} displayed={"flex"} />
         </div>
       </div>
     </div>

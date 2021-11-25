@@ -25,7 +25,7 @@ export const AddSnippetForm = React.memo(() => {
 
   const submitHandler = (event: React.ChangeEvent<HTMLFormElement>) => {
     event.preventDefault();
-    mycontext.submitHandler({
+    mycontext.submitNewSnippetHandler({
       title: title,
       description: description,
       content: `${content}`,

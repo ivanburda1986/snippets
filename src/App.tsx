@@ -42,7 +42,8 @@ function App() {
     snippets,
     newSnippetFormDisplayState,
     toggleNewSnippetFormDisplayState,
-    submitHandler: addSnippet,
+    submitNewSnippetHandler: addSnippet,
+    deleteSnippetHandler: deleteSnippet,
     languagesToFilterSnippetsBy,
     addFilter,
   };
@@ -53,6 +54,10 @@ function App() {
 
   function addSnippet({ title, description, content, language, assignedLabels }: newSnippet) {
     setSnippets((prevSnippets) => [...prevSnippets, { id: uuidv4(), title: title, description: description, content: content, language: language, assignedLabels: assignedLabels }]);
+  }
+
+  function deleteSnippet(id: string) {
+    setSnippets((prevSnippets) => [...prevSnippets].filter((snippet) => snippet.id !== id));
   }
 
   function addFilter(filterLanguage: SupportedLanguages) {

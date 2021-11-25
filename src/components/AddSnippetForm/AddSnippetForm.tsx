@@ -33,7 +33,7 @@ export const AddSnippetForm = React.memo(() => {
       assignedLabels: assignedLabels,
     });
     clearInputs();
-    mycontext.toggleAddSnippetFormDisplay();
+    mycontext.toggleNewSnippetFormDisplayState();
   };
 
   return (
@@ -52,7 +52,7 @@ export const AddSnippetForm = React.memo(() => {
         </div>
         <div>
           <button type="submit">Submit</button>
-          <button type="button" onClick={mycontext.toggleAddSnippetFormDisplay}>
+          <button type="button" onClick={mycontext.toggleNewSnippetFormDisplayState}>
             Cancel
           </button>
         </div>

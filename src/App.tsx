@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { AppContext } from "./context/context";
 import { SupportedLanguages, typeSnippet, newSnippet } from "./config/config";
 
@@ -35,11 +35,19 @@ const snippetsMock: typeSnippet[] = [
 
 function App() {
   const [snippets, setSnippets] = useState<typeSnippet[]>([...snippetsMock]);
-  const [showAddSnippetForm, setShowAddSnippetForm] = useState<boolean>(false);
-  const [filterSnippetsByLanguages, setFilterSnippetsByLanguages] = useState<SupportedLanguages[]>([]);
+  const [newSnippetFormDisplayState, setNewSnippetDisplayState] = useState<boolean>(false);
+  const [languagesToFilterSnippetsBy, setLanguagesToFilterSnippetsBy] = useState<SupportedLanguages[]>([]);
+  const contextProvider = {
+    snippets,
+    newSnippetFormDisplayState,
+    toggleNewSnippetFormDisplayState,
+    submitHandler: addSnippet,
+    languagesToFilterSnippetsBy,
+    addFilter,
+  };
 
-  function toggleAddSnippetFormDisplay(): void {
-    setShowAddSnippetForm(!showAddSnippetForm);
+  function toggleNewSnippetFormDisplayState(): void {
+    setNewSnippetDisplayState(!newSnippetFormDisplayState);
   }
 
   function addSnippet({ title, description, content, language, assignedLabels }: newSnippet) {
@@ -47,19 +55,19 @@ function App() {
   }
 
   function addFilter(filterLanguage: SupportedLanguages) {
-    if (filterSnippetsByLanguages.includes(filterLanguage)) {
-      setFilterSnippetsByLanguages((filterSnippetsByLanguages) => filterSnippetsByLanguages.filter((language) => language !== filterLanguage));
+    if (languagesToFilterSnippetsBy.includes(filterLanguage)) {
+      setLanguagesToFilterSnippetsBy((languagesToFilterSnippetsBy) => languagesToFilterSnippetsBy.filter((language) => language !== filterLanguage));
     } else {
-      setFilterSnippetsByLanguages((filterSnippetsByLanguages) => [...filterSnippetsByLanguages, filterLanguage]);
+      setLanguagesToFilterSnippetsBy((languagesToFilterSnippetsBy) => [...languagesToFilterSnippetsBy, filterLanguage]);
     }
     return;
   }
 
   return (
     <div className="App">
-      <AppContext.Provider value={{ snippets, showAddSnippetForm, toggleAddSnippetFormDisplay, submitHandler: addSnippet, filterSnippetsByLanguages, addFilter }}>
+      <AppContext.Provider value={contextProvider}>
         <Header />
-        {showAddSnippetForm && <AddSnippetForm />}
+        {newSnippetFormDisplayState && <AddSnippetForm />}
         <SnippetList />
       </AppContext.Provider>
     </div>

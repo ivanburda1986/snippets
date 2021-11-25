@@ -6,7 +6,7 @@ import { Snippet } from "../Snippet/Snippet";
 export function SnippetList() {
   const mycontext = useContext(AppContext);
   const snippets: typeSnippet[] = mycontext.snippets;
-  const filter: SupportedLanguages[] = mycontext.filterSnippetsByLanguages;
+  const filter: SupportedLanguages[] = mycontext.languagesToFilterSnippetsBy;
   const [filteredSnippets, setFilteredSnippets] = useState<typeSnippet[]>([]);
 
   useEffect(() => {

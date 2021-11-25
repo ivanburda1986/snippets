@@ -50,7 +50,7 @@ function App() {
   };
 
   useEffect(() => {
-    receiveServerItems().then((data) => console.log(data));
+    receiveServerItems().then((data) => console.log(data["123-abc"]));
   }, []);
 
   function toggleNewSnippetFormDisplayState(): void {

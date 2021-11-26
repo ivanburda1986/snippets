@@ -15,16 +15,14 @@ const snippetsMock: typeSnippet[] = [
     title: "Snippet1",
     description: "My best javascript snippet",
     content: "ff",
-    language: "js",
-    assignedLabel: { bgColor: "gold", lang: "js", name: "Javascript" },
+    language: "cs",
   },
   {
     id: "456-abc",
     title: "Snippet2",
     description: "My best HTML snippet",
     content: "ff",
-    language: "html",
-    assignedLabel: { bgColor: "orange", lang: "html", name: "HTML" },
+    language: "cs",
   },
   {
     id: "789-abc",
@@ -32,7 +30,6 @@ const snippetsMock: typeSnippet[] = [
     description: "My best CSS snippet",
     content: "ff",
     language: "cs",
-    assignedLabel: { bgColor: "mediumpurple", lang: "cs", name: "CSS" },
   },
 ];
 
@@ -52,11 +49,10 @@ function App() {
   };
 
   useEffect(() => {
-    let mydata: typeSnippet;
+    let mydata: typeSnippet[];
     receiveServerItems().then((data) => {
-      mydata = Array.from(Object.values(data))[0] as typeSnippet;
-      //console.log(Array.from(mydata.assignedLabel));
-      setMyTestSnippet(mydata);
+      mydata = Array.from(Object.values(data)) as typeSnippet[];
+      setSnippets(mydata);
     });
   }, []);
 
@@ -64,8 +60,8 @@ function App() {
     setNewSnippetDisplayState(!newSnippetFormDisplayState);
   }
 
-  function addSnippet({ title, description, content, language, assignedLabel }: newSnippet) {
-    setSnippets((prevSnippets) => [...prevSnippets, { id: uuidv4(), title: title, description: description, content: content, language: language, assignedLabel: assignedLabel }]);
+  function addSnippet({ title, description, content, language }: newSnippet) {
+    setSnippets((prevSnippets) => [...prevSnippets, { id: uuidv4(), title: title, description: description, content: content, language: language }]);
   }
 
   function deleteSnippet(id: string) {
@@ -87,7 +83,7 @@ function App() {
         <Header />
         {newSnippetFormDisplayState && <AddSnippetForm />}
         <SnippetList />
-        {myTestSnippet && <Snippet id={myTestSnippet.id} title={myTestSnippet.title} description={myTestSnippet.description} content={myTestSnippet.content} language={myTestSnippet.language} assignedLabel={myTestSnippet.assignedLabel} />}
+        {myTestSnippet && <Snippet id={myTestSnippet.id} title={myTestSnippet.title} description={myTestSnippet.description} content={myTestSnippet.content} language={myTestSnippet.language} />}
       </AppContext.Provider>
     </div>
   );

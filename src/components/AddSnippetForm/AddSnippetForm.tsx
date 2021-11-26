@@ -1,5 +1,5 @@
 import React, { useContext, useState } from "react";
-import { labels, labelData } from "../../config/config";
+import { labels, labelData, SupportedLanguages } from "../../config/config";
 import sharedStyles from "../sharedStyles/sharedStyles.module.css";
 import styles from "./AddSnippetForm.module.css";
 import { AppContext } from "../../context/context";
@@ -10,7 +10,7 @@ export const AddSnippetForm = React.memo(() => {
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
   const [content, setContent] = useState("");
-  const [assignedLabel, setAssignedLabel] = useState<labelData>();
+  const [assignedLanguage, setAssignedLanguage] = useState<SupportedLanguages>();
 
   const clearInputs = () => {
     setTitle("");
@@ -18,9 +18,8 @@ export const AddSnippetForm = React.memo(() => {
     setContent("");
   };
 
-  const toggleAssignedLabel = (data: labelData) => {
-    setAssignedLabel(data);
-    return;
+  const assignLanguageHandler = (lang: SupportedLanguages) => {
+    setAssignedLanguage(lang);
   };
 
   const submitHandler = (event: React.ChangeEvent<HTMLFormElement>) => {
@@ -29,8 +28,7 @@ export const AddSnippetForm = React.memo(() => {
       title: title,
       description: description,
       content: `${content}`,
-      language: "js",
-      assignedLabel: assignedLabel,
+      language: assignedLanguage,
     });
     clearInputs();
     mycontext.toggleNewSnippetFormDisplayState();
@@ -47,7 +45,7 @@ export const AddSnippetForm = React.memo(() => {
         <textarea id="SnippetInputDescription" name="SnippetInputDescription" rows={4} cols={50} value={content} onChange={(event) => setContent(event.target.value)} />
         <div className={styles.labelSelection}>
           {labels.map((item) => (
-            <Label key={item.name} labelInputData={{ name: item.name, lang: item.lang, bgColor: item.bgColor, toggleAction: () => toggleAssignedLabel({ name: item.name, lang: item.lang, bgColor: item.bgColor }) }} labelGroupName="newSnippetLabels" labelType={"radio"} />
+            <Label key={item.name} labelInputData={{ name: item.name, lang: item.lang, bgColor: item.bgColor, toggleAction: () => assignLanguageHandler(item.lang) }} labelGroupName="newSnippetLabels" labelType={"radio"} />
           ))}
         </div>
         <div>

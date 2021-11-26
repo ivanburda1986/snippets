@@ -16,7 +16,7 @@ export function SnippetList() {
   return (
     <div>
       {filteredSnippets.map((snippet) => (
-        <Snippet key={snippet.id} id={snippet.id} title={snippet.title} description={snippet.description} content={snippet.content} language={snippet.language} assignedLabel={snippet.assignedLabel} />
+        <Snippet key={snippet.id} id={snippet.id} title={snippet.title} description={snippet.description} content={snippet.content} language={snippet.language} />
       ))}
     </div>
   );

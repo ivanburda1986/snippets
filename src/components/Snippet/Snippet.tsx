@@ -1,15 +1,16 @@
 import React, { useContext, useState } from "react";
 import { AppContext } from "../../context/context";
-import { typeSnippet } from "../../config/config";
+import { typeSnippet, labels } from "../../config/config";
 import sharedStyles from "../sharedStyles/sharedStyles.module.css";
 import styles from "./Snippet.module.css";
 
 import { Button } from "../Button/Button";
 import { ReadonlyLabel } from "../ReadonlyLabel/ReadonlyLabel";
 
-export function Snippet({ id, title, description, content, language, assignedLabel }: typeSnippet) {
+export function Snippet({ id, title, description, content, language }: typeSnippet) {
   const mycontext = useContext(AppContext);
   const [editing, setEditing] = useState(false);
+  const assignedLabel = labels.filter((label) => label.lang === language)[0];
 
   function handleEdit() {
     setEditing(true);

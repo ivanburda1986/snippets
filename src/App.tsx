@@ -7,6 +7,7 @@ import { receiveServerItems } from "./api/api";
 import { Header } from "./components/Header/Header";
 import { AddSnippetForm } from "./components/AddSnippetForm/AddSnippetForm";
 import { SnippetList } from "./components/SnippetList/SnippetList";
+import { Snippet } from "./components/Snippet/Snippet";
 
 const snippetsMock: typeSnippet[] = [
   {
@@ -39,6 +40,7 @@ function App() {
   const [snippets, setSnippets] = useState<typeSnippet[]>([...snippetsMock]);
   const [newSnippetFormDisplayState, setNewSnippetDisplayState] = useState<boolean>(false);
   const [languagesToFilterSnippetsBy, setLanguagesToFilterSnippetsBy] = useState<SupportedLanguages[]>([]);
+  const [myTestSnippet, setMyTestSnippet] = useState<typeSnippet>();
   const contextProvider = {
     snippets,
     newSnippetFormDisplayState,
@@ -50,7 +52,12 @@ function App() {
   };
 
   useEffect(() => {
-    receiveServerItems().then((data) => console.log(data["123-abc"]));
+    let mydata: typeSnippet;
+    receiveServerItems().then((data) => {
+      mydata = Array.from(Object.values(data))[0] as typeSnippet;
+      //console.log(Array.from(mydata.assignedLabels));
+      setMyTestSnippet(mydata);
+    });
   }, []);
 
   function toggleNewSnippetFormDisplayState(): void {
@@ -80,6 +87,7 @@ function App() {
         <Header />
         {newSnippetFormDisplayState && <AddSnippetForm />}
         <SnippetList />
+        {myTestSnippet && <Snippet id={myTestSnippet.id} title={myTestSnippet.title} description={myTestSnippet.description} content={myTestSnippet.content} language={myTestSnippet.language} assignedLabels={myTestSnippet.assignedLabels} />}
       </AppContext.Provider>
     </div>
   );

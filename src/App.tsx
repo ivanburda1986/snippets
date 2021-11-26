@@ -16,7 +16,7 @@ const snippetsMock: typeSnippet[] = [
     description: "My best javascript snippet",
     content: "ff",
     language: "js",
-    assignedLabels: [{ bgColor: "gold", lang: "js", name: "Javascript" }],
+    assignedLabel: { bgColor: "gold", lang: "js", name: "Javascript" },
   },
   {
     id: "456-abc",
@@ -24,7 +24,7 @@ const snippetsMock: typeSnippet[] = [
     description: "My best HTML snippet",
     content: "ff",
     language: "html",
-    assignedLabels: [{ bgColor: "orange", lang: "html", name: "HTML" }],
+    assignedLabel: { bgColor: "orange", lang: "html", name: "HTML" },
   },
   {
     id: "789-abc",
@@ -32,7 +32,7 @@ const snippetsMock: typeSnippet[] = [
     description: "My best CSS snippet",
     content: "ff",
     language: "cs",
-    assignedLabels: [{ bgColor: "mediumpurple", lang: "cs", name: "CSS" }],
+    assignedLabel: { bgColor: "mediumpurple", lang: "cs", name: "CSS" },
   },
 ];
 
@@ -55,7 +55,7 @@ function App() {
     let mydata: typeSnippet;
     receiveServerItems().then((data) => {
       mydata = Array.from(Object.values(data))[0] as typeSnippet;
-      //console.log(Array.from(mydata.assignedLabels));
+      //console.log(Array.from(mydata.assignedLabel));
       setMyTestSnippet(mydata);
     });
   }, []);
@@ -64,8 +64,8 @@ function App() {
     setNewSnippetDisplayState(!newSnippetFormDisplayState);
   }
 
-  function addSnippet({ title, description, content, language, assignedLabels }: newSnippet) {
-    setSnippets((prevSnippets) => [...prevSnippets, { id: uuidv4(), title: title, description: description, content: content, language: language, assignedLabels: assignedLabels }]);
+  function addSnippet({ title, description, content, language, assignedLabel }: newSnippet) {
+    setSnippets((prevSnippets) => [...prevSnippets, { id: uuidv4(), title: title, description: description, content: content, language: language, assignedLabel: assignedLabel }]);
   }
 
   function deleteSnippet(id: string) {
@@ -87,7 +87,7 @@ function App() {
         <Header />
         {newSnippetFormDisplayState && <AddSnippetForm />}
         <SnippetList />
-        {myTestSnippet && <Snippet id={myTestSnippet.id} title={myTestSnippet.title} description={myTestSnippet.description} content={myTestSnippet.content} language={myTestSnippet.language} assignedLabels={myTestSnippet.assignedLabels} />}
+        {myTestSnippet && <Snippet id={myTestSnippet.id} title={myTestSnippet.title} description={myTestSnippet.description} content={myTestSnippet.content} language={myTestSnippet.language} assignedLabel={myTestSnippet.assignedLabel} />}
       </AppContext.Provider>
     </div>
   );

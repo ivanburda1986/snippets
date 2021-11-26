@@ -4,7 +4,7 @@ export interface typeSnippet {
   description: string;
   content: string;
   language: SupportedLanguages;
-  assignedLabels?: labelData[];
+  assignedLabel?: labelData;
 }
 
 export interface newSnippet {
@@ -12,7 +12,7 @@ export interface newSnippet {
   description: string;
   content: string;
   language: SupportedLanguages;
-  assignedLabels: labelData[];
+  assignedLabel: labelData;
 }
 export interface labelData {
   name: string;

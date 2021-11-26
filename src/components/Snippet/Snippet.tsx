@@ -7,7 +7,7 @@ import styles from "./Snippet.module.css";
 import { Button } from "../Button/Button";
 import { ReadonlyLabel } from "../ReadonlyLabel/ReadonlyLabel";
 
-export function Snippet({ id, title, description, content, language, assignedLabels }: typeSnippet) {
+export function Snippet({ id, title, description, content, language, assignedLabel }: typeSnippet) {
   const mycontext = useContext(AppContext);
   const [editing, setEditing] = useState(false);
 
@@ -25,7 +25,7 @@ export function Snippet({ id, title, description, content, language, assignedLab
         <div id="snippetHeader" className={styles.header}>
           <p className={styles.title}>{title}</p>
           <p className={styles.description}>{description}</p>
-          {assignedLabels && assignedLabels.map((item) => <ReadonlyLabel key={item.name} name={item.name} lang={item.lang} bgColor={item.bgColor} />)}
+          {assignedLabel && <ReadonlyLabel key={assignedLabel.name} name={assignedLabel.name} lang={assignedLabel.lang} bgColor={assignedLabel.bgColor} />}
         </div>
         <div id="snippetBody" className={styles.body}>
           <pre className="prettyprint">

@@ -17,7 +17,7 @@ export function Header() {
           {labels.map((item) => (
             <CheckboxLabel key={item.name} labelInputData={{ name: item.name, lang: item.lang, bgColor: item.bgColor, toggleAction: () => mycontext.addFilter(item.lang) }} labelGroupName="headerLabels" />
           ))}
-          <Button title={"Add snippet"} onClick={mycontext.toggleNewSnippetFormDisplayState} disabled={mycontext.newSnippetFormDisplayState} displayed="flex" />
+          <Button title={"Add snippet"} onClick={mycontext.toggleNewSnippetFormDisplayState} disabled={mycontext.newSnippetFormDisplayState} />
         </div>
       </div>
     </div>

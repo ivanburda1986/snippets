@@ -60,8 +60,8 @@ function App() {
     setNewSnippetDisplayState(!newSnippetFormDisplayState);
   }
 
-  function addSnippet({ title, description, content, language }: newSnippet) {
-    setSnippets((prevSnippets) => [...prevSnippets, { id: uuidv4(), title: title, description: description, content: content, language: language }]);
+  function addSnippet({ id, title, description, content, language }: newSnippet) {
+    setSnippets((prevSnippets) => [...prevSnippets, { id: id, title: title, description: description, content: content, language: language }]);
   }
 
   function deleteSnippet(id: string) {

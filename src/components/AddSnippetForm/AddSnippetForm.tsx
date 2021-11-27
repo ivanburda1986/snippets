@@ -1,5 +1,7 @@
 import React, { useContext, useState } from "react";
-import { labels, labelData, SupportedLanguages } from "../../config/config";
+import { v4 as uuidv4 } from "uuid";
+import { labels, labelData, SupportedLanguages, newSnippet } from "../../config/config";
+import { addServerItem } from "../../api/api";
 import sharedStyles from "../sharedStyles/sharedStyles.module.css";
 import styles from "./AddSnippetForm.module.css";
 import { AppContext } from "../../context/context";
@@ -24,12 +26,16 @@ export const AddSnippetForm = React.memo(() => {
 
   const submitHandler = (event: React.ChangeEvent<HTMLFormElement>) => {
     event.preventDefault();
-    mycontext.submitNewSnippetHandler({
+    const snippetToAdd: newSnippet = {
+      id: uuidv4(),
       title: title,
       description: description,
       content: `${content}`,
-      language: assignedLanguage,
-    });
+      language: assignedLanguage!,
+    };
+
+    addServerItem(snippetToAdd);
+    mycontext.submitNewSnippetHandler(snippetToAdd);
     clearInputs();
     mycontext.toggleNewSnippetFormDisplayState();
   };

@@ -7,6 +7,7 @@ export interface typeSnippet {
 }
 
 export interface newSnippet {
+  id: string;
   title: string;
   description: string;
   content: string;

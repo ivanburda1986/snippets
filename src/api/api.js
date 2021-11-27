@@ -2,6 +2,7 @@ import firebase from "firebase/compat/app";
 import "firebase/compat/auth";
 import "firebase/compat/database";
 import database from "./firebase";
+import { newSnippet } from "../config/config";
 
 //Receive server items
 export async function receiveServerItems() {
@@ -18,6 +19,21 @@ export async function receiveServerItems() {
     })
     .catch(function (error) {
       console.log(error);
+    });
+  return response;
+}
+
+//Add a server item
+export async function addServerItem(newItem) {
+  const response = await firebase
+    .database()
+    .ref("snippets/" + newItem.id)
+    .set(newItem, (error) => {
+      if (error) {
+        console.log("Saving a new item to the server has failed");
+      } else {
+        console.log("A new item has been saved to the server successfully");
+      }
     });
   return response;
 }

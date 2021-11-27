@@ -37,3 +37,9 @@ export async function addServerItem(newItem) {
     });
   return response;
 }
+
+// Delete a server item
+export async function deleteServerItem(itemId) {
+  const response = await firebase.database().ref(`/snippets/${itemId}`).remove();
+  return response;
+}

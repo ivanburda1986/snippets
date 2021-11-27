@@ -6,6 +6,7 @@ import styles from "./Snippet.module.css";
 
 import { Button } from "../Button/Button";
 import { ReadonlyLabel } from "../ReadonlyLabel/ReadonlyLabel";
+import { deleteServerItem } from "../../api/api";
 
 export function Snippet({ id, title, description, content, language }: typeSnippet) {
   const mycontext = useContext(AppContext);
@@ -18,6 +19,11 @@ export function Snippet({ id, title, description, content, language }: typeSnipp
 
   function handleCancel() {
     setEditing(false);
+  }
+
+  function handleDelete(id: string) {
+    mycontext.deleteSnippetHandler(id);
+    deleteServerItem(id);
   }
 
   return (
@@ -37,7 +43,7 @@ export function Snippet({ id, title, description, content, language }: typeSnipp
           <Button title={"Edit"} onClick={handleEdit} disabled={editing} displayed={editing ? "none" : "flex"} />
           <Button title={"Cancel"} onClick={handleCancel} disabled={false} displayed={editing ? "flex" : "none"} />
           <Button title={"Save"} onClick={() => console.log("hello")} disabled={false} displayed={editing ? "flex" : "none"} />
-          <Button title={"Delete"} onClick={() => mycontext.deleteSnippetHandler(id)} disabled={false} displayed={"flex"} />
+          <Button title={"Delete"} onClick={() => handleDelete(id)} disabled={false} displayed={"flex"} />
         </div>
       </div>
     </div>

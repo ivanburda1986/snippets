@@ -5,7 +5,7 @@ import { addServerItem } from "../../api/api";
 import sharedStyles from "../sharedStyles/sharedStyles.module.css";
 import styles from "./AddSnippetForm.module.css";
 import { AppContext } from "../../context/context";
-import { Label } from "../Label/Label";
+import { RadioLabel } from "../RadioLabel/RadioLabel";
 
 export const AddSnippetForm = React.memo(() => {
   const mycontext = useContext(AppContext);
@@ -48,10 +48,10 @@ export const AddSnippetForm = React.memo(() => {
         <label htmlFor="SnippetInputDescription">Description</label>
         <input type="text" id="SnippetInputDescription" name="SnippetInputDescription" value={description} onChange={(event) => setDescription(event.target.value)} />
         <label htmlFor="SnippetInputContent">Snippet</label>
-        <textarea id="SnippetInputDescription" name="SnippetInputDescription" rows={4} cols={50} value={content} onChange={(event) => setContent(event.target.value)} />
+        <textarea id="SnippetInputContent" name="SnippetInputContent" rows={4} cols={50} value={content} onChange={(event) => setContent(event.target.value)} />
         <div className={styles.labelSelection}>
           {labels.map((item) => (
-            <Label key={item.name} labelInputData={{ name: item.name, lang: item.lang, bgColor: item.bgColor, toggleAction: () => assignLanguageHandler(item.lang) }} labelGroupName="newSnippetLabels" labelType={"radio"} />
+            <RadioLabel key={item.name} labelInputData={{ name: item.name, lang: item.lang, bgColor: item.bgColor, toggleAction: () => assignLanguageHandler(item.lang) }} labelGroupName="newSnippetLabels" />
           ))}
         </div>
         <div>

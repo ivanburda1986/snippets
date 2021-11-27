@@ -6,16 +6,21 @@ import styles from "./Snippet.module.css";
 
 import { Button } from "../Button/Button";
 import { ReadonlyLabel } from "../ReadonlyLabel/ReadonlyLabel";
-import { deleteServerItem } from "../../api/api";
+import { deleteServerItem, updateServerItem } from "../../api/api";
 
 export function Snippet({ id, title, description, content, language }: typeSnippet) {
   const mycontext = useContext(AppContext);
   const [editing, setEditing] = useState(false);
   const assignedLabel = labels.filter((label) => label.lang === language)[0];
 
+  const [titleToUpdate, setTitleToUpdate] = useState(title);
+  const [descriptionToUpdate, setDescriptionToUpdate] = useState(description);
+
   function handleEdit() {
     setEditing(true);
   }
+
+  function handleSave() {}
 
   function handleCancel() {
     setEditing(false);
@@ -28,10 +33,30 @@ export function Snippet({ id, title, description, content, language }: typeSnipp
 
   return (
     <div className={sharedStyles.container}>
+      {/* View-mode */}
       <div className={styles.snippet}>
         <div id="snippetHeader" className={styles.header}>
           <p className={styles.title}>{title}</p>
           <p className={styles.description}>{description}</p>
+          {assignedLabel && <ReadonlyLabel key={assignedLabel.name} name={assignedLabel.name} lang={assignedLabel.lang} bgColor={assignedLabel.bgColor} />}
+        </div>
+        <div id="snippetBody" className={styles.body}>
+          <pre className="prettyprint">
+            <code className={`lang-${language}`}> {content}</code>
+          </pre>
+        </div>
+        <div id="snippetFooter" className={styles.footer}>
+          <Button title={"Edit"} onClick={handleEdit} disabled={editing} displayed={editing ? "none" : "flex"} />
+          <Button title={"Cancel"} onClick={handleCancel} disabled={false} displayed={editing ? "flex" : "none"} />
+          <Button title={"Save"} onClick={() => console.log("hello")} disabled={false} displayed={editing ? "flex" : "none"} />
+          <Button title={"Delete"} onClick={() => handleDelete(id)} disabled={false} displayed={"flex"} />
+        </div>
+      </div>
+      {/* Edit-mode */}
+      <div className={styles.snippet}>
+        <div id="snippetHeader" className={styles.header}>
+          <input type="text" id="SnippetInputName" name="SnippetInputName" value={titleToUpdate} onChange={(event) => setTitleToUpdate(event.target.value)} />
+          <input type="text" id="SnippetInputDescription" name="SnippetInputDescription" value={descriptionToUpdate} onChange={(event) => setDescriptionToUpdate(event.target.value)} />
           {assignedLabel && <ReadonlyLabel key={assignedLabel.name} name={assignedLabel.name} lang={assignedLabel.lang} bgColor={assignedLabel.bgColor} />}
         </div>
         <div id="snippetBody" className={styles.body}>

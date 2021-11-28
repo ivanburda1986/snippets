@@ -22,6 +22,13 @@ export interface labelData {
 
 export type SupportedLanguages = "html" | "cs" | "js";
 
+export interface message {
+  type: supportedMessageTypes;
+  text: string;
+}
+
+export type supportedMessageTypes = "success" | "warning";
+
 export const labels: labelData[] = [
   { name: "Javascript", lang: "js", bgColor: "gold" },
   { name: "HTML", lang: "html", bgColor: "orange" },

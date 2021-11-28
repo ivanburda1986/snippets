@@ -1,6 +1,6 @@
 import React, { useContext, useState } from "react";
 import { AppContext } from "../../context/context";
-import { typeSnippet, labels, SupportedLanguages } from "../../config/config";
+import { typeSnippet, labels, SupportedLanguages, newSnippet } from "../../config/config";
 import sharedStyles from "../sharedStyles/sharedStyles.module.css";
 import styles from "./Snippet.module.css";
 
@@ -13,7 +13,7 @@ export const Snippet = React.memo(({ id, title, description, content, language }
   const mycontext = useContext(AppContext);
   const [editing, setEditing] = useState(false);
   let assignedLabel = labels.filter((label) => label.lang === language)[0];
-  //const [assignedLanguage, setAssignedLanguage] = useState<SupportedLanguages>(assignedLabel.lang);
+  const [assignedLanguage, setAssignedLanguage] = useState<SupportedLanguages>(assignedLabel.lang);
 
   const [titleToUpdate, setTitleToUpdate] = useState(title);
   const [descriptionToUpdate, setDescriptionToUpdate] = useState(description);
@@ -23,10 +23,22 @@ export const Snippet = React.memo(({ id, title, description, content, language }
     setEditing(true);
   }
 
-  function handleSave() {}
+  function handleSave() {
+    const snippetToAdd: newSnippet = {
+      id: id,
+      title: titleToUpdate,
+      description: descriptionToUpdate,
+      content: contentToUpdate,
+      language: assignedLanguage!,
+    };
+    mycontext.deleteSnippetHandler(id);
+    mycontext.updateSnippetHandler(snippetToAdd);
+    setEditing(false);
+    updateServerItem(snippetToAdd);
+  }
 
   const assignLanguageHandler = (lang: SupportedLanguages) => {
-    //setAssignedLanguage(lang);
+    setAssignedLanguage(lang);
   };
 
   function handleCancel() {
@@ -79,7 +91,7 @@ export const Snippet = React.memo(({ id, title, description, content, language }
           </div>
           <div id="snippetFooter" className={styles.footer}>
             <Button title={"Cancel"} onClick={handleCancel} disabled={false} />
-            <Button title={"Save"} onClick={() => console.log("hello")} disabled={false} />
+            <Button title={"Save"} onClick={handleSave} disabled={false} />
             <Button title={"Delete"} onClick={() => handleDelete(id)} disabled={false} />
           </div>
         </div>

@@ -19,6 +19,7 @@ function App() {
     toggleNewSnippetFormDisplayState,
     submitNewSnippetHandler: addSnippet,
     deleteSnippetHandler: deleteSnippet,
+    updateSnippetHandler: updateSnippet,
     languagesToFilterSnippetsBy,
     addFilter,
   };
@@ -43,6 +44,10 @@ function App() {
 
   function deleteSnippet(id: string) {
     setSnippets((prevSnippets) => [...prevSnippets].filter((snippet) => snippet.id !== id));
+  }
+
+  function updateSnippet({ id, title, description, content, language }: newSnippet) {
+    setSnippets((prevSnippets) => [...prevSnippets, { id: id, title: title, description: description, content: content, language: language }]);
   }
 
   function addFilter(filterLanguage: SupportedLanguages) {

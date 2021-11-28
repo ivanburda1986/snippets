@@ -1,7 +1,7 @@
 import React, { useContext, useState } from "react";
 import { v4 as uuidv4 } from "uuid";
 import { labels, labelData, SupportedLanguages, newSnippet } from "../../config/config";
-import { addServerItem } from "../../api/api";
+import { addServerItem, deleteServerItem } from "../../api/api";
 import sharedStyles from "../sharedStyles/sharedStyles.module.css";
 import styles from "./AddSnippetForm.module.css";
 import { AppContext } from "../../context/context";
@@ -34,7 +34,15 @@ export const AddSnippetForm = React.memo(() => {
       language: assignedLanguage!,
     };
 
-    addServerItem(snippetToAdd);
+    const cbSuccess = () => {
+      console.log(`Item '${snippetToAdd.title}' successfully saved to the server`);
+    };
+    const cbError = () => {
+      console.log(`Saving the item '${snippetToAdd.title}' to the server has failed.`);
+      deleteServerItem(snippetToAdd.id);
+    };
+
+    addServerItem(snippetToAdd, cbSuccess, cbError);
     mycontext.submitNewSnippetHandler(snippetToAdd);
     clearInputs();
     mycontext.toggleNewSnippetFormDisplayState();

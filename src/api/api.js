@@ -24,15 +24,15 @@ export async function receiveServerItems() {
 }
 
 //Add a server item
-export async function addServerItem(newItem) {
+export async function addServerItem(newItem, cbSuccess, cbError) {
   const response = await firebase
     .database()
     .ref("snippets/" + newItem.id)
     .set(newItem, (error) => {
       if (error) {
-        console.log("Saving a new item to the server has failed");
+        cbError();
       } else {
-        console.log("A new item has been saved to the server successfully");
+        cbSuccess();
       }
     });
   return response;
@@ -46,10 +46,10 @@ export async function updateServerItem(updatedItem) {
     .update(updatedItem, (error) => {
       if (error) {
         console.log("Updating the items on the server has failed");
-        return "ok";
+        return "nok";
       } else {
         console.log("The item has been updated on the server successfully");
-        return "nok";
+        return "ok";
       }
     });
   return response;

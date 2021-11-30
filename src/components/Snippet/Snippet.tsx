@@ -24,6 +24,7 @@ export const Snippet = React.memo(({ id, title, description, content, language }
   }
 
   function handleSave() {
+    console.log("ivan");
     const snippetToAdd: newSnippet = {
       id: id,
       title: titleToUpdate,

@@ -1,10 +1,12 @@
-import React from "react";
+import React, { useContext } from "react";
 import { v4 as uuidv4 } from "uuid";
 import styles from "./CheckboxLabel.module.css";
 import { labelData } from "../../config/config";
+import { AppContext } from "../../context/context";
 
 export function CheckboxLabel(props: { labelInputData: labelData; labelGroupName: string }) {
-  const { name, bgColor, toggleAction }: labelData = props.labelInputData;
+  const mycontext = useContext(AppContext);
+  const { name, bgColor, toggleAction, lang }: labelData = props.labelInputData;
   const labelGroupName = props.labelGroupName;
 
   function onToggleHandler() {
@@ -13,9 +15,10 @@ export function CheckboxLabel(props: { labelInputData: labelData; labelGroupName
     }
   }
   const randomNamePart = uuidv4();
+
   return (
     <div className={styles.Label} style={{ backgroundColor: bgColor }}>
-      <input type="checkbox" id={`label-${name}-${randomNamePart}`} name={labelGroupName} value={name} onChange={(e: React.FormEvent<HTMLInputElement>) => onToggleHandler()} />
+      <input type="checkbox" checked={mycontext.languagesToFilterSnippetsBy.includes(lang)} id={`label-${name}-${randomNamePart}`} name={labelGroupName} value={name} onChange={(e: React.FormEvent<HTMLInputElement>) => onToggleHandler()} />
       <label htmlFor={`label-${name}-${randomNamePart}`}> {name}</label>
     </div>
   );

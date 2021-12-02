@@ -1,7 +1,7 @@
 The application allows storing code snippets and commands, so that I can access them easily from anywhere anytime.
 
 Version1 
-Display all entries by default
+--Display any entries by a hardcoded filter
 --An option to add a new entry: Title, snippets/command
 --Code gets displayed like code
 --Edit an entry 
@@ -9,12 +9,13 @@ Display all entries by default
 --Firebase CRUD of entries
 
 Version2 
-Predefined tags for major topics: HTML, CSS, JS, React, Redux, TS, NPM, GIT, Linux, Bash
+--Predefined tags for major topics: HTML, CSS, JS, React, Redux, TS, NPM, GIT, Linux, Bash
 --The predefined tags get displayed at the top 
 --Each entry must be assigned exactly one tag
 --Selecting tags at the top filters the entries
+--De-select tags option
+Set a snippet as favorite, so that it will be displayed at the top of its category
 URL deeplinking for label-based searching
-De-select tags option
 
 Version3
 Searchbar that searches titles of all entries and returns matching results

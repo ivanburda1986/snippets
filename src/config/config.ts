@@ -21,7 +21,7 @@ export interface labelData {
   toggleAction?: Function | void;
 }
 
-export type SupportedLanguages = "html" | "cs" | "js";
+export type SupportedLanguages = "html" | "cs" | "js" | "react" | "ts" | "bsh" | "py" | "npm" | "git";
 
 export interface message {
   type: supportedMessageTypes;
@@ -31,7 +31,13 @@ export interface message {
 export type supportedMessageTypes = "success" | "warning";
 
 export const labels: labelData[] = [
-  { name: "Javascript", lang: "js", bgColor: "gold" },
   { name: "HTML", lang: "html", bgColor: "orange" },
   { name: "CSS", lang: "cs", bgColor: "mediumpurple" },
+  { name: "Javascript", lang: "js", bgColor: "gold" },
+  { name: "React", lang: "react", bgColor: "cyan" },
+  { name: "Typescript", lang: "ts", bgColor: "steelblue" },
+  { name: "Bash", lang: "bsh", bgColor: "lightgrey" },
+  { name: "Python", lang: "py", bgColor: "lightblue" },
+  { name: "NPM", lang: "npm", bgColor: "lavender" },
+  { name: "GIT", lang: "git", bgColor: "lightcoral" },
 ];

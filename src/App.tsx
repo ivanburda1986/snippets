@@ -12,7 +12,7 @@ import { Snippet } from "./components/Snippet/Snippet";
 function App() {
   const [snippets, setSnippets] = useState<typeSnippet[]>([]);
   const [newSnippetFormDisplayState, setNewSnippetDisplayState] = useState<boolean>(false);
-  const [languagesToFilterSnippetsBy, setLanguagesToFilterSnippetsBy] = useState<SupportedLanguages[]>(["cs"]);
+  const [languagesToFilterSnippetsBy, setLanguagesToFilterSnippetsBy] = useState<SupportedLanguages[]>(["html"]);
   const contextProvider = {
     snippets,
     newSnippetFormDisplayState,

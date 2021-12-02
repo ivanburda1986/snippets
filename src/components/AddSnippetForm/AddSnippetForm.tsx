@@ -32,7 +32,7 @@ export const AddSnippetForm = React.memo(() => {
       description: description,
       content: `${content}`,
       language: assignedLanguage!,
-      favorited: false,
+      favorited: 0,
     };
 
     const cbSuccess = () => {

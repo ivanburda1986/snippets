@@ -4,7 +4,7 @@ export interface typeSnippet {
   description: string;
   content: string;
   language: SupportedLanguages;
-  favorited: boolean;
+  favorited: Favorited;
 }
 
 export interface newSnippet {
@@ -13,7 +13,7 @@ export interface newSnippet {
   description: string;
   content: string;
   language: SupportedLanguages;
-  favorited: boolean;
+  favorited: Favorited;
 }
 export interface labelData {
   name: string;
@@ -24,6 +24,7 @@ export interface labelData {
 }
 
 export type SupportedLanguages = "html" | "cs" | "js" | "react" | "ts" | "bsh" | "py" | "npm" | "git";
+export type Favorited = 1 | 0;
 
 export interface message {
   type: supportedMessageTypes;

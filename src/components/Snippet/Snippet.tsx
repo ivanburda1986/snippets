@@ -30,7 +30,7 @@ export const Snippet = React.memo(({ id, title, description, content, language }
       description: descriptionToUpdate,
       content: contentToUpdate,
       language: assignedLanguage!,
-      favorited: false,
+      favorited: 0,
     };
     mycontext.deleteSnippetHandler(id);
     mycontext.updateSnippetHandler(snippetToAdd);

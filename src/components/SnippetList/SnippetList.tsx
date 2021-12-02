@@ -10,7 +10,7 @@ export function SnippetList() {
   const [filteredSnippets, setFilteredSnippets] = useState<typeSnippet[]>([]);
 
   useEffect(() => {
-    setFilteredSnippets(snippets.filter((snippet) => filter.includes(snippet.language)));
+    setFilteredSnippets(snippets.filter((snippet) => filter.includes(snippet.language)).sort((a, b) => b.favorited - a.favorited));
   }, [filter, snippets]);
 
   return (

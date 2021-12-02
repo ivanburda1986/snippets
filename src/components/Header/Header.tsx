@@ -14,9 +14,9 @@ export function Header() {
       <div className={classes.headerTitle}>Snippets</div>
       <div className={sharedStyles.container}>
         <div className={classes.headerOptions}>
-          {labels.map((item) => (
-            <CheckboxLabel key={item.name} labelInputData={{ name: item.name, lang: item.lang, bgColor: item.bgColor, toggleAction: () => mycontext.addFilter(item.lang) }} labelGroupName="headerLabels" />
-          ))}
+          {labels.map((item) => {
+            return <CheckboxLabel key={item.name} labelInputData={{ name: item.name, lang: item.lang, bgColor: item.bgColor, toggleAction: () => mycontext.addFilter(item.lang) }} labelGroupName="headerLabels" />;
+          })}
           <Button title={"Add snippet"} onClick={mycontext.toggleNewSnippetFormDisplayState} disabled={mycontext.newSnippetFormDisplayState} />
         </div>
       </div>

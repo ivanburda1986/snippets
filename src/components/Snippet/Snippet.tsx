@@ -86,7 +86,7 @@ export const Snippet = React.memo(({ id, title, description, content, language }
           </div>
           <div id="snippetBody" className={styles.body}>
             <pre className="prettyprint">
-              <textarea id={`Snippet-${id}-EditContent`} name={`Snippet-${id}-EditContent`} rows={4} cols={50} value={content} onChange={(event) => setContentToUpdate(event.target.value)} />
+              <textarea id={`Snippet-${id}-EditContent`} name={`Snippet-${id}-EditContent`} rows={4} cols={50} value={contentToUpdate} onChange={(event) => setContentToUpdate(event.target.value)} />
             </pre>
           </div>
           <div id="snippetFooter" className={styles.footer}>

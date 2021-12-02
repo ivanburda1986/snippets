@@ -38,16 +38,16 @@ function App() {
     setNewSnippetDisplayState(!newSnippetFormDisplayState);
   }
 
-  function addSnippet({ id, title, description, content, language }: newSnippet) {
-    setSnippets((prevSnippets) => [...prevSnippets, { id: id, title: title, description: description, content: content, language: language }]);
+  function addSnippet({ id, title, description, content, language, favorited }: newSnippet) {
+    setSnippets((prevSnippets) => [...prevSnippets, { id: id, title: title, description: description, content: content, language: language, favorited: favorited }]);
   }
 
   function deleteSnippet(id: string) {
     setSnippets((prevSnippets) => [...prevSnippets].filter((snippet) => snippet.id !== id));
   }
 
-  function updateSnippet({ id, title, description, content, language }: newSnippet) {
-    setSnippets((prevSnippets) => [...prevSnippets, { id: id, title: title, description: description, content: content, language: language }]);
+  function updateSnippet({ id, title, description, content, language, favorited }: newSnippet) {
+    setSnippets((prevSnippets) => [...prevSnippets, { id: id, title: title, description: description, content: content, language: language, favorited: favorited }]);
   }
 
   function addFilter(filterLanguage: SupportedLanguages) {

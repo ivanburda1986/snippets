@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { v4 as uuidv4 } from "uuid";
+import { useLocation } from "react-router-dom";
 import { AppContext } from "./context/context";
 import { SupportedLanguages, typeSnippet, newSnippet } from "./config/config";
 import { receiveServerItems } from "./api/api";
@@ -12,7 +12,7 @@ import { Snippet } from "./components/Snippet/Snippet";
 function App() {
   const [snippets, setSnippets] = useState<typeSnippet[]>([]);
   const [newSnippetFormDisplayState, setNewSnippetDisplayState] = useState<boolean>(false);
-  const [languagesToFilterSnippetsBy, setLanguagesToFilterSnippetsBy] = useState<SupportedLanguages[]>(["react"]);
+  const [languagesToFilterSnippetsBy, setLanguagesToFilterSnippetsBy] = useState<SupportedLanguages[]>(["html"]);
   const contextProvider = {
     snippets,
     newSnippetFormDisplayState,

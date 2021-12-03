@@ -14,7 +14,7 @@ Version2
 --Each entry must be assigned exactly one tag
 --Selecting tags at the top filters the entries
 --De-select tags option
-Set a snippet as favorite, so that it will be displayed at the top of its category
+--Set a snippet as favorite, so that it will be displayed at the top of its category
 URL deeplinking for label-based searching
 
 Version3

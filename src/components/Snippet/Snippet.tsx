@@ -5,11 +5,12 @@ import sharedStyles from "../sharedStyles/sharedStyles.module.css";
 import styles from "./Snippet.module.css";
 
 import { Button } from "../Button/Button";
+import { FavoriteButton } from "../FavoriteButton/FavoriteButton";
 import { ReadonlyLabel } from "../ReadonlyLabel/ReadonlyLabel";
 import { RadioLabel } from "../RadioLabel/RadioLabel";
 import { deleteServerItem, updateServerItem } from "../../api/api";
 
-export const Snippet = React.memo(({ id, title, description, content, language }: typeSnippet) => {
+export const Snippet = React.memo(({ id, title, description, content, language, favorited }: typeSnippet) => {
   const mycontext = useContext(AppContext);
   const [editing, setEditing] = useState(false);
   let assignedLabel = labels.filter((label) => label.lang === language)[0];
@@ -31,6 +32,21 @@ export const Snippet = React.memo(({ id, title, description, content, language }
       content: contentToUpdate,
       language: assignedLanguage!,
       favorited: 0,
+    };
+    mycontext.deleteSnippetHandler(id);
+    mycontext.updateSnippetHandler(snippetToAdd);
+    setEditing(false);
+    updateServerItem(snippetToAdd);
+  }
+
+  function handleToggleFavorite(id: string) {
+    const snippetToAdd: newSnippet = {
+      id: id,
+      title: title,
+      description: description,
+      content: content,
+      language: language,
+      favorited: favorited === 1 ? 0 : 1,
     };
     mycontext.deleteSnippetHandler(id);
     mycontext.updateSnippetHandler(snippetToAdd);
@@ -67,6 +83,7 @@ export const Snippet = React.memo(({ id, title, description, content, language }
             </pre>
           </div>
           <div id="snippetFooter" className={styles.footer}>
+            <FavoriteButton favorited={favorited} onClick={() => handleToggleFavorite(id)} />
             <Button title={"Edit"} onClick={handleEdit} disabled={editing} />
             <Button title={"Delete"} onClick={() => handleDelete(id)} disabled={false} />
           </div>

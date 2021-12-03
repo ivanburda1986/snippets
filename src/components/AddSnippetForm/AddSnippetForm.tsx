@@ -33,6 +33,7 @@ export const AddSnippetForm = React.memo(() => {
       content: `${content}`,
       language: assignedLanguage!,
       favorited: 0,
+      creationTimestamp: Date.now(),
     };
 
     const cbSuccess = () => {

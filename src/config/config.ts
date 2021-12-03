@@ -5,6 +5,7 @@ export interface typeSnippet {
   content: string;
   language: SupportedLanguages;
   favorited: Favorited;
+  creationTimestamp: number;
 }
 
 export interface newSnippet {
@@ -14,6 +15,7 @@ export interface newSnippet {
   content: string;
   language: SupportedLanguages;
   favorited: Favorited;
+  creationTimestamp: number;
 }
 export interface labelData {
   name: string;

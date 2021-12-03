@@ -10,7 +10,7 @@ import { ReadonlyLabel } from "../ReadonlyLabel/ReadonlyLabel";
 import { RadioLabel } from "../RadioLabel/RadioLabel";
 import { deleteServerItem, updateServerItem } from "../../api/api";
 
-export const Snippet = React.memo(({ id, title, description, content, language, favorited }: typeSnippet) => {
+export const Snippet = React.memo(({ id, title, description, content, language, favorited, creationTimestamp }: typeSnippet) => {
   const mycontext = useContext(AppContext);
   const [editing, setEditing] = useState(false);
   let assignedLabel = labels.filter((label) => label.lang === language)[0];
@@ -32,6 +32,7 @@ export const Snippet = React.memo(({ id, title, description, content, language, 
       content: contentToUpdate,
       language: assignedLanguage!,
       favorited: 0,
+      creationTimestamp: creationTimestamp,
     };
     mycontext.deleteSnippetHandler(id);
     mycontext.updateSnippetHandler(snippetToAdd);
@@ -47,6 +48,7 @@ export const Snippet = React.memo(({ id, title, description, content, language, 
       content: content,
       language: language,
       favorited: favorited === 1 ? 0 : 1,
+      creationTimestamp: creationTimestamp,
     };
     mycontext.deleteSnippetHandler(id);
     mycontext.updateSnippetHandler(snippetToAdd);

@@ -10,13 +10,18 @@ export function SnippetList() {
   const [filteredSnippets, setFilteredSnippets] = useState<typeSnippet[]>([]);
 
   useEffect(() => {
-    setFilteredSnippets(snippets.filter((snippet) => filter.includes(snippet.language)).sort((a, b) => b.favorited - a.favorited));
+    setFilteredSnippets(
+      snippets
+        .filter((snippet) => filter.includes(snippet.language))
+        .sort((a, b) => a.creationTimestamp - b.creationTimestamp)
+        .sort((a, b) => b.favorited - a.favorited)
+    );
   }, [filter, snippets]);
 
   return (
     <div>
       {filteredSnippets.map((snippet) => (
-        <Snippet key={snippet.id} id={snippet.id} title={snippet.title} description={snippet.description} content={snippet.content} language={snippet.language} favorited={snippet.favorited} />
+        <Snippet key={snippet.id} id={snippet.id} title={snippet.title} description={snippet.description} content={snippet.content} language={snippet.language} favorited={snippet.favorited} creationTimestamp={snippet.creationTimestamp} />
       ))}
     </div>
   );

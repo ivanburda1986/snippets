@@ -15,7 +15,7 @@ Version2
 --Selecting tags at the top filters the entries
 --De-select tags option
 --Set a snippet as favorite, so that it will be displayed at the top of its category
-URL deeplinking for label-based searching
+--URL deeplinking for label-based searching
 
 Version3
 Searchbar that searches titles of all entries and returns matching results

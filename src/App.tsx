@@ -14,7 +14,6 @@ function App() {
   const [newSnippetFormDisplayState, setNewSnippetDisplayState] = useState<boolean>(false);
   const [languagesToFilterSnippetsBy, setLanguagesToFilterSnippetsBy] = useState<SupportedLanguages[]>([]);
   const location = useLocation();
-  const { params } = useParams();
   const navigate = useNavigate();
 
   const contextProvider = {
@@ -59,6 +58,8 @@ function App() {
     }
     navigate({ search: parameters.toString() });
   }, [languagesToFilterSnippetsBy]);
+
+  // Methods
 
   function toggleNewSnippetFormDisplayState(): void {
     setNewSnippetDisplayState(!newSnippetFormDisplayState);

@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { useNavigate, useParams } from "react-router-dom";
+import { useNavigate, useParams, useLocation } from "react-router-dom";
 import { AppContext } from "./context/context";
 import { SupportedLanguages, typeSnippet, newSnippet } from "./config/config";
 import { receiveServerItems } from "./api/api";
@@ -12,9 +12,9 @@ import { Snippet } from "./components/Snippet/Snippet";
 function App() {
   const [snippets, setSnippets] = useState<typeSnippet[]>([]);
   const [newSnippetFormDisplayState, setNewSnippetDisplayState] = useState<boolean>(false);
-  const [languagesToFilterSnippetsBy, setLanguagesToFilterSnippetsBy] = useState<SupportedLanguages[]>(["html"]);
-  const [query, setQuery] = useState("");
-
+  const [languagesToFilterSnippetsBy, setLanguagesToFilterSnippetsBy] = useState<SupportedLanguages[]>([]);
+  const location = useLocation();
+  const { params } = useParams();
   const navigate = useNavigate();
 
   const contextProvider = {
@@ -28,6 +28,7 @@ function App() {
     addFilter,
   };
 
+  // Loads all snippets from the server
   useEffect(() => {
     let mydata: typeSnippet[];
     receiveServerItems().then((data) => {
@@ -38,16 +39,25 @@ function App() {
     });
   }, []);
 
+  // Gets on-load values of the 'filter' query parameters and sets the initial filter
   useEffect(() => {
-    const params = new URLSearchParams();
-    if (languagesToFilterSnippetsBy.length !== 0) {
-      console.log(languagesToFilterSnippetsBy);
-      params.append("filter", languagesToFilterSnippetsBy.join(" "));
-    } else {
-      console.log(languagesToFilterSnippetsBy);
-      params.delete("filter");
+    const filterValues = new URLSearchParams(location.search).get("filter")?.split(" ");
+    if (filterValues) {
+      const filterLanguages: SupportedLanguages[] = filterValues as SupportedLanguages[];
+      filterLanguages.forEach((filterLanguage) => setLanguagesToFilterSnippetsBy((languagesToFilterSnippetsBy) => [...languagesToFilterSnippetsBy, filterLanguage]));
     }
-    navigate({ search: params.toString() });
+  }, []);
+
+  // Updates the 'filter' query parameter whenever the user changes the filter settings
+  useEffect(() => {
+    const parameters = new URLSearchParams(location.search);
+    if (languagesToFilterSnippetsBy.length !== 0) {
+      parameters.delete("filter");
+      parameters.append("filter", languagesToFilterSnippetsBy.join(" "));
+    } else {
+      parameters.delete("filter");
+    }
+    navigate({ search: parameters.toString() });
   }, [languagesToFilterSnippetsBy]);
 
   function toggleNewSnippetFormDisplayState(): void {

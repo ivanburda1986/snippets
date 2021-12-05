@@ -18,8 +18,6 @@ Version2
 --URL deeplinking for label-based searching
 
 Version3
-Searchbar that searches titles of all entries and returns matching results
-URL deeplinking for text-based searching
 Dark/white mode
 Protect Firebase
 
@@ -39,3 +37,4 @@ https://stackoverflow.com/questions/61990792/concat-multiple-query-param-in-reac
 
 React router params
 https://developer.mozilla.org/en-US/docs/Web/API/URLSearchParams/toString
+

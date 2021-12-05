@@ -40,5 +40,5 @@ https://developer.mozilla.org/en-US/docs/Web/API/URLSearchParams/toString
 
 Firebase authentication and error handling - with TS 
 https://www.youtube.com/watch?v=5wB7bxzYwVc
-
+https://medium.com/geekculture/firebase-auth-with-react-and-typescript-abeebcd7940a
 

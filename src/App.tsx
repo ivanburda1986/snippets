@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { useLocation } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { AppContext } from "./context/context";
 import { SupportedLanguages, typeSnippet, newSnippet } from "./config/config";
 import { receiveServerItems } from "./api/api";
@@ -13,7 +13,10 @@ function App() {
   const [snippets, setSnippets] = useState<typeSnippet[]>([]);
   const [newSnippetFormDisplayState, setNewSnippetDisplayState] = useState<boolean>(false);
   const [languagesToFilterSnippetsBy, setLanguagesToFilterSnippetsBy] = useState<SupportedLanguages[]>(["html"]);
-  const location = useLocation();
+  const [query, setQuery] = useState("");
+
+  const navigate = useNavigate();
+
   const contextProvider = {
     snippets,
     newSnippetFormDisplayState,
@@ -34,6 +37,18 @@ function App() {
       }
     });
   }, []);
+
+  useEffect(() => {
+    const params = new URLSearchParams();
+    if (languagesToFilterSnippetsBy.length !== 0) {
+      console.log(languagesToFilterSnippetsBy);
+      params.append("filter", languagesToFilterSnippetsBy.join(" "));
+    } else {
+      console.log(languagesToFilterSnippetsBy);
+      params.delete("filter");
+    }
+    navigate({ search: params.toString() });
+  }, [languagesToFilterSnippetsBy]);
 
   function toggleNewSnippetFormDisplayState(): void {
     setNewSnippetDisplayState(!newSnippetFormDisplayState);

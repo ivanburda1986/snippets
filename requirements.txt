@@ -30,3 +30,12 @@ https://www.npmjs.com/package/code-prettify-google
 https://code.google.com/archive/p/google-code-prettify/downloads
 https://www.youtube.com/watch?v=1op-PqCGdIA
 https://w3bits.com/google-code-prettify/
+
+React Router useNavigate()
+https://dev.to/salehmubashar/usenavigate-tutorial-react-js-aop
+
+Multiple values for a query parameter
+https://stackoverflow.com/questions/61990792/concat-multiple-query-param-in-react-router
+
+React router params
+https://developer.mozilla.org/en-US/docs/Web/API/URLSearchParams/toString

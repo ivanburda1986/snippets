@@ -38,3 +38,7 @@ https://stackoverflow.com/questions/61990792/concat-multiple-query-param-in-reac
 React router params
 https://developer.mozilla.org/en-US/docs/Web/API/URLSearchParams/toString
 
+Firebase authentication and error handling - with TS 
+https://www.youtube.com/watch?v=5wB7bxzYwVc
+
+

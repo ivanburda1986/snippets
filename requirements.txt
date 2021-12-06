@@ -42,3 +42,5 @@ Firebase authentication and error handling - with TS
 https://www.youtube.com/watch?v=5wB7bxzYwVc
 https://medium.com/geekculture/firebase-auth-with-react-and-typescript-abeebcd7940a
 
+Firebase - redirecting depending on the login state 
+https://anthonybendeler.medium.com/redirecting-in-a-react-single-page-application-with-firebase-auth-b1b0494b251b

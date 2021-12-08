@@ -5,6 +5,7 @@ import { addServerItem, deleteServerItem } from "../../api/api";
 import sharedStyles from "../sharedStyles/sharedStyles.module.css";
 import styles from "./AddSnippetForm.module.css";
 import { AppContext } from "../../context/context";
+import { AuthContext } from "../../context/AuthContext";
 import { RadioLabel } from "../RadioLabel/RadioLabel";
 
 export const AddSnippetForm = React.memo(() => {
@@ -13,6 +14,7 @@ export const AddSnippetForm = React.memo(() => {
   const [description, setDescription] = useState("");
   const [content, setContent] = useState("");
   const [assignedLanguage, setAssignedLanguage] = useState<SupportedLanguages>();
+  const user = useContext(AuthContext);
 
   const clearInputs = () => {
     setTitle("");
@@ -44,10 +46,14 @@ export const AddSnippetForm = React.memo(() => {
       deleteServerItem(snippetToAdd.id);
     };
 
-    addServerItem(snippetToAdd, cbSuccess, cbError);
-    mycontext.submitNewSnippetHandler(snippetToAdd);
-    clearInputs();
-    mycontext.toggleNewSnippetFormDisplayState();
+    if (user) {
+      addServerItem(snippetToAdd, cbSuccess, cbError);
+      mycontext.submitNewSnippetHandler(snippetToAdd);
+      clearInputs();
+      mycontext.toggleNewSnippetFormDisplayState();
+    } else {
+      console.log("You must be logged in!");
+    }
   };
 
   return (
@@ -65,7 +71,7 @@ export const AddSnippetForm = React.memo(() => {
           ))}
         </div>
         <div>
-          <button type="submit">Submit</button>
+          {user && <button type="submit">Submit</button>}
           <button type="button" onClick={mycontext.toggleNewSnippetFormDisplayState}>
             Cancel
           </button>

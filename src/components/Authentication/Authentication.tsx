@@ -40,7 +40,7 @@ export function Authentication() {
           </button>
         </form>
       ) : (
-        <h2 className="mt-4 text-center">Welcome {user.email}</h2>
+        <p>Signed-in as: {user.email}</p>
       )}
       <p>{errorMessage}</p>
     </div>

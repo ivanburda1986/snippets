@@ -5,13 +5,16 @@ import sharedStyles from "../sharedStyles/sharedStyles.module.css";
 import { CheckboxLabel } from "../CheckboxLabel/CheckboxLabel";
 import { Button } from "../Button/Button";
 import { AppContext } from "../../context/context";
+import { Authentication } from "../Authentication/Authentication";
 
 export function Header() {
   const mycontext = useContext(AppContext);
 
   return (
     <div className={classes.header}>
-      <div className={classes.headerTitle}>Snippets</div>
+      <div className={classes.headerTitle}>
+        Snippets <Authentication />
+      </div>
       <div className={sharedStyles.container}>
         <div className={classes.headerOptions}>
           {labels.map((item) => {

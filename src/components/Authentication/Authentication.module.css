@@ -1,0 +1,15 @@
+.Authentication {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.Authentication * {
+  margin: 0;
+  padding: 0;
+}
+
+.Authentication form {
+  width: 100%;
+}

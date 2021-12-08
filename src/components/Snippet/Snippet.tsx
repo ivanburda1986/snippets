@@ -9,51 +9,60 @@ import { FavoriteButton } from "../FavoriteButton/FavoriteButton";
 import { ReadonlyLabel } from "../ReadonlyLabel/ReadonlyLabel";
 import { RadioLabel } from "../RadioLabel/RadioLabel";
 import { deleteServerItem, updateServerItem } from "../../api/api";
+import { AuthContext } from "../../context/AuthContext";
 
 export const Snippet = React.memo(({ id, title, description, content, language, favorited, creationTimestamp }: typeSnippet) => {
   const mycontext = useContext(AppContext);
   const [editing, setEditing] = useState(false);
   let assignedLabel = labels.filter((label) => label.lang === language)[0];
   const [assignedLanguage, setAssignedLanguage] = useState<SupportedLanguages>(assignedLabel.lang);
-
   const [titleToUpdate, setTitleToUpdate] = useState(title);
   const [descriptionToUpdate, setDescriptionToUpdate] = useState(description);
   const [contentToUpdate, setContentToUpdate] = useState(content);
+  const userIsAuthenticated = useContext(AuthContext);
 
   function handleEdit() {
     setEditing(true);
   }
 
   function handleSave() {
-    const snippetToAdd: newSnippet = {
-      id: id,
-      title: titleToUpdate,
-      description: descriptionToUpdate,
-      content: contentToUpdate,
-      language: assignedLanguage!,
-      favorited: 0,
-      creationTimestamp: creationTimestamp,
-    };
-    mycontext.deleteSnippetHandler(id);
-    mycontext.updateSnippetHandler(snippetToAdd);
-    setEditing(false);
-    updateServerItem(snippetToAdd);
+    if (userIsAuthenticated) {
+      const snippetToAdd: newSnippet = {
+        id: id,
+        title: titleToUpdate,
+        description: descriptionToUpdate,
+        content: contentToUpdate,
+        language: assignedLanguage!,
+        favorited: 0,
+        creationTimestamp: creationTimestamp,
+      };
+      mycontext.deleteSnippetHandler(id);
+      mycontext.updateSnippetHandler(snippetToAdd);
+      setEditing(false);
+      updateServerItem(snippetToAdd);
+    } else {
+      console.log("You must be logged in!");
+    }
   }
 
   function handleToggleFavorite(id: string) {
-    const snippetToAdd: newSnippet = {
-      id: id,
-      title: title,
-      description: description,
-      content: content,
-      language: language,
-      favorited: favorited === 1 ? 0 : 1,
-      creationTimestamp: creationTimestamp,
-    };
-    mycontext.deleteSnippetHandler(id);
-    mycontext.updateSnippetHandler(snippetToAdd);
-    setEditing(false);
-    updateServerItem(snippetToAdd);
+    if (userIsAuthenticated) {
+      const snippetToAdd: newSnippet = {
+        id: id,
+        title: title,
+        description: description,
+        content: content,
+        language: language,
+        favorited: favorited === 1 ? 0 : 1,
+        creationTimestamp: creationTimestamp,
+      };
+      mycontext.deleteSnippetHandler(id);
+      mycontext.updateSnippetHandler(snippetToAdd);
+      setEditing(false);
+      updateServerItem(snippetToAdd);
+    } else {
+      console.log("You must be logged in!");
+    }
   }
 
   const assignLanguageHandler = (lang: SupportedLanguages) => {
@@ -65,8 +74,12 @@ export const Snippet = React.memo(({ id, title, description, content, language, 
   }
 
   function handleDelete(id: string) {
-    mycontext.deleteSnippetHandler(id);
-    deleteServerItem(id);
+    if (userIsAuthenticated) {
+      mycontext.deleteSnippetHandler(id);
+      deleteServerItem(id);
+    } else {
+      console.log("You must be logged in!");
+    }
   }
 
   if (editing === false) {

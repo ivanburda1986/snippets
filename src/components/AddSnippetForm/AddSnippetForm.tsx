@@ -14,7 +14,7 @@ export const AddSnippetForm = React.memo(() => {
   const [description, setDescription] = useState("");
   const [content, setContent] = useState("");
   const [assignedLanguage, setAssignedLanguage] = useState<SupportedLanguages>();
-  const user = useContext(AuthContext);
+  const userIsAuthenticated = useContext(AuthContext);
 
   const clearInputs = () => {
     setTitle("");
@@ -46,7 +46,7 @@ export const AddSnippetForm = React.memo(() => {
       deleteServerItem(snippetToAdd.id);
     };
 
-    if (user) {
+    if (userIsAuthenticated) {
       addServerItem(snippetToAdd, cbSuccess, cbError);
       mycontext.submitNewSnippetHandler(snippetToAdd);
       clearInputs();
@@ -71,7 +71,7 @@ export const AddSnippetForm = React.memo(() => {
           ))}
         </div>
         <div>
-          {user && <button type="submit">Submit</button>}
+          <button type="submit">Submit</button>
           <button type="button" onClick={mycontext.toggleNewSnippetFormDisplayState}>
             Cancel
           </button>

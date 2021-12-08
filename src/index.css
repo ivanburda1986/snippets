@@ -1,4 +1,97 @@
-body {
+@font-face {
+  font-family: "Inter";
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url("./fonts/Inter-Regular.woff2"), url("./fonts/Inter-Regular.woff");
+}
+
+@font-face {
+  font-family: "Inter";
+  font-style: normal;
+  font-weight: 500;
+  font-display: swap;
+  src: url("./fonts/Inter-Medium.woff2"), url("./fonts/Inter-Medium.woff");
+}
+
+@font-face {
+  font-family: "Inter";
+  font-style: normal;
+  font-weight: 600;
+  font-display: swap;
+  src: url("./fonts/Inter-SemiBold.woff2"), url("./fonts/Inter-SemiBold.woff");
+}
+
+@font-face {
+  font-family: "Barlow";
+  font-style: thin;
+  font-weight: 200;
+  font-display: swap;
+  src: url("./fonts/Barlow/Barlow-ExtraLight.ttf"), url("./fonts/Barlow/Barlow-ExtraLight.ttf");
+}
+
+@font-face {
+  font-family: "Barlow";
+  font-style: regular;
+  font-weight: 400;
+  font-display: swap;
+  src: url("./fonts/Barlow/Barlow-Regular.ttf"), url("./fonts/Barlow/Barlow-Regular.ttf");
+}
+
+@font-face {
+  font-family: "Barlow";
+  font-style: medium;
+  font-weight: 500;
+  font-display: swap;
+  src: url("./fonts/Barlow/Barlow-Regular.ttf"), url("./fonts/Barlow/Barlow-Regular.ttf");
+}
+
+@font-face {
+  font-family: "Barlow";
+  font-style: semibold;
+  font-weight: 600;
+  font-display: swap;
+  src: url("./fonts/Barlow/Barlow-SemiBold.ttf"), url("./fonts/Barlow/Barlow-SemiBold.ttf");
+}
+
+@font-face {
+  font-family: "Barlow";
+  font-style: bold;
+  font-weight: 700;
+  font-display: swap;
+  src: url("./fonts/Barlow/Barlow-Bold.ttf"), url("./fonts/Barlow/Barlow-Bold.ttf");
+}
+
+:root {
+  font-size: 1rem;
+  --container: 1024px;
+  --blue: #156099;
+  --darkBlue: #1d3f62;
+  /* --darkBlue: #1d3f62; */
+  --lightBg: #dce7ff;
+  --mediumBg: #c6d6e6;
+  --darkBg: #afc4cc;
+  --sidePaddingSmall: 0.75rem;
+  --sidePaddingLarge: 1.5rem;
+}
+
+* {
   margin: 0;
   padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue", sans-serif;
+  font-family: "Inter", sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  color: var(--darkBlue);
+  background-color: var(--lightBg);
+}
+
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New", monospace;
+  font-size: 0.8rem;
 }

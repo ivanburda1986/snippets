@@ -1,5 +1,4 @@
 .header {
-  border: 1px solid black;
 }
 
 .header p {
@@ -23,7 +22,12 @@
 
 .snippet {
   margin-bottom: 1rem;
-  background-color: greenyellow;
+  border-radius: 3px;
+  background-color: var(--mediumBg);
+}
+
+.redborder {
+  border: 5px solid red;
 }
 
 .footer {

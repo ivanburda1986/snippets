@@ -12,8 +12,9 @@ export function Header() {
 
   return (
     <div className={classes.header}>
-      <div className={classes.headerTitle}>
-        Snippets <Authentication />
+      <div className={classes.headerTitle}>Snippets</div>
+      <div className={classes.headerAuthentication}>
+        <Authentication />
       </div>
       <div className={sharedStyles.container}>
         <div className={classes.headerOptions}>

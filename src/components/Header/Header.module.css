@@ -7,10 +7,21 @@
 }
 
 .headerTitle {
-  background-color: rgb(131, 131, 131);
-  color: white;
-  font-size: 2rem;
+  background-color: white;
   padding: 0.25em;
+  font-family: "Barlow", sans-serif;
+  font-weight: 600;
+  text-transform: uppercase;
+  color: var(--darkBlue);
+  font-size: 2rem;
+  letter-spacing: 5px;
+}
+
+.headerAuthentication {
+  background-color: var(--blue);
+  color: #fff;
+  font-weight: 600;
+  padding: 0.25em 0;
 }
 
 .headerOptions {

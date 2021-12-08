@@ -93,7 +93,7 @@ export const Snippet = React.memo(({ id, title, description, content, language, 
             {assignedLabel && <ReadonlyLabel key={assignedLabel.name} name={assignedLabel.name} lang={assignedLabel.lang} bgColor={assignedLabel.bgColor} />}
           </div>
           <div id="snippetBody" className={styles.body}>
-            <pre className="prettyprint">
+            <pre className={`prettyprint ${styles.redborder}`}>
               <code className={`lang-${language}`}> {content}</code>
             </pre>
           </div>
@@ -118,7 +118,7 @@ export const Snippet = React.memo(({ id, title, description, content, language, 
             ))}
           </div>
           <div id="snippetBody" className={styles.body}>
-            <pre className="prettyprint">
+            <pre className="prettyprint redborder">
               <textarea id={`Snippet-${id}-EditContent`} name={`Snippet-${id}-EditContent`} rows={4} cols={50} value={contentToUpdate} onChange={(event) => setContentToUpdate(event.target.value)} />
             </pre>
           </div>

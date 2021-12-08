@@ -18,8 +18,13 @@ Version2
 --URL deeplinking for label-based searching
 
 Version3
+--Protect Firebase
+Refactor the JS code 
+Do proper styling
 Dark/white mode
-Protect Firebase
+
+Additional 
+Write unit tests in Jest 
 
 Techstact: 
 React, TypeScript, Firebase, Google Code Pretify, Jest

@@ -1,15 +1,18 @@
 .Authentication {
   display: flex;
   flex-direction: row;
-  justify-content: space-between;
+  justify-content: flex-start;
   align-items: center;
 }
 
-.Authentication * {
-  margin: 0;
-  padding: 0;
+.Authentication form {
+  width: auto;
 }
 
-.Authentication form {
-  width: 100%;
+.Authentication label {
+  display: none;
+}
+
+.passwordInput {
+  width: 100px;
 }

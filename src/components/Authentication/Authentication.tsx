@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useContext, useRef } from "react";
 import { AuthContext } from "../../context/AuthContext";
-import classes from "./Authentication.module.css";
+import styles from "./Authentication.module.css";
 import sharedStyles from "../sharedStyles/sharedStyles.module.css";
 import { auth } from "../../firebaseSetup";
 
@@ -28,14 +28,15 @@ export function Authentication() {
   };
 
   return (
-    <div className={`${sharedStyles.container} ${classes.Authentication}`}>
+    <div className={`${sharedStyles.container} ${styles.Authentication}`}>
       {user && <button onClick={signOut}>Sign Out</button>}
       {!user ? (
         <form>
-          <input ref={emailRef} type="email" placeholder="email" />
-          <input ref={passwordRef} type="password" placeholder="password" />
-
-          <button onClick={signIn} type="button">
+          <label htmlFor="emailInput">Username</label>
+          <input className={sharedStyles.input} ref={emailRef} name="emailInput" type="text" placeholder="Email" />
+          <label htmlFor="passwordInput">Password</label>
+          <input className={`${sharedStyles.input} ${styles.passwordInput}`} ref={passwordRef} name="passwordInput" type="password" placeholder="Password" />
+          <button className={sharedStyles.button} onClick={signIn} type="button">
             Sign In
           </button>
         </form>

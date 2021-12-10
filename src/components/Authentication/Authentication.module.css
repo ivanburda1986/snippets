@@ -1,8 +1,10 @@
 .Authentication {
   display: flex;
   flex-direction: row;
-  justify-content: flex-start;
+  justify-content: space-between;
   align-items: center;
+  flex-wrap: wrap;
+  width: 100%;
 }
 
 .Authentication form {
@@ -15,4 +17,25 @@
 
 .passwordInput {
   width: 100px;
+}
+
+.loggedInMessage,
+.errorMessage {
+  font-size: 0.8rem;
+  font-weight: 600;
+  margin: 0.2em 0.4em;
+  color: white;
+}
+
+.errorMessage {
+  color: white;
+  background-color: brown;
+  border-radius: 3px;
+  padding: 0px 5px;
+}
+
+.addSnippetButton {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
 }

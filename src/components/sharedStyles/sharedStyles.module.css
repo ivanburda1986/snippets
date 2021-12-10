@@ -1,6 +1,7 @@
 .container {
   max-width: 900px;
   margin: 0 auto;
+  padding: 0 1em;
 }
 
 .button {
@@ -17,7 +18,7 @@
 
 .input {
   padding: 3px;
-  margin-right: 0.5em;
+  margin: 2px;
   border: none;
   border-radius: 3px;
 }

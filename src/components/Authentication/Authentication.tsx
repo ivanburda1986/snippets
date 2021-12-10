@@ -3,21 +3,29 @@ import { AuthContext } from "../../context/AuthContext";
 import styles from "./Authentication.module.css";
 import sharedStyles from "../sharedStyles/sharedStyles.module.css";
 import { auth } from "../../firebaseSetup";
+import { AppContext } from "../../context/context";
 
 export function Authentication() {
   const user = useContext(AuthContext);
   const emailRef = useRef<HTMLInputElement>(null);
   const passwordRef = useRef<HTMLInputElement>(null);
   const [errorMessage, setErrorMessage] = useState("");
+  const mycontext = useContext(AppContext);
+
+  useEffect(() => {
+    if (errorMessage !== "") {
+      setTimeout(() => {
+        setErrorMessage("");
+      }, 5000);
+    }
+  }, [errorMessage]);
 
   const signIn = async () => {
     try {
       await auth.signInWithEmailAndPassword(emailRef.current!.value, passwordRef.current!.value);
       console.log(user);
     } catch (error) {
-      console.log("Chyba");
       if (error instanceof Error) {
-        console.error(error.message);
         setErrorMessage(error.message);
       }
     }
@@ -29,7 +37,11 @@ export function Authentication() {
 
   return (
     <div className={`${sharedStyles.container} ${styles.Authentication}`}>
-      {user && <button onClick={signOut}>Sign Out</button>}
+      {user && (
+        <button className={sharedStyles.button} onClick={signOut}>
+          Logout
+        </button>
+      )}
       {!user ? (
         <form>
           <label htmlFor="emailInput">Username</label>
@@ -41,9 +53,15 @@ export function Authentication() {
           </button>
         </form>
       ) : (
-        <p>Signed-in as: {user.email}</p>
+        <p className={styles.loggedInMessage}>{user.email}</p>
       )}
-      <p>{errorMessage}</p>
+
+      {errorMessage && <p className={styles.errorMessage}>{errorMessage}</p>}
+      <div className={styles.addSnippetButton}>
+        <button onClick={mycontext.toggleNewSnippetFormDisplayState} disabled={mycontext.newSnippetFormDisplayState}>
+          Add snippet
+        </button>
+      </div>
     </div>
   );
 }

@@ -43,6 +43,6 @@ export const labels: labelData[] = [
   { name: "Typescript", lang: "ts", bgColor: "steelblue" },
   { name: "Bash", lang: "bsh", bgColor: "lightgrey" },
   { name: "Python", lang: "py", bgColor: "lightblue" },
-  { name: "NPM", lang: "npm", bgColor: "lavender" },
+  { name: "NPM", lang: "npm", bgColor: "pink" },
   { name: "GIT", lang: "git", bgColor: "lightcoral" },
 ];

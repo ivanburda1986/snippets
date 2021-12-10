@@ -57,8 +57,9 @@ export function Authentication() {
       )}
 
       {errorMessage && <p className={styles.errorMessage}>{errorMessage}</p>}
-      <div className={styles.addSnippetButton}>
-        <button onClick={mycontext.toggleNewSnippetFormDisplayState} disabled={mycontext.newSnippetFormDisplayState}>
+
+      <div className={styles.addSnippetButtonContainer}>
+        <button className={styles.addSnippetButton} onClick={mycontext.toggleNewSnippetFormDisplayState} disabled={mycontext.newSnippetFormDisplayState}>
           Add snippet
         </button>
       </div>

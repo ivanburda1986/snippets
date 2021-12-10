@@ -9,6 +9,8 @@
 
 .Authentication form {
   width: auto;
+  margin: 0;
+  padding: 0;
 }
 
 .Authentication label {
@@ -34,8 +36,44 @@
   padding: 0px 5px;
 }
 
-.addSnippetButton {
+.button {
+  background-color: white;
+  border: none;
+  padding: 3px 5px;
+  margin: 2px;
+  border-radius: 3px;
+  cursor: pointer;
+}
+
+.button:hover,
+.addSnippetButton:hover {
+  text-shadow: 0 0 0px #333, 0 0 1px #333;
+}
+
+.addSnippetButtonContainer {
   display: flex;
-  justify-content: flex-end;
+  flex-direction: row;
+  justify-content: center;
   align-items: center;
+}
+
+.addSnippetButton {
+  width: 120px;
+  background-color: white;
+  border: none;
+  padding: 3px 5px;
+  margin: 2px;
+  border-radius: 3px;
+  cursor: pointer;
+}
+
+@media screen and (max-width: 425px) {
+  .Authentication input,
+  button {
+    width: 100%;
+  }
+
+  .addSnippetButtonContainer {
+    margin: 0 auto;
+  }
 }

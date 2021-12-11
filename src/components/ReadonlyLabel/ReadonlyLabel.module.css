@@ -7,6 +7,7 @@
   align-items: center;
   padding: 0.1em 0.5em;
   display: flex;
+  max-height: 22px;
 }
 
 .ReadonlyLabel + .ReadonlyLabel {

@@ -25,7 +25,7 @@ export interface labelData {
   toggleAction?: Function | void;
 }
 
-export type SupportedLanguages = "html" | "cs" | "js" | "react" | "ts" | "bsh" | "py" | "npm" | "git";
+export type SupportedLanguages = "html" | "cs" | "js" | "react" | "ts" | "bsh" | "py" | "npm" | "git" | "vsc";
 export type Favorited = 1 | 0;
 
 export interface message {
@@ -41,8 +41,9 @@ export const labels: labelData[] = [
   { name: "JS", lang: "js", bgColor: "gold" },
   { name: "React", lang: "react", bgColor: "cyan" },
   { name: "TS", lang: "ts", bgColor: "steelblue" },
-  { name: "Bash", lang: "bsh", bgColor: "lightgrey" },
-  { name: "Python", lang: "py", bgColor: "lightblue" },
-  { name: "NPM", lang: "npm", bgColor: "pink" },
+  { name: "Bash", lang: "bsh", bgColor: "#8d8d8d" },
+  { name: "Python", lang: "py", bgColor: "#4f8cd1" },
+  { name: "NPM", lang: "npm", bgColor: "#b8353f" },
   { name: "GIT", lang: "git", bgColor: "lightcoral" },
+  { name: "VSC", lang: "vsc", bgColor: "#2d7ec0" },
 ];

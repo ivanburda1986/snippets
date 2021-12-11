@@ -71,8 +71,10 @@ export const AddSnippetForm = React.memo(() => {
           ))}
         </div>
         <div>
-          <button type="submit">Submit</button>
-          <button type="button" onClick={mycontext.toggleNewSnippetFormDisplayState}>
+          <button type="submit" className={`${sharedStyles.button} ${styles.submitNewSnippetButton}`}>
+            Submit
+          </button>
+          <button type="button" className={`${sharedStyles.button} ${styles.cancelNewSnippetButton}`} onClick={mycontext.toggleNewSnippetFormDisplayState}>
             Cancel
           </button>
         </div>

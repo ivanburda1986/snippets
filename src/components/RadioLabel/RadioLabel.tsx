@@ -14,7 +14,7 @@ export const RadioLabel = React.memo((props: { labelInputData: labelData; labelG
   }
   const randomNamePart = uuidv4();
   return (
-    <div className={styles.Label} style={{ backgroundColor: bgColor }}>
+    <div className={styles.RadioLabel} style={{ backgroundColor: bgColor }}>
       <input
         type="radio"
         id={`label-${name}-${randomNamePart}`}

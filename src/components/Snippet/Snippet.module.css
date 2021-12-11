@@ -1,35 +1,85 @@
-.header {
-}
-
-.header p {
-  margin: 0;
-  padding: 0;
-}
-
-.title {
-  font-size: 1.2rem;
-  font-weight: 600;
-}
-
-.description {
-  font-size: 0.9rem;
-}
-
-.body pre {
-  margin: 0;
-  padding: 0;
-}
-
 .snippet {
   margin-bottom: 1rem;
   border-radius: 3px;
   background-color: var(--mediumBg);
 }
 
-.redborder {
-  border: 5px solid red;
+.snippet input {
+  border: none;
+  padding: 0.2em;
+  margin: 0 0.25em;
+  margin-bottom: 0.2em;
+  max-width: 99%;
+}
+
+.snippetHeader {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  background-color: var(--lightBlue);
+  padding: 0.2em;
+  border-top-left-radius: 3px;
+  border-top-right-radius: 3px;
+}
+
+.snippetEditMode {
+  background-color: mediumturquoise;
+}
+
+.snippetHeader p {
+  margin: 0;
+  padding: 0;
+  padding: 0.2em;
+}
+
+.title {
+  font-size: 1.2rem;
+  font-weight: 600;
+  padding: 0.2em;
+}
+
+.snippetInputName {
+  font-size: 1.2rem;
+  font-weight: 600;
+  width: 100%;
+  border-radius: 3px;
+}
+
+.titleRight {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.description {
+  font-size: 0.9rem;
+  padding: 0.2em;
+  margin: 0 0.25em;
+}
+
+.snippetInputDescription {
+  width: 100%;
+  border-radius: 3px;
+}
+
+body {
+  padding: 0.2em;
+}
+
+.snippet textarea {
+  margin: 0 0.25em;
+  margin-bottom: 0;
+  max-width: 99%;
+}
+
+.body pre {
+  margin: 0;
+  padding: 0;
+  margin: 0 0.25em;
 }
 
 .footer {
   display: flex;
+  padding: 0.2em;
 }

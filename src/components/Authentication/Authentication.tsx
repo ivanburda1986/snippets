@@ -5,6 +5,7 @@ import sharedStyles from "../sharedStyles/sharedStyles.module.css";
 import { auth } from "../../firebaseSetup";
 import { AppContext } from "../../context/context";
 import { IoMdAddCircle } from "react-icons/io";
+import { FiLogIn } from "react-icons/fi";
 
 export function Authentication() {
   const user = useContext(AuthContext);
@@ -46,10 +47,11 @@ export function Authentication() {
       {!user ? (
         <form>
           <label htmlFor="emailInput">Username</label>
-          <input className={sharedStyles.input} ref={emailRef} name="emailInput" type="text" placeholder="Email" />
+          <input className={`${sharedStyles.input} ${styles.emailInput}`} ref={emailRef} name="emailInput" type="text" placeholder="Email" />
           <label htmlFor="passwordInput">Password</label>
           <input className={`${sharedStyles.input} ${styles.passwordInput}`} ref={passwordRef} name="passwordInput" type="password" placeholder="Password" />
-          <button className={sharedStyles.button} onClick={signIn} type="button">
+          <button className={`${sharedStyles.button} ${styles.signInButton}`} onClick={signIn} type="button">
+            <FiLogIn />
             Sign In
           </button>
         </form>
@@ -60,7 +62,7 @@ export function Authentication() {
       {errorMessage && <p className={styles.errorMessage}>{errorMessage}</p>}
 
       <div className={styles.addSnippetButtonContainer}>
-        <button className={styles.addSnippetButton} onClick={mycontext.toggleNewSnippetFormDisplayState} disabled={mycontext.newSnippetFormDisplayState}>
+        <button className={`${sharedStyles.button} ${styles.addSnippetButton}`} onClick={mycontext.toggleNewSnippetFormDisplayState} disabled={mycontext.newSnippetFormDisplayState}>
           <IoMdAddCircle />
           New snippet
         </button>

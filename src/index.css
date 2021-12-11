@@ -65,9 +65,9 @@
 :root {
   font-size: 1rem;
   --container: 1024px;
+  --lightBlue: #75b8eb;
   --blue: #156099;
   --darkBlue: #1d3f62;
-  /* --darkBlue: #1d3f62; */
   --lightBg: #dce7ff;
   --mediumBg: #c6d6e6;
   --darkBg: #afc4cc;

@@ -38,9 +38,9 @@ export type supportedMessageTypes = "success" | "warning";
 export const labels: labelData[] = [
   { name: "HTML", lang: "html", bgColor: "orange" },
   { name: "CSS", lang: "cs", bgColor: "mediumpurple" },
-  { name: "Javascript", lang: "js", bgColor: "gold" },
+  { name: "JS", lang: "js", bgColor: "gold" },
   { name: "React", lang: "react", bgColor: "cyan" },
-  { name: "Typescript", lang: "ts", bgColor: "steelblue" },
+  { name: "TS", lang: "ts", bgColor: "steelblue" },
   { name: "Bash", lang: "bsh", bgColor: "lightgrey" },
   { name: "Python", lang: "py", bgColor: "lightblue" },
   { name: "NPM", lang: "npm", bgColor: "pink" },

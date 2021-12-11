@@ -1,0 +1,17 @@
+.FavoriteButton {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  padding: 4px;
+  border: 1px solid var(--mediumBg);
+  margin: 2px;
+  border-radius: 3px;
+  background-color: white;
+  cursor: pointer;
+}
+
+.favorited {
+  background-color: gold;
+  border: 1px solid var(--darkBlue);
+}

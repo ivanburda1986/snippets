@@ -1,35 +1,18 @@
-.Label {
-  width: 90px;
-  border-radius: 5px;
-  cursor: pointer;
-  font-size: 0.9rem;
-  display: flex;
-  justify-content: left;
-  align-items: flex-start;
-  padding: 0.1em 0.5em;
-  margin: 2px;
-}
-
-label {
-  display: flex;
-  width: 100%;
-  cursor: pointer;
-}
-
-/* .Label {
+.RadioLabel {
   display: flex;
   width: 100px;
-  justify-content: left;
+  justify-content: center;
   align-items: center;
   margin: 2px;
-  padding: 0.2em 0.5em;
   border-radius: 5px;
+  padding: 0.2em 0.5em;
   cursor: pointer;
-  font-size: 0.9rem;
+  font-size: 0.8rem;
 }
 
-.Label input {
-  margin-right: 3px;
+.RadioLabel input {
+  max-width: 25%;
+  margin: 0 auto;
 }
 
 label {
@@ -39,7 +22,7 @@ label {
 }
 
 @media screen and (max-width: 425px) {
-  .Label {
-    width: 48%;
+  .RadioLabel {
+    width: 30%;
   }
-} */
+}

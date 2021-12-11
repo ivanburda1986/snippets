@@ -12,9 +12,9 @@ import { deleteServerItem, updateServerItem } from "../../api/api";
 import { AuthContext } from "../../context/AuthContext";
 
 export const Snippet = React.memo(({ id, title, description, content, language, favorited, creationTimestamp }: typeSnippet) => {
+  let assignedLabel = labels.filter((label) => label.lang === language)[0];
   const mycontext = useContext(AppContext);
   const [editing, setEditing] = useState(false);
-  let assignedLabel = labels.filter((label) => label.lang === language)[0];
   const [assignedLanguage, setAssignedLanguage] = useState<SupportedLanguages>(assignedLabel.lang);
   const [titleToUpdate, setTitleToUpdate] = useState(title);
   const [descriptionToUpdate, setDescriptionToUpdate] = useState(description);
@@ -87,20 +87,26 @@ export const Snippet = React.memo(({ id, title, description, content, language, 
       <div className={sharedStyles.container}>
         {/* View-mode */}
         <div className={styles.snippet}>
-          <div id="snippetHeader" className={styles.header}>
+          <div id="snippetHeader" className={styles.snippetHeader}>
             <p className={styles.title}>{title}</p>
-            <p className={styles.description}>{description}</p>
-            {assignedLabel && <ReadonlyLabel key={assignedLabel.name} name={assignedLabel.name} lang={assignedLabel.lang} bgColor={assignedLabel.bgColor} />}
+            <div className={styles.titleRight}>
+              {assignedLabel && <ReadonlyLabel key={assignedLabel.name} name={assignedLabel.name} lang={assignedLabel.lang} bgColor={assignedLabel.bgColor} />}
+              <FavoriteButton favorited={favorited} onClick={() => handleToggleFavorite(id)} />
+            </div>
           </div>
           <div id="snippetBody" className={styles.body}>
+            <p className={styles.description}>{description}</p>
             <pre className={`prettyprint ${styles.redborder}`}>
               <code className={`lang-${language}`}> {content}</code>
             </pre>
           </div>
           <div id="snippetFooter" className={styles.footer}>
-            <FavoriteButton favorited={favorited} onClick={() => handleToggleFavorite(id)} />
-            <Button title={"Edit"} onClick={handleEdit} disabled={editing} />
-            <Button title={"Delete"} onClick={() => handleDelete(id)} disabled={false} />
+            <button className={`${sharedStyles.button} ${styles.editButton}`} onClick={handleEdit}>
+              Edit
+            </button>
+            <button className={`${sharedStyles.button} ${styles.deleteButton}`} onClick={() => handleDelete(id)}>
+              Delete
+            </button>
           </div>
         </div>
       </div>
@@ -109,23 +115,29 @@ export const Snippet = React.memo(({ id, title, description, content, language, 
     return (
       <div className={sharedStyles.container}>
         {/* Edit-mode */}
-        <div className={styles.snippet}>
-          <div id="snippetHeader" className={styles.header}>
-            <input type="text" id="SnippetInputName" name="SnippetInputName" value={titleToUpdate} onChange={(event) => setTitleToUpdate(event.target.value)} />
-            <input type="text" id="SnippetInputDescription" name="SnippetInputDescription" value={descriptionToUpdate} onChange={(event) => setDescriptionToUpdate(event.target.value)} />
-            {labels.map((item) => (
-              <RadioLabel key={item.name} labelInputData={{ name: item.name, lang: item.lang, bgColor: item.bgColor, toggleAction: () => assignLanguageHandler(item.lang) }} labelGroupName={`snippet-${id}-EditingLabelGroup`} />
-            ))}
+        <div className={`${styles.snippet} ${editing && styles.snippetEditMode}`}>
+          <div id="snippetHeader" className={`${styles.snippetHeader} ${editing && styles.snippetEditMode}`}>
+            <input type="text" className={styles.snippetInputName} id="SnippetInputName" name="SnippetInputName" value={titleToUpdate} onChange={(event) => setTitleToUpdate(event.target.value)} />
+            <div className={styles.titleRight}>
+              {labels.map((item) => (
+                <RadioLabel key={item.name} labelInputData={{ name: item.name, lang: item.lang, bgColor: item.bgColor, toggleAction: () => assignLanguageHandler(item.lang) }} labelGroupName={`snippet-${id}-EditingLabelGroup`} />
+              ))}
+            </div>
           </div>
           <div id="snippetBody" className={styles.body}>
-            <pre className="prettyprint redborder">
-              <textarea id={`Snippet-${id}-EditContent`} name={`Snippet-${id}-EditContent`} rows={4} cols={50} value={contentToUpdate} onChange={(event) => setContentToUpdate(event.target.value)} />
-            </pre>
+            <input type="text" className={styles.snippetInputDescription} id="SnippetInputDescription" name="SnippetInputDescription" value={descriptionToUpdate} onChange={(event) => setDescriptionToUpdate(event.target.value)} />
+            <textarea id={`Snippet-${id}-EditContent`} name={`Snippet-${id}-EditContent`} value={contentToUpdate} onChange={(event) => setContentToUpdate(event.target.value)} />
           </div>
           <div id="snippetFooter" className={styles.footer}>
-            <Button title={"Cancel"} onClick={handleCancel} disabled={false} />
-            <Button title={"Save"} onClick={handleSave} disabled={false} />
-            <Button title={"Delete"} onClick={() => handleDelete(id)} disabled={false} />
+            <button className={`${sharedStyles.button} ${styles.signInButton}`} onClick={handleCancel}>
+              Cancel
+            </button>
+            <button className={`${sharedStyles.button} ${styles.signInButton}`} onClick={handleSave}>
+              Save
+            </button>
+            <button className={`${sharedStyles.button} ${styles.signInButton}`} onClick={() => handleDelete(id)}>
+              Delete
+            </button>
           </div>
         </div>
       </div>

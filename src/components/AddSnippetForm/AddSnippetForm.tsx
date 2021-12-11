@@ -60,11 +60,11 @@ export const AddSnippetForm = React.memo(() => {
     <div className={sharedStyles.container}>
       <form onSubmit={submitHandler} className={styles.AddSnippetForm}>
         <label htmlFor="SnippetInputName">Title</label>
-        <input type="text" id="SnippetInputName" name="SnippetInputName" value={title} onChange={(event) => setTitle(event.target.value)} />
+        <input type="text" id="SnippetInputName" name="SnippetInputName" value={title} placeholder="Title" onChange={(event) => setTitle(event.target.value)} />
         <label htmlFor="SnippetInputDescription">Description</label>
-        <input type="text" id="SnippetInputDescription" name="SnippetInputDescription" value={description} onChange={(event) => setDescription(event.target.value)} />
+        <input type="text" id="SnippetInputDescription" name="SnippetInputDescription" value={description} placeholder="Description" onChange={(event) => setDescription(event.target.value)} />
         <label htmlFor="SnippetInputContent">Snippet</label>
-        <textarea id="SnippetInputContent" name="SnippetInputContent" rows={4} cols={50} value={content} onChange={(event) => setContent(event.target.value)} />
+        <textarea id="SnippetInputContent" name="SnippetInputContent" value={content} placeholder="The snippet goes here ..." onChange={(event) => setContent(event.target.value)} />
         <div className={styles.labelSelection}>
           {labels.map((item) => (
             <RadioLabel key={item.name} labelInputData={{ name: item.name, lang: item.lang, bgColor: item.bgColor, toggleAction: () => assignLanguageHandler(item.lang) }} labelGroupName="newSnippetLabels" />

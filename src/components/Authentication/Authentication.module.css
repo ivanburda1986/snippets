@@ -58,13 +58,29 @@
 }
 
 .addSnippetButton {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
   width: 120px;
-  background-color: white;
+  background-color: #7fffd4;
+  text-transform: capitalize;
+  color: #008b8b;
   border: none;
   padding: 3px 5px;
   margin: 2px;
   border-radius: 3px;
   cursor: pointer;
+  border-radius: 5px;
+}
+
+.addSnippetButton:disabled {
+  background-color: #7fffd4ab;
+  color: #7fffd4d0;
+}
+
+.addSnippetButton:disabled:hover {
+  text-shadow: none;
 }
 
 @media screen and (max-width: 425px) {

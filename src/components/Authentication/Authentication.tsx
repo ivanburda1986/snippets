@@ -4,6 +4,7 @@ import styles from "./Authentication.module.css";
 import sharedStyles from "../sharedStyles/sharedStyles.module.css";
 import { auth } from "../../firebaseSetup";
 import { AppContext } from "../../context/context";
+import { IoMdAddCircle } from "react-icons/io";
 
 export function Authentication() {
   const user = useContext(AuthContext);
@@ -60,7 +61,8 @@ export function Authentication() {
 
       <div className={styles.addSnippetButtonContainer}>
         <button className={styles.addSnippetButton} onClick={mycontext.toggleNewSnippetFormDisplayState} disabled={mycontext.newSnippetFormDisplayState}>
-          Add snippet
+          <IoMdAddCircle />
+          New snippet
         </button>
       </div>
     </div>

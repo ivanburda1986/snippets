@@ -1,9 +1,28 @@
 .AddSnippetForm {
-  margin-bottom: 1rem;
-  background-color: mediumaquamarine;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  margin-bottom: 0.25rem;
+  background-color: rgb(100, 195, 205);
+  border-radius: 5px;
   padding: 0.5em;
+}
+
+.AddSnippetForm input {
+  width: 100%;
+  border-radius: 3px;
+}
+
+.AddSnippetForm textarea {
+  width: 100%;
 }
 
 .labelSelection {
   display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: center;
+  flex-wrap: wrap;
+  margin: 0.5em 0em;
 }

@@ -25,7 +25,7 @@
 }
 
 .snippetEditMode {
-  background-color: mediumturquoise;
+  background-color: var(--lightBlue);
 }
 
 .snippetHeader p {
@@ -47,7 +47,8 @@
   border-radius: 3px;
 }
 
-.titleRight {
+.titleRight,
+.titleLeft {
   justify-content: space-between;
   align-items: center;
   display: flex;

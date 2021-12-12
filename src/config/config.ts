@@ -40,10 +40,12 @@ export const labels: labelData[] = [
   { name: "CSS", lang: "cs", bgColor: "mediumpurple" },
   { name: "JS", lang: "js", bgColor: "gold" },
   { name: "React", lang: "react", bgColor: "cyan" },
-  { name: "TS", lang: "ts", bgColor: "steelblue" },
+  { name: "TS", lang: "ts", bgColor: "#3e9fe6" },
   { name: "Bash", lang: "bsh", bgColor: "#8d8d8d" },
-  { name: "Python", lang: "py", bgColor: "#4f8cd1" },
-  { name: "NPM", lang: "npm", bgColor: "#b8353f" },
+  { name: "Python", lang: "py", bgColor: "#6ea8e9" },
+  { name: "NPM", lang: "npm", bgColor: "#c4656c" },
   { name: "GIT", lang: "git", bgColor: "lightcoral" },
   { name: "VSC", lang: "vsc", bgColor: "#2d7ec0" },
 ];
+
+// https://colorpicker.me/

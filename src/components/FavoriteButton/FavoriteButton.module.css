@@ -4,7 +4,7 @@
   justify-content: center;
   align-items: center;
   padding: 4px;
-  border: 1px solid var(--mediumBg);
+  border: none;
   margin: 2px;
   border-radius: 3px;
   background-color: white;
@@ -13,5 +13,4 @@
 
 .favorited {
   background-color: gold;
-  border: 1px solid var(--darkBlue);
 }

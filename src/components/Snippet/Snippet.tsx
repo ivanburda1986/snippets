@@ -88,11 +88,11 @@ export const Snippet = React.memo(({ id, title, description, content, language, 
         {/* View-mode */}
         <div className={styles.snippet}>
           <div id="snippetHeader" className={styles.snippetHeader}>
-            <p className={styles.title}>{title}</p>
-            <div className={styles.titleRight}>
-              {assignedLabel && <ReadonlyLabel key={assignedLabel.name} name={assignedLabel.name} lang={assignedLabel.lang} bgColor={assignedLabel.bgColor} />}
+            <div className={styles.titleLeft}>
+              <p className={styles.title}>{title}</p>
               <FavoriteButton favorited={favorited} onClick={() => handleToggleFavorite(id)} />
             </div>
+            <div className={styles.titleRight}>{assignedLabel && <ReadonlyLabel key={assignedLabel.name} name={assignedLabel.name} lang={assignedLabel.lang} bgColor={assignedLabel.bgColor} />}</div>
           </div>
           <div id="snippetBody" className={styles.body}>
             <p className={styles.description}>{description}</p>

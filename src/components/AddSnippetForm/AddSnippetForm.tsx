@@ -59,6 +59,7 @@ export const AddSnippetForm = React.memo(() => {
   return (
     <div className={sharedStyles.container}>
       <form onSubmit={submitHandler} className={styles.AddSnippetForm}>
+        <h1>New snippet</h1>
         <label htmlFor="SnippetInputName">Title</label>
         <input type="text" id="SnippetInputName" name="SnippetInputName" value={title} placeholder="Title" onChange={(event) => setTitle(event.target.value)} />
         <label htmlFor="SnippetInputDescription">Description</label>

@@ -25,7 +25,7 @@ export interface labelData {
   toggleAction?: Function | void;
 }
 
-export type SupportedLanguages = "html" | "cs" | "js" | "react" | "ts" | "bsh" | "py" | "npm" | "git" | "vsc";
+export type SupportedLanguages = "html" | "cs" | "js" | "react" | "ts" | "bsh" | "py" | "npm" | "git" | "vsc" | "lnx";
 export type Favorited = 1 | 0;
 
 export interface message {
@@ -46,6 +46,7 @@ export const labels: labelData[] = [
   { name: "NPM", lang: "npm", bgColor: "#c4656c" },
   { name: "GIT", lang: "git", bgColor: "lightcoral" },
   { name: "VSC", lang: "vsc", bgColor: "#2d7ec0" },
+  { name: "Linux", lang: "lnx", bgColor: "#2d7ec0" },
 ];
 
 // https://colorpicker.me/

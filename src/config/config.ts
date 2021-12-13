@@ -35,6 +35,13 @@ export interface message {
 
 export type supportedMessageTypes = "success" | "warning";
 
+export interface Snackbar {
+  type: supportedSnackbarTypes;
+  message: string;
+}
+
+export type supportedSnackbarTypes = "Error" | "Warning";
+
 export const labels: labelData[] = [
   { name: "HTML", lang: "html", bgColor: "orange" },
   { name: "CSS", lang: "cs", bgColor: "mediumpurple" },

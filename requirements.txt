@@ -20,8 +20,10 @@ Version2
 Version3
 --Protect Firebase
 --Do proper styling
-Refactor the JS code 
-
+Refactor the JS code
+Snackbar for: Incorrect login; Necessity to login in order to add,edit,delete snippets 
+Delete - confirmation, red button and exclamation mark 
+Label texts should be color dependent to be easy to read 
 
 Additional 
 Write unit tests in Jest 

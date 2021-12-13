@@ -65,9 +65,14 @@
 }
 
 .addSnippetButton {
-  width: 120px;
+  width: 40px;
+  height: 40px;
   background-color: #7fffd4;
   color: #008b8b;
+  border-radius: 100%;
+  margin-top: -20px;
+  border: none;
+  font-size: 2rem;
 }
 
 .signInButton {

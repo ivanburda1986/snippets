@@ -4,7 +4,7 @@ import { message } from "../../config/config";
 
 export function Message({ type, text }: message) {
   return (
-    <div className={styles[`message-${type}`]}>
+    <div id="message" className={`${styles[`message-${type}`]} ${styles.message}`}>
       <p>{text}</p>
     </div>
   );

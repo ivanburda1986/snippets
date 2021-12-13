@@ -23,7 +23,12 @@ Version3
 Refactor the JS code
 Snackbar for: Incorrect login; Necessity to login in order to add,edit,delete snippets 
 Delete - confirmation, red button and exclamation mark 
-Label texts should be color dependent to be easy to read 
+Label texts should be color dependent to be easy to read
+Improve the language shortcuts to be more predictable especially for the url
+Improve the Add new snippet button 
+Come up with a better site name
+Deploy
+Add to my portfolio 
 
 Additional 
 Write unit tests in Jest 
@@ -51,3 +56,10 @@ https://medium.com/geekculture/firebase-auth-with-react-and-typescript-abeebcd79
 
 Firebase - redirecting depending on the login state 
 https://anthonybendeler.medium.com/redirecting-in-a-react-single-page-application-with-firebase-auth-b1b0494b251b
+
+
+Next project idea: Shogi - Catch the lion
+One-screen game to play it on a tablet
+Over-the internet game 
+
+Next project idea: Shogi the big forest 

@@ -1,7 +1,8 @@
 .ReadonlyLabel {
-  width: 90px;
+  width: 60px;
   border-radius: 5px;
-  font-size: 0.9rem;
+  font-size: 0.8rem;
+  font-weight: 600;
   display: flex;
   justify-content: left;
   align-items: center;

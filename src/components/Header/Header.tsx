@@ -14,9 +14,9 @@ export function Header() {
   return (
     <div className={classes.header}>
       <div className={classes.headerTitle}>Snippets</div>
-      <div className={sharedStyles.container}>
+      {/* <div className={sharedStyles.container}>
         <Message type={"warning"} text={"I warn you for the first time!"} />
-      </div>
+      </div> */}
       <div className={classes.headerAuthentication}>
         <Authentication />
       </div>

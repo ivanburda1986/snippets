@@ -84,7 +84,7 @@ export const Snippet = React.memo(({ id, title, description, content, language, 
 
   if (editing === false) {
     return (
-      <div className={sharedStyles.container}>
+      <div>
         {/* View-mode */}
         <div className={styles.snippet}>
           <div id="snippetHeader" className={styles.snippetHeader}>

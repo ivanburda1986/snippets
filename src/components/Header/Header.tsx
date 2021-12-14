@@ -3,7 +3,6 @@ import { labels } from "../../config/config";
 import classes from "./Header.module.css";
 import sharedStyles from "../sharedStyles/sharedStyles.module.css";
 import { CheckboxLabel } from "../CheckboxLabel/CheckboxLabel";
-import { Message } from "../Message/Message";
 
 import { AppContext } from "../../context/context";
 import { Authentication } from "../Authentication/Authentication";
@@ -14,9 +13,7 @@ export function Header() {
   return (
     <div className={classes.header}>
       <div className={classes.headerTitle}>Snippets</div>
-      {/* <div className={sharedStyles.container}>
-        <Message type={"warning"} text={"I warn you for the first time!"} />
-      </div> */}
+
       <div className={classes.headerAuthentication}>
         <Authentication />
       </div>

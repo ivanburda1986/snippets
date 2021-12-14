@@ -8,6 +8,7 @@ import { Header } from "./components/Header/Header";
 import { AddSnippetForm } from "./components/AddSnippetForm/AddSnippetForm";
 import { SnippetList } from "./components/SnippetList/SnippetList";
 import { Snippet } from "./components/Snippet/Snippet";
+import { Message } from "./components/Message/Message";
 
 function App() {
   const [snippets, setSnippets] = useState<typeSnippet[]>([]);
@@ -87,7 +88,7 @@ function App() {
   }
 
   return (
-    <div className="App">
+    <div className="App" style={{ minHeight: "100vh" }}>
       <AppContext.Provider value={contextProvider}>
         <Header />
         {newSnippetFormDisplayState && <AddSnippetForm />}

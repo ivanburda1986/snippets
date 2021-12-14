@@ -1,0 +1,13 @@
+.AddSnippetBtn {
+  position: absolute;
+  right: -20px;
+  top: 0%;
+  height: 40px;
+  width: 40px;
+  border: none;
+  font-size: 40px;
+  color: green;
+  background-color: aquamarine;
+  border-radius: 50%;
+  cursor: pointer;
+}

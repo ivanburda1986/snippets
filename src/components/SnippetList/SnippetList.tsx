@@ -25,7 +25,6 @@ export function SnippetList() {
       {filteredSnippets.map((snippet) => (
         <Snippet key={snippet.id} id={snippet.id} title={snippet.title} description={snippet.description} content={snippet.content} language={snippet.language} favorited={snippet.favorited} creationTimestamp={snippet.creationTimestamp} />
       ))}
-      <Message type={"warning"} text={"I warn you for the first time!"} />
     </div>
   );
 }

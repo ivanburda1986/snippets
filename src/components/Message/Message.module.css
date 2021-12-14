@@ -1,9 +1,10 @@
 .Message {
-  position: absolute;
+  position: fixed;
   top: 90vh;
-  right: 5vw;
   width: 90vw;
-  max-width: 500px;
+  max-width: 400px;
+  min-height: 50px;
+  right: 5vw;
   background-color: rgb(221, 22, 22);
   color: #fff;
   padding: 0.5em 1em;

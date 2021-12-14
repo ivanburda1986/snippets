@@ -31,6 +31,7 @@
 }
 
 .headerOptions {
+  position: relative;
   background-color: #1560993b;
   border-radius: 0.25rem;
   display: flex;

@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate, useParams, useLocation } from "react-router-dom";
 import { AppContext } from "./context/context";
-import { SupportedLanguages, typeSnippet, newSnippet } from "./config/config";
+import { SupportedLanguages, typeSnippet, newSnippet, message } from "./config/config";
 import { receiveServerItems } from "./api/api";
 
 import { Header } from "./components/Header/Header";
@@ -14,6 +14,7 @@ function App() {
   const [snippets, setSnippets] = useState<typeSnippet[]>([]);
   const [newSnippetFormDisplayState, setNewSnippetDisplayState] = useState<boolean>(false);
   const [languagesToFilterSnippetsBy, setLanguagesToFilterSnippetsBy] = useState<SupportedLanguages[]>([]);
+  const [messages, setMessages] = useState<message[]>([]);
   const location = useLocation();
   const navigate = useNavigate();
 
@@ -93,6 +94,7 @@ function App() {
         <Header />
         {newSnippetFormDisplayState && <AddSnippetForm />}
         <SnippetList />
+        <Message type={"warning"} text={"I warn you for the first time!"} />
       </AppContext.Provider>
     </div>
   );

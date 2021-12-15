@@ -11,3 +11,8 @@
   border-radius: 50%;
   cursor: pointer;
 }
+
+.disabled {
+  color: rgb(112, 112, 112);
+  background-color: rgb(216, 216, 216);
+}

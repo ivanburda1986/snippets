@@ -1,34 +1,24 @@
 import React, { useState, useEffect, useContext, useRef } from "react";
+import { v4 as uuidv4 } from "uuid";
 import { AuthContext } from "../../context/AuthContext";
 import styles from "./Authentication.module.css";
 import sharedStyles from "../sharedStyles/sharedStyles.module.css";
 import { auth } from "../../firebaseSetup";
 import { AppContext } from "../../context/context";
-import { IoMdAddCircle } from "react-icons/io";
 import { FiLogIn } from "react-icons/fi";
 
 export function Authentication() {
   const user = useContext(AuthContext);
   const emailRef = useRef<HTMLInputElement>(null);
   const passwordRef = useRef<HTMLInputElement>(null);
-  const [errorMessage, setErrorMessage] = useState("");
   const mycontext = useContext(AppContext);
-
-  useEffect(() => {
-    if (errorMessage !== "") {
-      setTimeout(() => {
-        setErrorMessage("");
-      }, 5000);
-    }
-  }, [errorMessage]);
 
   const signIn = async () => {
     try {
       await auth.signInWithEmailAndPassword(emailRef.current!.value, passwordRef.current!.value);
-      console.log(user);
     } catch (error) {
       if (error instanceof Error) {
-        setErrorMessage(error.message);
+        mycontext.addMessage({ type: "error", text: error.message, queuePosition: mycontext.messages.length, id: uuidv4() });
       }
     }
   };
@@ -58,14 +48,6 @@ export function Authentication() {
       ) : (
         <p className={styles.loggedInMessage}>{user.email}</p>
       )}
-
-      {errorMessage && <p className={styles.errorMessage}>{errorMessage}</p>}
-
-      {/* <div className={styles.addSnippetButtonContainer}>
-        <button className={`${styles.addSnippetButton}`} onClick={mycontext.toggleNewSnippetFormDisplayState} disabled={mycontext.newSnippetFormDisplayState}>
-          <IoMdAddCircle />
-        </button>
-      </div> */}
     </div>
   );
 }

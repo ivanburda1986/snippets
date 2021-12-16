@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import { v4 as uuidv4 } from "uuid";
 import { useNavigate, useParams, useLocation } from "react-router-dom";
 import { AppContext } from "./context/context";
 import { SupportedLanguages, typeSnippet, newSnippet, message } from "./config/config";
@@ -27,6 +28,9 @@ function App() {
     updateSnippetHandler: updateSnippet,
     languagesToFilterSnippetsBy,
     addFilter,
+    removeMessage,
+    addMessage,
+    messages,
   };
 
   // Loads all snippets from the server
@@ -88,13 +92,23 @@ function App() {
     return;
   }
 
+  function removeMessage(id: string) {
+    setMessages((messages) => messages.filter((message) => message.id !== id));
+  }
+
+  function addMessage({ type, text, queuePosition, id }: message) {
+    setMessages((prevMessages) => [...prevMessages, { type, text, queuePosition, id }]);
+  }
+
   return (
     <div className="App" style={{ minHeight: "100vh" }}>
       <AppContext.Provider value={contextProvider}>
         <Header />
         {newSnippetFormDisplayState && <AddSnippetForm />}
         <SnippetList />
-        <Message type={"warning"} text={"I warn you for the first time!"} />
+        {messages.map((message) => (
+          <Message type={message.type} text={message.text} key={message.id} queuePosition={message.queuePosition} id={message.id} />
+        ))}
       </AppContext.Provider>
     </div>
   );

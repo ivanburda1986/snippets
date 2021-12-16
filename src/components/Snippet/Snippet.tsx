@@ -1,4 +1,5 @@
 import React, { useContext, useState } from "react";
+import { v4 as uuidv4 } from "uuid";
 import { AppContext } from "../../context/context";
 import { typeSnippet, labels, SupportedLanguages, newSnippet } from "../../config/config";
 import sharedStyles from "../sharedStyles/sharedStyles.module.css";
@@ -41,7 +42,7 @@ export const Snippet = React.memo(({ id, title, description, content, language, 
       setEditing(false);
       updateServerItem(snippetToAdd);
     } else {
-      console.log("You must be logged in!");
+      mycontext.addMessage({ type: "warning", text: "Please login if you wish to save the changes.", queuePosition: mycontext.messages.length, id: uuidv4() });
     }
   }
 
@@ -61,7 +62,7 @@ export const Snippet = React.memo(({ id, title, description, content, language, 
       setEditing(false);
       updateServerItem(snippetToAdd);
     } else {
-      console.log("You must be logged in!");
+      mycontext.addMessage({ type: "warning", text: `Please login if you wish to do this action.`, queuePosition: mycontext.messages.length, id: uuidv4() });
     }
   }
 
@@ -78,7 +79,7 @@ export const Snippet = React.memo(({ id, title, description, content, language, 
       mycontext.deleteSnippetHandler(id);
       deleteServerItem(id);
     } else {
-      console.log("You must be logged in!");
+      mycontext.addMessage({ type: "warning", text: `Please login if you wish to delete the snippet.`, queuePosition: mycontext.messages.length, id: uuidv4() });
     }
   }
 

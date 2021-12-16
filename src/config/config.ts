@@ -31,6 +31,8 @@ export type Favorited = 1 | 0;
 export interface message {
   type: supportedMessageTypes;
   text: string;
+  queuePosition: number;
+  id: string;
 }
 
 export type supportedMessageTypes = "error" | "warning" | "success";

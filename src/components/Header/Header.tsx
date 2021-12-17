@@ -21,7 +21,7 @@ export function Header() {
       <div className={sharedStyles.container}>
         <div className={classes.headerOptions}>
           {labels.map((item) => {
-            return <CheckboxLabel key={item.name} labelInputData={{ name: item.name, lang: item.lang, bgColor: item.bgColor, toggleAction: () => mycontext.addFilter(item.lang) }} labelGroupName="headerLabels" />;
+            return <CheckboxLabel key={item.name} labelInputData={{ name: item.name, lang: item.lang, bgColor: item.bgColor, color: item.color, toggleAction: () => mycontext.addFilter(item.lang) }} labelGroupName="headerLabels" />;
           })}
           <AddSnippetBtn action={() => mycontext.toggleNewSnippetFormDisplayState} disabled={!mycontext.newSnippetFormDisplayState} />
         </div>

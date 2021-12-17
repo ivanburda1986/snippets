@@ -20,11 +20,11 @@ Version2
 Version3
 --Protect Firebase
 --Do proper styling
-Snackbar for: Incorrect login; Necessity to login in order to add,edit,delete snippets 
+--Snackbar for: Incorrect login; Necessity to login in order to add,edit,delete snippets 
+--Improve the language shortcuts to be more predictable especially for the url
 Refactor the JS code
 Delete - confirmation, red button and exclamation mark 
 Label texts should be color dependent to be easy to read
-Improve the language shortcuts to be more predictable especially for the url
 Improve the Add new snippet button 
 Come up with a better site name
 Deploy

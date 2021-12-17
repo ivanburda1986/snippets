@@ -93,7 +93,7 @@ export const Snippet = React.memo(({ id, title, description, content, language, 
               <p className={styles.title}>{title}</p>
               <FavoriteButton favorited={favorited} onClick={() => handleToggleFavorite(id)} />
             </div>
-            <div className={styles.titleRight}>{assignedLabel && <ReadonlyLabel key={assignedLabel.name} name={assignedLabel.name} lang={assignedLabel.lang} bgColor={assignedLabel.bgColor} />}</div>
+            <div className={styles.titleRight}>{assignedLabel && <ReadonlyLabel key={assignedLabel.name} name={assignedLabel.name} lang={assignedLabel.lang} bgColor={assignedLabel.bgColor} color={assignedLabel.color} />}</div>
           </div>
           <div id="snippetBody" className={styles.body}>
             <p className={styles.description}>{description}</p>
@@ -121,7 +121,7 @@ export const Snippet = React.memo(({ id, title, description, content, language, 
             <input type="text" className={styles.snippetInputName} id="SnippetInputName" name="SnippetInputName" value={titleToUpdate} onChange={(event) => setTitleToUpdate(event.target.value)} />
             <div className={styles.titleRight}>
               {labels.map((item) => (
-                <RadioLabel key={item.name} labelInputData={{ name: item.name, isChecked: item.lang === language, lang: item.lang, bgColor: item.bgColor, toggleAction: () => assignLanguageHandler(item.lang) }} labelGroupName={`snippet-${id}-EditingLabelGroup`} />
+                <RadioLabel key={item.name} labelInputData={{ name: item.name, isChecked: item.lang === language, lang: item.lang, bgColor: item.bgColor, color: item.color, toggleAction: () => assignLanguageHandler(item.lang) }} labelGroupName={`snippet-${id}-EditingLabelGroup`} />
               ))}
             </div>
           </div>

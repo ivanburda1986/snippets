@@ -21,11 +21,12 @@ export interface labelData {
   name: string;
   lang: SupportedLanguages;
   bgColor: string;
+  color: string;
   isChecked?: boolean;
   toggleAction?: Function | void;
 }
 
-export type SupportedLanguages = "html" | "cs" | "js" | "react" | "ts" | "bsh" | "py" | "npm" | "git" | "vsc" | "lnx";
+export type SupportedLanguages = "html" | "cs" | "js" | "react" | "ts" | "bash" | "py" | "npm" | "git" | "vsc" | "linux";
 export type Favorited = 1 | 0;
 
 export interface message {
@@ -38,17 +39,17 @@ export interface message {
 export type supportedMessageTypes = "error" | "warning" | "success";
 
 export const labels: labelData[] = [
-  { name: "HTML", lang: "html", bgColor: "orange" },
-  { name: "CSS", lang: "cs", bgColor: "mediumpurple" },
-  { name: "JS", lang: "js", bgColor: "gold" },
-  { name: "React", lang: "react", bgColor: "cyan" },
-  { name: "TS", lang: "ts", bgColor: "#3e9fe6" },
-  { name: "Bash", lang: "bsh", bgColor: "#8d8d8d" },
-  { name: "Python", lang: "py", bgColor: "#6ea8e9" },
-  { name: "NPM", lang: "npm", bgColor: "#c4656c" },
-  { name: "GIT", lang: "git", bgColor: "lightcoral" },
-  { name: "VSC", lang: "vsc", bgColor: "#2d7ec0" },
-  { name: "Linux", lang: "lnx", bgColor: "#2d7ec0" },
+  { name: "HTML", lang: "html", bgColor: "orange", color: "black" },
+  { name: "CSS", lang: "cs", bgColor: "mediumpurple", color: "black" },
+  { name: "JS", lang: "js", bgColor: "gold", color: "black" },
+  { name: "React", lang: "react", bgColor: "cyan", color: "black" },
+  { name: "TS", lang: "ts", bgColor: "#3e9fe6", color: "black" },
+  { name: "Bash", lang: "bash", bgColor: "#8d8d8d", color: "white" },
+  { name: "Python", lang: "py", bgColor: "#6ea8e9", color: "black" },
+  { name: "NPM", lang: "npm", bgColor: "#c4656c", color: "white" },
+  { name: "GIT", lang: "git", bgColor: "lightcoral", color: "black" },
+  { name: "VSC", lang: "vsc", bgColor: "#2d7ec0", color: "white" },
+  { name: "Linux", lang: "linux", bgColor: "#2d7ec0", color: "white" },
 ];
 
 // https://colorpicker.me/

@@ -89,7 +89,7 @@ export const AddSnippetForm = React.memo(() => {
         <textarea id="SnippetInputContent" name="SnippetInputContent" value={content} placeholder="The snippet goes here ..." onChange={(event) => setContent(event.target.value)} />
         <div className={styles.labelSelection}>
           {labels.map((item) => (
-            <RadioLabel key={item.name} labelInputData={{ name: item.name, lang: item.lang, bgColor: item.bgColor, toggleAction: () => assignLanguageHandler(item.lang) }} labelGroupName="newSnippetLabels" />
+            <RadioLabel key={item.name} labelInputData={{ name: item.name, lang: item.lang, bgColor: item.bgColor, color: item.color, toggleAction: () => assignLanguageHandler(item.lang) }} labelGroupName="newSnippetLabels" />
           ))}
         </div>
         <div>

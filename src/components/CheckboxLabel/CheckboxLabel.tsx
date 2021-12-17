@@ -6,7 +6,7 @@ import { AppContext } from "../../context/context";
 
 export function CheckboxLabel(props: { labelInputData: labelData; labelGroupName: string }) {
   const mycontext = useContext(AppContext);
-  const { name, bgColor, toggleAction, lang }: labelData = props.labelInputData;
+  const { name, bgColor, color, toggleAction, lang }: labelData = props.labelInputData;
   const labelGroupName = props.labelGroupName;
 
   function onToggleHandler() {
@@ -17,7 +17,7 @@ export function CheckboxLabel(props: { labelInputData: labelData; labelGroupName
   const randomNamePart = uuidv4();
 
   return (
-    <div className={styles.Label} style={{ backgroundColor: bgColor }}>
+    <div className={styles.Label} style={{ backgroundColor: bgColor, color: color }}>
       <input type="checkbox" checked={mycontext.languagesToFilterSnippetsBy.includes(lang)} id={`label-${name}-${randomNamePart}`} name={labelGroupName} value={name} onChange={(e: React.FormEvent<HTMLInputElement>) => onToggleHandler()} />
       <label htmlFor={`label-${name}-${randomNamePart}`}> {name}</label>
     </div>

@@ -20,6 +20,7 @@ export const Snippet = React.memo(({ id, title, description, content, language, 
   const [titleToUpdate, setTitleToUpdate] = useState(title);
   const [descriptionToUpdate, setDescriptionToUpdate] = useState(description);
   const [contentToUpdate, setContentToUpdate] = useState(content);
+  const [deleteConfirmation, setDeleteConfirmation] = useState(false);
   const userIsAuthenticated = useContext(AuthContext);
 
   function handleEdit() {
@@ -76,8 +77,13 @@ export const Snippet = React.memo(({ id, title, description, content, language, 
 
   function handleDelete(id: string) {
     if (userIsAuthenticated) {
-      mycontext.deleteSnippetHandler(id);
-      deleteServerItem(id);
+      if (deleteConfirmation) {
+        mycontext.deleteSnippetHandler(id);
+        deleteServerItem(id);
+      } else {
+        setDeleteConfirmation(true);
+        setTimeout(() => setDeleteConfirmation(false), 3000);
+      }
     } else {
       mycontext.addMessage({ type: "warning", text: `Please login if you wish to delete the snippet.`, queuePosition: mycontext.messages.length, id: uuidv4() });
     }
@@ -97,7 +103,7 @@ export const Snippet = React.memo(({ id, title, description, content, language, 
           </div>
           <div id="snippetBody" className={styles.body}>
             <p className={styles.description}>{description}</p>
-            <pre className={`prettyprint ${styles.redborder}`}>
+            <pre className={`prettyprint`}>
               <code className={`lang-${language}`}> {content}</code>
             </pre>
           </div>
@@ -105,8 +111,8 @@ export const Snippet = React.memo(({ id, title, description, content, language, 
             <button className={`${sharedStyles.button} ${styles.editButton}`} onClick={handleEdit}>
               Edit
             </button>
-            <button className={`${sharedStyles.button} ${styles.deleteButton}`} onClick={() => handleDelete(id)}>
-              Delete
+            <button className={`${sharedStyles.button} ${styles.deleteButton} ${deleteConfirmation && styles.confirmDelete}`} onClick={() => handleDelete(id)}>
+              {deleteConfirmation ? "Really?" : "Delete"}
             </button>
           </div>
         </div>
@@ -130,14 +136,14 @@ export const Snippet = React.memo(({ id, title, description, content, language, 
             <textarea id={`Snippet-${id}-EditContent`} name={`Snippet-${id}-EditContent`} value={contentToUpdate} onChange={(event) => setContentToUpdate(event.target.value)} />
           </div>
           <div id="snippetFooter" className={styles.footer}>
-            <button className={`${sharedStyles.button} ${styles.signInButton}`} onClick={handleCancel}>
+            <button className={`${sharedStyles.button} `} onClick={handleCancel}>
               Cancel
             </button>
-            <button className={`${sharedStyles.button} ${styles.signInButton}`} onClick={handleSave}>
+            <button className={`${sharedStyles.button} `} onClick={handleSave}>
               Save
             </button>
-            <button className={`${sharedStyles.button} ${styles.signInButton}`} onClick={() => handleDelete(id)}>
-              Delete
+            <button className={`${sharedStyles.button} ${deleteConfirmation && styles.confirmDelete} `} onClick={() => handleDelete(id)}>
+              {deleteConfirmation ? "Really?" : "Delete"}
             </button>
           </div>
         </div>

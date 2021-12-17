@@ -22,16 +22,17 @@ Version3
 --Do proper styling
 --Snackbar for: Incorrect login; Necessity to login in order to add,edit,delete snippets 
 --Improve the language shortcuts to be more predictable especially for the url
-Refactor the JS code
-Delete - confirmation, red button and exclamation mark 
-Label texts should be color dependent to be easy to read
-Improve the Add new snippet button 
+--Label texts should be color dependent to be easy to read
+--Delete - confirmation, red button and exclamation mark 
+--Improve the Add new snippet button 
+
+Additional 
+Refactor all code
+Write unit tests in Jest 
+
 Come up with a better site name
 Deploy
 Add to my portfolio 
-
-Additional 
-Write unit tests in Jest 
 
 Techstact: 
 React, TypeScript, Firebase, Google Code Pretify, Jest

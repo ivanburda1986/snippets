@@ -22,6 +22,22 @@ export const AddSnippetForm = React.memo(() => {
     setContent("");
   };
 
+  const validateInputs = () => {
+    if (title === "") {
+      return false;
+    }
+    if (description === "") {
+      return false;
+    }
+    if (content === "") {
+      return false;
+    }
+    if (assignedLanguage === undefined) {
+      return false;
+    }
+    return true;
+  };
+
   const assignLanguageHandler = (lang: SupportedLanguages) => {
     setAssignedLanguage(lang);
   };
@@ -39,20 +55,25 @@ export const AddSnippetForm = React.memo(() => {
     };
 
     const cbSuccess = () => {
-      console.log(`Item '${snippetToAdd.title}' successfully saved to the server`);
+      mycontext.addMessage({ type: "success", text: `Item '${snippetToAdd.title}' successfully saved to the server`, queuePosition: mycontext.messages.length, id: uuidv4() });
     };
     const cbError = () => {
-      console.log(`Saving the item '${snippetToAdd.title}' to the server has failed.`);
+      mycontext.addMessage({ type: "error", text: `Saving the item '${snippetToAdd.title}' to the server has failed.`, queuePosition: mycontext.messages.length, id: uuidv4() });
+
       deleteServerItem(snippetToAdd.id);
     };
 
     if (userIsAuthenticated) {
-      addServerItem(snippetToAdd, cbSuccess, cbError);
-      mycontext.submitNewSnippetHandler(snippetToAdd);
-      clearInputs();
-      mycontext.toggleNewSnippetFormDisplayState();
+      if (validateInputs()) {
+        addServerItem(snippetToAdd, cbSuccess, cbError);
+        mycontext.submitNewSnippetHandler(snippetToAdd);
+        clearInputs();
+        mycontext.toggleNewSnippetFormDisplayState();
+      } else {
+        mycontext.addMessage({ type: "error", text: "Please provide all details for a new snippet.", queuePosition: mycontext.messages.length, id: uuidv4() });
+      }
     } else {
-      console.log("You must be logged in!");
+      mycontext.addMessage({ type: "error", text: "Please login to save this new snippet.", queuePosition: mycontext.messages.length, id: uuidv4() });
     }
   };
 

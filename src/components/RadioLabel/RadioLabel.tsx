@@ -4,7 +4,7 @@ import styles from "./RadioLabel.module.css";
 import { labelData } from "../../config/config";
 
 export const RadioLabel = React.memo((props: { labelInputData: labelData; labelGroupName: string }) => {
-  const { name, bgColor, toggleAction }: labelData = props.labelInputData;
+  const { name, bgColor, toggleAction, lang, isChecked }: labelData = props.labelInputData;
   const labelGroupName = props.labelGroupName;
 
   function onToggleHandler() {
@@ -16,6 +16,7 @@ export const RadioLabel = React.memo((props: { labelInputData: labelData; labelG
   return (
     <div className={styles.RadioLabel} style={{ backgroundColor: bgColor }}>
       <input
+        checked={isChecked && true}
         type="radio"
         id={`label-${name}-${randomNamePart}`}
         name={labelGroupName}

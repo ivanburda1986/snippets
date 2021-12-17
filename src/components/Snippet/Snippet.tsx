@@ -114,14 +114,14 @@ export const Snippet = React.memo(({ id, title, description, content, language, 
     );
   } else {
     return (
-      <div className={sharedStyles.container}>
+      <div>
         {/* Edit-mode */}
         <div className={`${styles.snippet} ${editing && styles.snippetEditMode}`}>
           <div id="snippetHeader" className={`${styles.snippetHeader} ${editing && styles.snippetEditMode}`}>
             <input type="text" className={styles.snippetInputName} id="SnippetInputName" name="SnippetInputName" value={titleToUpdate} onChange={(event) => setTitleToUpdate(event.target.value)} />
             <div className={styles.titleRight}>
               {labels.map((item) => (
-                <RadioLabel key={item.name} labelInputData={{ name: item.name, lang: item.lang, bgColor: item.bgColor, toggleAction: () => assignLanguageHandler(item.lang) }} labelGroupName={`snippet-${id}-EditingLabelGroup`} />
+                <RadioLabel key={item.name} labelInputData={{ name: item.name, isChecked: item.lang === language, lang: item.lang, bgColor: item.bgColor, toggleAction: () => assignLanguageHandler(item.lang) }} labelGroupName={`snippet-${id}-EditingLabelGroup`} />
               ))}
             </div>
           </div>

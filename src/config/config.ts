@@ -21,7 +21,7 @@ export interface labelData {
   name: string;
   lang: SupportedLanguages;
   bgColor: string;
-  checked?: boolean;
+  isChecked?: boolean;
   toggleAction?: Function | void;
 }
 

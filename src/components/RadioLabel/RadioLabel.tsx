@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from "react";
 import { v4 as uuidv4 } from "uuid";
 import styles from "./RadioLabel.module.css";
-import { labelData } from "../../config/config";
+import { typeLabelData } from "../../config/config";
 
-export const RadioLabel = React.memo((props: { labelInputData: labelData; labelGroupName: string }) => {
-  const { name, bgColor, color, toggleAction, lang, isChecked }: labelData = props.labelInputData;
+export const RadioLabel = React.memo((props: { labelInputData: typeLabelData; labelGroupName: string }) => {
+  const { name, bgColor, color, toggleAction, lang, isChecked }: typeLabelData = props.labelInputData;
   const labelGroupName = props.labelGroupName;
 
   function onToggleHandler() {

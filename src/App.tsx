@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useNavigate, useLocation } from "react-router-dom";
 import { receiveServerItems } from "./api/api";
 import { AppContext } from "./context/context";
-import { SupportedSnippetTypes, typeSnippet, newSnippet, message } from "./config/config";
+import { supportedSnippetTypes, typeSnippet, typeNewSnippet, typeMessage } from "./config/config";
 
 import { Header } from "./components/Header/Header";
 import { AddSnippetForm } from "./components/AddSnippetForm/AddSnippetForm";
@@ -12,8 +12,8 @@ import { Message } from "./components/Message/Message";
 function App() {
   const [snippets, setSnippets] = useState<typeSnippet[]>([]);
   const [newSnippetFormDisplayState, setNewSnippetDisplayState] = useState<boolean>(false);
-  const [languagesToFilterSnippetsBy, setLanguagesToFilterSnippetsBy] = useState<SupportedSnippetTypes[]>([]);
-  const [messages, setMessages] = useState<message[]>([]);
+  const [languagesToFilterSnippetsBy, setLanguagesToFilterSnippetsBy] = useState<supportedSnippetTypes[]>([]);
+  const [messages, setMessages] = useState<typeMessage[]>([]);
   const location = useLocation();
   const navigate = useNavigate();
 
@@ -46,7 +46,7 @@ function App() {
   useEffect(() => {
     const filterValues = new URLSearchParams(location.search).get("filter")?.split(" ");
     if (filterValues) {
-      const filterLanguages: SupportedSnippetTypes[] = filterValues as SupportedSnippetTypes[];
+      const filterLanguages: supportedSnippetTypes[] = filterValues as supportedSnippetTypes[];
       filterLanguages.forEach((filterLanguage) => setLanguagesToFilterSnippetsBy((languagesToFilterSnippetsBy) => [...languagesToFilterSnippetsBy, filterLanguage]));
     }
   }, []);
@@ -69,7 +69,7 @@ function App() {
     setNewSnippetDisplayState(!newSnippetFormDisplayState);
   }
 
-  function addSnippet({ id, title, description, content, language, favorited, creationTimestamp }: newSnippet) {
+  function addSnippet({ id, title, description, content, language, favorited, creationTimestamp }: typeNewSnippet) {
     setSnippets((prevSnippets) => [...prevSnippets, { id: id, title: title, description: description, content: content, language: language, favorited: favorited, creationTimestamp: creationTimestamp }]);
   }
 
@@ -77,11 +77,11 @@ function App() {
     setSnippets((prevSnippets) => [...prevSnippets].filter((snippet) => snippet.id !== id));
   }
 
-  function updateSnippet({ id, title, description, content, language, favorited, creationTimestamp }: newSnippet) {
+  function updateSnippet({ id, title, description, content, language, favorited, creationTimestamp }: typeNewSnippet) {
     setSnippets((prevSnippets) => [...prevSnippets, { id: id, title: title, description: description, content: content, language: language, favorited: favorited, creationTimestamp: creationTimestamp }]);
   }
 
-  function addFilter(filterLanguage: SupportedSnippetTypes) {
+  function addFilter(filterLanguage: supportedSnippetTypes) {
     if (languagesToFilterSnippetsBy.includes(filterLanguage)) {
       setLanguagesToFilterSnippetsBy((languagesToFilterSnippetsBy) => languagesToFilterSnippetsBy.filter((language) => language !== filterLanguage));
     } else {
@@ -94,7 +94,7 @@ function App() {
     setMessages((messages) => messages.filter((message) => message.id !== id));
   }
 
-  function addMessage({ type, text, queuePosition, id }: message) {
+  function addMessage({ type, text, queuePosition, id }: typeMessage) {
     setMessages((prevMessages) => [...prevMessages, { type, text, queuePosition, id }]);
   }
 

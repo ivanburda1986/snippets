@@ -1,9 +1,9 @@
 import React, { useContext } from "react";
 import styles from "./Message.module.css";
 import { AppContext } from "../../context/context";
-import { message } from "../../config/config";
+import { typeMessage } from "../../config/config";
 
-export function Message({ type, text, queuePosition, id }: message) {
+export function Message({ type, text, queuePosition, id }: typeMessage) {
   const [mgsClasses, setMsgClasses] = React.useState([styles.Message, styles[`Message-${type}`]]);
   const [hide, setHide] = React.useState(false);
   const mycontext = useContext(AppContext);

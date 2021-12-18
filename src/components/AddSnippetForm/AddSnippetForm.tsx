@@ -1,6 +1,6 @@
 import React, { useContext, useState } from "react";
 import { v4 as uuidv4 } from "uuid";
-import { labels, labelData, SupportedSnippetTypes, newSnippet } from "../../config/config";
+import { labels, supportedSnippetTypes, typeNewSnippet } from "../../config/config";
 import { addServerItem, deleteServerItem } from "../../api/api";
 import sharedStyles from "../sharedStyles/sharedStyles.module.css";
 import styles from "./AddSnippetForm.module.css";
@@ -13,7 +13,7 @@ export const AddSnippetForm = React.memo(() => {
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
   const [content, setContent] = useState("");
-  const [assignedLanguage, setAssignedLanguage] = useState<SupportedSnippetTypes>();
+  const [assignedLanguage, setAssignedLanguage] = useState<supportedSnippetTypes>();
   const userIsAuthenticated = useContext(AuthContext);
 
   const clearInputs = () => {
@@ -38,13 +38,13 @@ export const AddSnippetForm = React.memo(() => {
     return true;
   };
 
-  const assignLanguageHandler = (lang: SupportedSnippetTypes) => {
+  const assignLanguageHandler = (lang: supportedSnippetTypes) => {
     setAssignedLanguage(lang);
   };
 
   const submitHandler = (event: React.ChangeEvent<HTMLFormElement>) => {
     event.preventDefault();
-    const snippetToAdd: newSnippet = {
+    const snippetToAdd: typeNewSnippet = {
       id: uuidv4(),
       title: title,
       description: description,

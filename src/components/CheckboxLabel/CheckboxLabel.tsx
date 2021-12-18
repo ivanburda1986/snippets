@@ -1,12 +1,12 @@
 import React, { useContext } from "react";
 import { v4 as uuidv4 } from "uuid";
 import styles from "./CheckboxLabel.module.css";
-import { labelData } from "../../config/config";
+import { typeLabelData } from "../../config/config";
 import { AppContext } from "../../context/context";
 
-export function CheckboxLabel(props: { labelInputData: labelData; labelGroupName: string }) {
+export function CheckboxLabel(props: { labelInputData: typeLabelData; labelGroupName: string }) {
   const mycontext = useContext(AppContext);
-  const { name, bgColor, color, toggleAction, lang }: labelData = props.labelInputData;
+  const { name, bgColor, color, toggleAction, lang }: typeLabelData = props.labelInputData;
   const labelGroupName = props.labelGroupName;
 
   function onToggleHandler() {

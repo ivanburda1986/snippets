@@ -3,33 +3,33 @@ export interface typeSnippet {
   title: string;
   description: string;
   content: string;
-  language: SupportedSnippetTypes;
+  language: supportedSnippetTypes;
   favorited: Favorited;
   creationTimestamp: number;
 }
 
-export interface newSnippet {
+export interface typeNewSnippet {
   id: string;
   title: string;
   description: string;
   content: string;
-  language: SupportedSnippetTypes;
+  language: supportedSnippetTypes;
   favorited: Favorited;
   creationTimestamp: number;
 }
-export interface labelData {
+export interface typeLabelData {
   name: string;
-  lang: SupportedSnippetTypes;
+  lang: supportedSnippetTypes;
   bgColor: string;
   color: string;
   isChecked?: boolean;
   toggleAction?: Function | void;
 }
 
-export type SupportedSnippetTypes = "html" | "cs" | "js" | "react" | "ts" | "bash" | "py" | "npm" | "git" | "vsc" | "linux";
+export type supportedSnippetTypes = "html" | "cs" | "js" | "react" | "ts" | "bash" | "py" | "npm" | "git" | "vsc" | "linux";
 export type Favorited = 1 | 0;
 
-export interface message {
+export interface typeMessage {
   type: supportedMessageTypes;
   text: string;
   queuePosition: number;
@@ -38,7 +38,7 @@ export interface message {
 
 export type supportedMessageTypes = "error" | "warning" | "success";
 
-export const labels: labelData[] = [
+export const labels: typeLabelData[] = [
   { name: "HTML", lang: "html", bgColor: "orange", color: "black" },
   { name: "CSS", lang: "cs", bgColor: "mediumpurple", color: "white" },
   { name: "JS", lang: "js", bgColor: "gold", color: "black" },

@@ -1,6 +1,6 @@
 import React, { useContext, useEffect, useState } from "react";
 import { AppContext } from "../../context/context";
-import { SupportedSnippetTypes, typeSnippet } from "../../config/config";
+import { supportedSnippetTypes, typeSnippet } from "../../config/config";
 import { Snippet } from "../Snippet/Snippet";
 import { Message } from "../Message/Message";
 import sharedStyles from "../sharedStyles/sharedStyles.module.css";
@@ -8,7 +8,7 @@ import sharedStyles from "../sharedStyles/sharedStyles.module.css";
 export function SnippetList() {
   const mycontext = useContext(AppContext);
   const snippets: typeSnippet[] = mycontext.snippets;
-  const filter: SupportedSnippetTypes[] = mycontext.languagesToFilterSnippetsBy;
+  const filter: supportedSnippetTypes[] = mycontext.languagesToFilterSnippetsBy;
   const [filteredSnippets, setFilteredSnippets] = useState<typeSnippet[]>([]);
 
   useEffect(() => {

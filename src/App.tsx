@@ -11,24 +11,25 @@ import { Message } from "./components/Message/Message";
 
 function App() {
   const [snippets, setSnippets] = useState<typeSnippet[]>([]);
-  const [newSnippetFormDisplayState, setNewSnippetDisplayState] = useState<boolean>(false);
+  const [newSnippetFormDisplayState, setNewSnippetFormDisplayState] = useState<boolean>(false);
   const [languagesToFilterSnippetsBy, setLanguagesToFilterSnippetsBy] = useState<supportedSnippetTypes[]>([]);
   const [messages, setMessages] = useState<typeMessage[]>([]);
+
   const location = useLocation();
   const navigate = useNavigate();
 
   const contextProvider = {
     snippets,
-    newSnippetFormDisplayState,
-    toggleNewSnippetFormDisplayState,
     submitNewSnippetHandler: addSnippet,
-    deleteSnippetHandler: deleteSnippet,
     updateSnippetHandler: updateSnippet,
+    deleteSnippetHandler: deleteSnippet,
+    messages,
+    addMessage,
+    removeMessage,
     languagesToFilterSnippetsBy,
     addFilter,
-    removeMessage,
-    addMessage,
-    messages,
+    newSnippetFormDisplayState,
+    toggleNewSnippetFormDisplayState,
   };
 
   // Loads all snippets from the server
@@ -66,7 +67,7 @@ function App() {
   // Methods
 
   function toggleNewSnippetFormDisplayState(): void {
-    setNewSnippetDisplayState(!newSnippetFormDisplayState);
+    setNewSnippetFormDisplayState(!newSnippetFormDisplayState);
   }
 
   function addSnippet({ id, title, description, content, language, favorited, creationTimestamp }: typeNewSnippet) {

@@ -1,20 +1,18 @@
 import React, { useEffect, useState } from "react";
-import { v4 as uuidv4 } from "uuid";
-import { useNavigate, useParams, useLocation } from "react-router-dom";
-import { AppContext } from "./context/context";
-import { SupportedLanguages, typeSnippet, newSnippet, message } from "./config/config";
+import { useNavigate, useLocation } from "react-router-dom";
 import { receiveServerItems } from "./api/api";
+import { AppContext } from "./context/context";
+import { SupportedSnippetTypes, typeSnippet, newSnippet, message } from "./config/config";
 
 import { Header } from "./components/Header/Header";
 import { AddSnippetForm } from "./components/AddSnippetForm/AddSnippetForm";
 import { SnippetList } from "./components/SnippetList/SnippetList";
-import { Snippet } from "./components/Snippet/Snippet";
 import { Message } from "./components/Message/Message";
 
 function App() {
   const [snippets, setSnippets] = useState<typeSnippet[]>([]);
   const [newSnippetFormDisplayState, setNewSnippetDisplayState] = useState<boolean>(false);
-  const [languagesToFilterSnippetsBy, setLanguagesToFilterSnippetsBy] = useState<SupportedLanguages[]>([]);
+  const [languagesToFilterSnippetsBy, setLanguagesToFilterSnippetsBy] = useState<SupportedSnippetTypes[]>([]);
   const [messages, setMessages] = useState<message[]>([]);
   const location = useLocation();
   const navigate = useNavigate();
@@ -48,7 +46,7 @@ function App() {
   useEffect(() => {
     const filterValues = new URLSearchParams(location.search).get("filter")?.split(" ");
     if (filterValues) {
-      const filterLanguages: SupportedLanguages[] = filterValues as SupportedLanguages[];
+      const filterLanguages: SupportedSnippetTypes[] = filterValues as SupportedSnippetTypes[];
       filterLanguages.forEach((filterLanguage) => setLanguagesToFilterSnippetsBy((languagesToFilterSnippetsBy) => [...languagesToFilterSnippetsBy, filterLanguage]));
     }
   }, []);
@@ -83,7 +81,7 @@ function App() {
     setSnippets((prevSnippets) => [...prevSnippets, { id: id, title: title, description: description, content: content, language: language, favorited: favorited, creationTimestamp: creationTimestamp }]);
   }
 
-  function addFilter(filterLanguage: SupportedLanguages) {
+  function addFilter(filterLanguage: SupportedSnippetTypes) {
     if (languagesToFilterSnippetsBy.includes(filterLanguage)) {
       setLanguagesToFilterSnippetsBy((languagesToFilterSnippetsBy) => languagesToFilterSnippetsBy.filter((language) => language !== filterLanguage));
     } else {

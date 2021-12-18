@@ -1,6 +1,6 @@
 import React, { useContext, useState } from "react";
 import { v4 as uuidv4 } from "uuid";
-import { labels, labelData, SupportedLanguages, newSnippet } from "../../config/config";
+import { labels, labelData, SupportedSnippetTypes, newSnippet } from "../../config/config";
 import { addServerItem, deleteServerItem } from "../../api/api";
 import sharedStyles from "../sharedStyles/sharedStyles.module.css";
 import styles from "./AddSnippetForm.module.css";
@@ -13,7 +13,7 @@ export const AddSnippetForm = React.memo(() => {
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
   const [content, setContent] = useState("");
-  const [assignedLanguage, setAssignedLanguage] = useState<SupportedLanguages>();
+  const [assignedLanguage, setAssignedLanguage] = useState<SupportedSnippetTypes>();
   const userIsAuthenticated = useContext(AuthContext);
 
   const clearInputs = () => {
@@ -38,7 +38,7 @@ export const AddSnippetForm = React.memo(() => {
     return true;
   };
 
-  const assignLanguageHandler = (lang: SupportedLanguages) => {
+  const assignLanguageHandler = (lang: SupportedSnippetTypes) => {
     setAssignedLanguage(lang);
   };
 

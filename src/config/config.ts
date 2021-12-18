@@ -3,7 +3,7 @@ export interface typeSnippet {
   title: string;
   description: string;
   content: string;
-  language: SupportedLanguages;
+  language: SupportedSnippetTypes;
   favorited: Favorited;
   creationTimestamp: number;
 }
@@ -13,20 +13,20 @@ export interface newSnippet {
   title: string;
   description: string;
   content: string;
-  language: SupportedLanguages;
+  language: SupportedSnippetTypes;
   favorited: Favorited;
   creationTimestamp: number;
 }
 export interface labelData {
   name: string;
-  lang: SupportedLanguages;
+  lang: SupportedSnippetTypes;
   bgColor: string;
   color: string;
   isChecked?: boolean;
   toggleAction?: Function | void;
 }
 
-export type SupportedLanguages = "html" | "cs" | "js" | "react" | "ts" | "bash" | "py" | "npm" | "git" | "vsc" | "linux";
+export type SupportedSnippetTypes = "html" | "cs" | "js" | "react" | "ts" | "bash" | "py" | "npm" | "git" | "vsc" | "linux";
 export type Favorited = 1 | 0;
 
 export interface message {

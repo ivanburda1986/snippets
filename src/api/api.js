@@ -1,8 +1,6 @@
 import firebase from "firebase/compat/app";
 import "firebase/compat/auth";
 import "firebase/compat/database";
-import database from "../firebaseSetup";
-import { newSnippet } from "../config/config";
 
 //Receive server items
 export async function receiveServerItems() {

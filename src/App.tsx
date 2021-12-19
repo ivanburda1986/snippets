@@ -11,9 +11,9 @@ import { Message } from "./components/Message/Message";
 
 function App() {
   const [snippets, setSnippets] = useState<typeSnippet[]>([]);
-  const [newSnippetFormDisplayState, setNewSnippetFormDisplayState] = useState<boolean>(false);
+  const [displayNewSnippetsForm, setDisplayNewSnippetsFormState] = useState<boolean>(false);
   const [languagesToFilterSnippetsBy, setLanguagesToFilterSnippetsBy] = useState<supportedSnippetTypes[]>([]);
-  const [messages, setMessages] = useState<typeMessage[]>([]);
+  const [snackbarMessages, setSnackbarMessages] = useState<typeMessage[]>([]);
 
   const location = useLocation();
   const navigate = useNavigate();
@@ -23,13 +23,13 @@ function App() {
     submitNewSnippetHandler: addSnippet,
     updateSnippetHandler: updateSnippet,
     deleteSnippetHandler: deleteSnippet,
-    messages,
-    addMessage,
-    removeMessage,
+    snackbarMessages,
+    addSnackbarMessage,
+    removeSnackbarMessage,
     languagesToFilterSnippetsBy,
     addFilter,
-    newSnippetFormDisplayState,
-    toggleNewSnippetFormDisplayState,
+    displayNewSnippetsForm,
+    toggleDisplayNewsnippetsForm,
   };
 
   // Loads all snippets from the server
@@ -65,8 +65,8 @@ function App() {
   }, [languagesToFilterSnippetsBy]);
 
   // Methods
-  function toggleNewSnippetFormDisplayState(): void {
-    setNewSnippetFormDisplayState(!newSnippetFormDisplayState);
+  function toggleDisplayNewsnippetsForm(): void {
+    setDisplayNewSnippetsFormState(!displayNewSnippetsForm);
   }
 
   function addSnippet({ id, title, description, content, language, favorited, creationTimestamp }: typeNewSnippet) {
@@ -90,21 +90,21 @@ function App() {
     return;
   }
 
-  function removeMessage(id: string) {
-    setMessages((messages) => messages.filter((message) => message.id !== id));
+  function removeSnackbarMessage(id: string) {
+    setSnackbarMessages((messages) => messages.filter((message) => message.id !== id));
   }
 
-  function addMessage({ type, text, queuePosition, id }: typeMessage) {
-    setMessages((prevMessages) => [...prevMessages, { type, text, queuePosition, id }]);
+  function addSnackbarMessage({ type, text, queuePosition, id }: typeMessage) {
+    setSnackbarMessages((prevMessages) => [...prevMessages, { type, text, queuePosition, id }]);
   }
 
   return (
     <div className="App" style={{ minHeight: "100vh" }}>
       <AppContext.Provider value={contextProvider}>
         <Header />
-        {newSnippetFormDisplayState && <AddSnippetForm />}
+        {displayNewSnippetsForm && <AddSnippetForm />}
         <SnippetList />
-        {messages.map((message) => (
+        {snackbarMessages.map((message) => (
           <Message type={message.type} text={message.text} key={message.id} queuePosition={message.queuePosition} id={message.id} />
         ))}
       </AppContext.Provider>

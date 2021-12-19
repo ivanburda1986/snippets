@@ -12,7 +12,7 @@ export function Message({ type, text, queuePosition, id }: typeMessage) {
       setMsgClasses(mgsClasses.concat(styles.Disappear));
     }, 2500);
     setTimeout(function () {
-      mycontext.removeMessage(id);
+      mycontext.removeSnackbarMessage(id);
       setHide(true);
     }, 7500);
   }, []);

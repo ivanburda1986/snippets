@@ -43,7 +43,7 @@ export const Snippet = React.memo(({ id, title, description, content, language, 
       setEditing(false);
       updateServerItem(snippetToAdd);
     } else {
-      mycontext.addMessage({ type: "warning", text: "Please login if you wish to save the changes.", queuePosition: mycontext.messages.length, id: uuidv4() });
+      mycontext.addSnackbarMessage({ type: "warning", text: "Please login if you wish to save the changes.", queuePosition: mycontext.snackbarMessages.length, id: uuidv4() });
     }
   }
 
@@ -63,7 +63,7 @@ export const Snippet = React.memo(({ id, title, description, content, language, 
       setEditing(false);
       updateServerItem(snippetToAdd);
     } else {
-      mycontext.addMessage({ type: "warning", text: `Please login if you wish to do this action.`, queuePosition: mycontext.messages.length, id: uuidv4() });
+      mycontext.addSnackbarMessage({ type: "warning", text: `Please login if you wish to do this action.`, queuePosition: mycontext.snackbarMessages.length, id: uuidv4() });
     }
   }
 
@@ -85,7 +85,7 @@ export const Snippet = React.memo(({ id, title, description, content, language, 
         setTimeout(() => setDeleteConfirmation(false), 3000);
       }
     } else {
-      mycontext.addMessage({ type: "warning", text: `Please login if you wish to delete the snippet.`, queuePosition: mycontext.messages.length, id: uuidv4() });
+      mycontext.addSnackbarMessage({ type: "warning", text: `Please login if you wish to delete the snippet.`, queuePosition: mycontext.snackbarMessages.length, id: uuidv4() });
     }
   }
 

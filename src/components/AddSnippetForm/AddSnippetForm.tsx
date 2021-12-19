@@ -55,10 +55,10 @@ export const AddSnippetForm = React.memo(() => {
     };
 
     const cbSuccess = () => {
-      mycontext.addMessage({ type: "success", text: `Item '${snippetToAdd.title}' successfully saved to the server`, queuePosition: mycontext.messages.length, id: uuidv4() });
+      mycontext.addSnackbarMessage({ type: "success", text: `Item '${snippetToAdd.title}' successfully saved to the server`, queuePosition: mycontext.snackbarMessages.length, id: uuidv4() });
     };
     const cbError = () => {
-      mycontext.addMessage({ type: "error", text: `Saving the item '${snippetToAdd.title}' to the server has failed.`, queuePosition: mycontext.messages.length, id: uuidv4() });
+      mycontext.addSnackbarMessage({ type: "error", text: `Saving the item '${snippetToAdd.title}' to the server has failed.`, queuePosition: mycontext.snackbarMessages.length, id: uuidv4() });
 
       deleteServerItem(snippetToAdd.id);
     };
@@ -68,12 +68,12 @@ export const AddSnippetForm = React.memo(() => {
         addServerItem(snippetToAdd, cbSuccess, cbError);
         mycontext.submitNewSnippetHandler(snippetToAdd);
         clearInputs();
-        mycontext.toggleNewSnippetFormDisplayState();
+        mycontext.toggleDisplayNewsnippetsForm();
       } else {
-        mycontext.addMessage({ type: "error", text: "Please provide all details for a new snippet.", queuePosition: mycontext.messages.length, id: uuidv4() });
+        mycontext.addSnackbarMessage({ type: "error", text: "Please provide all details for a new snippet.", queuePosition: mycontext.snackbarMessages.length, id: uuidv4() });
       }
     } else {
-      mycontext.addMessage({ type: "error", text: "Please login to save this new snippet.", queuePosition: mycontext.messages.length, id: uuidv4() });
+      mycontext.addSnackbarMessage({ type: "error", text: "Please login to save this new snippet.", queuePosition: mycontext.snackbarMessages.length, id: uuidv4() });
     }
   };
 
@@ -96,7 +96,7 @@ export const AddSnippetForm = React.memo(() => {
           <button type="submit" className={`${sharedStyles.button} ${styles.submitNewSnippetButton}`}>
             Submit
           </button>
-          <button type="button" className={`${sharedStyles.button} ${styles.cancelNewSnippetButton}`} onClick={mycontext.toggleNewSnippetFormDisplayState}>
+          <button type="button" className={`${sharedStyles.button} ${styles.cancelNewSnippetButton}`} onClick={mycontext.toggleDisplayNewsnippetsForm}>
             Cancel
           </button>
         </div>

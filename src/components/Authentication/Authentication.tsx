@@ -18,7 +18,7 @@ export function Authentication() {
       await auth.signInWithEmailAndPassword(emailRef.current!.value, passwordRef.current!.value);
     } catch (error) {
       if (error instanceof Error) {
-        mycontext.addMessage({ type: "error", text: error.message, queuePosition: mycontext.messages.length, id: uuidv4() });
+        mycontext.addSnackbarMessage({ type: "error", text: error.message, queuePosition: mycontext.snackbarMessages.length, id: uuidv4() });
       }
     }
   };

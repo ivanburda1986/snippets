@@ -68,7 +68,7 @@ export const AddSnippetForm = React.memo(() => {
         addServerItem(snippetToAdd, cbSuccess, cbError);
         mycontext.submitNewSnippetHandler(snippetToAdd);
         clearInputs();
-        mycontext.toggleDisplayNewsnippetsForm();
+        mycontext.toggleDisplayAddSnippetForm();
       } else {
         mycontext.addSnackbarMessage({ type: "error", text: "Please provide all details for a new snippet.", queuePosition: mycontext.snackbarMessages.length, id: uuidv4() });
       }
@@ -96,7 +96,7 @@ export const AddSnippetForm = React.memo(() => {
           <button type="submit" className={`${sharedStyles.button} ${styles.submitNewSnippetButton}`}>
             Submit
           </button>
-          <button type="button" className={`${sharedStyles.button} ${styles.cancelNewSnippetButton}`} onClick={mycontext.toggleDisplayNewsnippetsForm}>
+          <button type="button" className={`${sharedStyles.button} ${styles.cancelNewSnippetButton}`} onClick={mycontext.toggleDisplayAddSnippetForm}>
             Cancel
           </button>
         </div>

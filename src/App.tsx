@@ -9,9 +9,11 @@ import { AddSnippetForm } from "./components/AddSnippetForm/AddSnippetForm";
 import { SnippetList } from "./components/SnippetList/SnippetList";
 import { Message } from "./components/Message/Message";
 
+import styles from "./App.module.css";
+
 function App() {
   const [snippets, setSnippets] = useState<typeSnippet[]>([]);
-  const [displayNewSnippetsForm, setDisplayNewSnippetsFormState] = useState<boolean>(false);
+  const [displayAddSnippetForm, setDisplayAddSnippetFormState] = useState<boolean>(false);
   const [languagesToFilterSnippetsBy, setLanguagesToFilterSnippetsBy] = useState<supportedSnippetTypes[]>([]);
   const [snackbarMessages, setSnackbarMessages] = useState<typeMessage[]>([]);
 
@@ -28,45 +30,45 @@ function App() {
     removeSnackbarMessage,
     languagesToFilterSnippetsBy,
     addFilter,
-    displayNewSnippetsForm,
-    toggleDisplayNewsnippetsForm,
+    displayAddSnippetForm,
+    toggleDisplayAddSnippetForm,
   };
 
   // Loads all snippets from the server
   useEffect(() => {
-    let mydata: typeSnippet[];
+    let serverSnippetsData: typeSnippet[];
     receiveServerItems().then((data) => {
       if (data) {
-        mydata = Array.from(Object.values(data)) as typeSnippet[];
-        setSnippets(mydata);
+        serverSnippetsData = Array.from(Object.values(data)) as typeSnippet[];
+        setSnippets(serverSnippetsData);
       }
     });
   }, []);
 
   // Gets on-load values of the 'filter' query parameters and sets the initial filter
   useEffect(() => {
-    const filterValues = new URLSearchParams(location.search).get("filter")?.split(" ");
-    if (filterValues) {
-      const filterLanguages: supportedSnippetTypes[] = filterValues as supportedSnippetTypes[];
+    const urlFilterParameters = new URLSearchParams(location.search).get("filter")?.split(" ");
+    if (urlFilterParameters) {
+      const filterLanguages: supportedSnippetTypes[] = urlFilterParameters as supportedSnippetTypes[];
       filterLanguages.forEach((filterLanguage) => setLanguagesToFilterSnippetsBy((languagesToFilterSnippetsBy) => [...languagesToFilterSnippetsBy, filterLanguage]));
     }
   }, []);
 
   // Updates the 'filter' query parameter whenever the user changes the filter settings
   useEffect(() => {
-    const parameters = new URLSearchParams(location.search);
+    const urlSearchParameters = new URLSearchParams(location.search);
     if (languagesToFilterSnippetsBy.length !== 0) {
-      parameters.delete("filter");
-      parameters.append("filter", languagesToFilterSnippetsBy.join(" "));
+      urlSearchParameters.delete("filter");
+      urlSearchParameters.append("filter", languagesToFilterSnippetsBy.join(" "));
     } else {
-      parameters.delete("filter");
+      urlSearchParameters.delete("filter");
     }
-    navigate({ search: parameters.toString() });
+    navigate({ search: urlSearchParameters.toString() });
   }, [languagesToFilterSnippetsBy]);
 
   // Methods
-  function toggleDisplayNewsnippetsForm(): void {
-    setDisplayNewSnippetsFormState(!displayNewSnippetsForm);
+  function toggleDisplayAddSnippetForm(): void {
+    setDisplayAddSnippetFormState(!displayAddSnippetForm);
   }
 
   function addSnippet({ id, title, description, content, language, favorited, creationTimestamp }: typeNewSnippet) {
@@ -99,10 +101,10 @@ function App() {
   }
 
   return (
-    <div className="App" style={{ minHeight: "100vh" }}>
+    <div className={styles.App}>
       <AppContext.Provider value={contextProvider}>
         <Header />
-        {displayNewSnippetsForm && <AddSnippetForm />}
+        {displayAddSnippetForm && <AddSnippetForm />}
         <SnippetList />
         {snackbarMessages.map((message) => (
           <Message type={message.type} text={message.text} key={message.id} queuePosition={message.queuePosition} id={message.id} />

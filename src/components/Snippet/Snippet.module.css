@@ -94,4 +94,6 @@ body {
 
 .confirmDelete {
   background-color: tomato;
+  color: white;
+  font-weight: 600;
 }

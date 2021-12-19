@@ -51,5 +51,3 @@ export const labels: typeLabelData[] = [
   { name: "VSC", lang: "vsc", bgColor: "#2d7ec0", color: "white" },
   { name: "Linux", lang: "linux", bgColor: "#2d7ec0", color: "white" },
 ];
-
-// https://colorpicker.me/

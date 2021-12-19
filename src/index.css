@@ -88,8 +88,8 @@ body {
   font-family: "Inter", sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  color: var(--darkBlue);
   background-color: var(--lightBg);
+  color: var(--darkBlue);
 }
 
 code {

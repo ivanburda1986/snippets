@@ -2,7 +2,6 @@ import React, { useContext, useEffect, useState } from "react";
 import { AppContext } from "../../context/context";
 import { supportedSnippetTypes, typeSnippet } from "../../config/config";
 import { Snippet } from "../Snippet/Snippet";
-import { Message } from "../Message/Message";
 import sharedStyles from "../sharedStyles/sharedStyles.module.css";
 
 export function SnippetList() {

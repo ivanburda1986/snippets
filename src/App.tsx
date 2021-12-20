@@ -7,7 +7,7 @@ import { supportedSnippetTypes, typeSnippet, typeNewSnippet, typeMessage } from 
 import { Header } from "./components/Header/Header";
 import { AddSnippetForm } from "./components/AddSnippetForm/AddSnippetForm";
 import { SnippetList } from "./components/SnippetList/SnippetList";
-import { Message } from "./components/Message/Message";
+import { SnackbarMessage } from "./components/SnackbarMessage/SnackbarMessage";
 
 import styles from "./App.module.css";
 
@@ -107,7 +107,7 @@ function App() {
         {displayAddSnippetForm && <AddSnippetForm />}
         <SnippetList />
         {snackbarMessages.map((message) => (
-          <Message type={message.type} text={message.text} key={message.id} queuePosition={message.queuePosition} id={message.id} />
+          <SnackbarMessage type={message.type} text={message.text} key={message.id} queuePosition={message.queuePosition} id={message.id} />
         ))}
       </AppContext.Provider>
     </div>

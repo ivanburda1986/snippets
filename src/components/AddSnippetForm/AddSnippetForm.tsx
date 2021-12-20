@@ -7,36 +7,17 @@ import styles from "./AddSnippetForm.module.css";
 import { AppContext } from "../../context/context";
 import { AuthContext } from "../../context/AuthContext";
 import { RadioLabel } from "../RadioLabel/RadioLabel";
+import { validateInputs } from "./AddSnippetFormService";
 
 export const AddSnippetForm = React.memo(() => {
   const mycontext = useContext(AppContext);
-  const [title, setTitle] = useState("");
-  const [description, setDescription] = useState("");
-  const [content, setContent] = useState("");
+  const [title, setTitle] = useState<string>("");
+  const [description, setDescription] = useState<string>("");
+  const [content, setContent] = useState<string>("");
   const [assignedLanguage, setAssignedLanguage] = useState<supportedSnippetTypes>();
   const userIsAuthenticated = useContext(AuthContext);
 
-  const clearInputs = () => {
-    setTitle("");
-    setDescription("");
-    setContent("");
-  };
-
-  const validateInputs = () => {
-    if (title === "") {
-      return false;
-    }
-    if (description === "") {
-      return false;
-    }
-    if (content === "") {
-      return false;
-    }
-    if (assignedLanguage === undefined) {
-      return false;
-    }
-    return true;
-  };
+  const clearInputs = () => {};
 
   const assignLanguageHandler = (lang: supportedSnippetTypes) => {
     setAssignedLanguage(lang);
@@ -64,10 +45,12 @@ export const AddSnippetForm = React.memo(() => {
     };
 
     if (userIsAuthenticated) {
-      if (validateInputs()) {
+      if (validateInputs({ title, description, content, assignedLanguage })) {
         addServerItem(snippetToAdd, cbSuccess, cbError);
         mycontext.submitNewSnippetHandler(snippetToAdd);
-        clearInputs();
+        setTitle("");
+        setDescription("");
+        setContent("");
         mycontext.toggleDisplayAddSnippetForm();
       } else {
         mycontext.addSnackbarMessage({ type: "error", text: "Please provide all details for a new snippet.", queuePosition: mycontext.snackbarMessages.length, id: uuidv4() });

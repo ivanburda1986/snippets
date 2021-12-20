@@ -28,6 +28,9 @@ Version3
 
 Additional 
 Refactor all code
+If there is no snippet being displayed, show a message and an option to create a snippet 
+Introduce an option to set a snippet as private -> it will be displayed only for a logged-in user 
+
 Write unit tests in Jest 
 
 Come up with a better site name

@@ -1,4 +1,4 @@
-.Message {
+.SnackbarMessage {
   position: fixed;
   width: 90vw;
   max-width: 400px;
@@ -15,17 +15,17 @@
   font-weight: 600;
 }
 
-.Message-warning {
+.SnackbarMessage-warning {
   background-color: rgb(255, 126, 6);
   color: white;
 }
 
-.Message-error {
+.SnackbarMessage-error {
   background-color: crimson;
   color: white;
 }
 
-.Message-success {
+.SnackbarMessage-success {
   background-color: green;
   color: white;
 }

@@ -1,5 +1,6 @@
 import React, { useContext, useState } from "react";
 import { v4 as uuidv4 } from "uuid";
+import { BsLink45Deg } from "react-icons/bs";
 import { AppContext } from "../../context/context";
 import { typeSnippet, labels, supportedSnippetTypes, typeNewSnippet } from "../../config/config";
 import sharedStyles from "../sharedStyles/sharedStyles.module.css";
@@ -11,7 +12,7 @@ import { RadioLabel } from "../RadioLabel/RadioLabel";
 import { deleteServerItem, updateServerItem } from "../../api/api";
 import { AuthContext } from "../../context/AuthContext";
 
-export const Snippet = React.memo(({ id, title, description, content, language, favorited, creationTimestamp }: typeSnippet) => {
+export const Snippet = React.memo(({ id, title, description, content, link, language, favorited, creationTimestamp }: typeSnippet) => {
   let assignedLabel = labels.filter((label) => label.lang === language)[0];
   const mycontext = useContext(AppContext);
   const [editing, setEditing] = useState(false);
@@ -19,15 +20,20 @@ export const Snippet = React.memo(({ id, title, description, content, language, 
   const [titleToUpdate, setTitleToUpdate] = useState(title);
   const [descriptionToUpdate, setDescriptionToUpdate] = useState(description);
   const [contentToUpdate, setContentToUpdate] = useState(content);
+  const [linkToUpdate, setLinkToUpdate] = useState(link);
   const [deleteConfirmation, setDeleteConfirmation] = useState(false);
   const userIsAuthenticated = useContext(AuthContext);
+
+  const cbDeleteSuccess = () => {
+    mycontext.addSnackbarMessage({ type: "success", text: `The item'${title}' has been successfully deleted.`, queuePosition: mycontext.snackbarMessages.length, id: uuidv4() });
+  };
 
   const cbSuccess = () => {
     mycontext.addSnackbarMessage({ type: "success", text: `The item '${title}' has been successfully updated on the server`, queuePosition: mycontext.snackbarMessages.length, id: uuidv4() });
   };
   const cbError = () => {
     mycontext.addSnackbarMessage({ type: "error", text: `Updating the item '${title}' at the server has failed.`, queuePosition: mycontext.snackbarMessages.length, id: uuidv4() });
-    deleteServerItem(id);
+    deleteServerItem({ itemId: id, cbDeleteSuccess: cbDeleteSuccess });
   };
 
   function handleEdit() {
@@ -42,6 +48,7 @@ export const Snippet = React.memo(({ id, title, description, content, language, 
         description: descriptionToUpdate,
         content: contentToUpdate,
         language: assignedLanguage!,
+        link: linkToUpdate,
         favorited: 0,
         creationTimestamp: creationTimestamp,
       };
@@ -61,6 +68,7 @@ export const Snippet = React.memo(({ id, title, description, content, language, 
         title: title,
         description: description,
         content: content,
+        link: link,
         language: language,
         favorited: favorited === 1 ? 0 : 1,
         creationTimestamp: creationTimestamp,
@@ -86,7 +94,7 @@ export const Snippet = React.memo(({ id, title, description, content, language, 
     if (userIsAuthenticated) {
       if (deleteConfirmation) {
         mycontext.deleteSnippetHandler(id);
-        deleteServerItem(id);
+        deleteServerItem({ itemId: id, cbDeleteSuccess: cbDeleteSuccess });
       } else {
         setDeleteConfirmation(true);
         setTimeout(() => setDeleteConfirmation(false), 3000);
@@ -110,9 +118,18 @@ export const Snippet = React.memo(({ id, title, description, content, language, 
           </div>
           <div id="snippetBody" className={styles.body}>
             <p className={styles.description}>{description}</p>
-            <pre className={`prettyprint`}>
+            <pre className={`prettyprint ${styles.codeContent}`}>
               <code className={`lang-${language}`}> {content}</code>
             </pre>
+            {
+              <div className={styles.link}>
+                <BsLink45Deg />
+                Link:
+                <a href={link} target="_blank">
+                  {link}
+                </a>
+              </div>
+            }
           </div>
           <div id="snippetFooter" className={styles.footer}>
             <button className={`${sharedStyles.button} ${styles.editButton}`} onClick={handleEdit}>
@@ -141,6 +158,7 @@ export const Snippet = React.memo(({ id, title, description, content, language, 
           <div id="snippetBody" className={styles.body}>
             <input type="text" className={styles.snippetInputDescription} id="SnippetInputDescription" name="SnippetInputDescription" value={descriptionToUpdate} onChange={(event) => setDescriptionToUpdate(event.target.value)} />
             <textarea id={`Snippet-${id}-EditContent`} name={`Snippet-${id}-EditContent`} value={contentToUpdate} onChange={(event) => setContentToUpdate(event.target.value)} />
+            <input type="text" className={styles.snippetInputLink} id="SnippetInputLink" name="SnippetInputLink" value={linkToUpdate} placeholder="Link (optional)" onChange={(event) => setLinkToUpdate(event.target.value)} />
           </div>
           <div id="snippetFooter" className={styles.footer}>
             <button className={`${sharedStyles.button} `} onClick={handleCancel}>

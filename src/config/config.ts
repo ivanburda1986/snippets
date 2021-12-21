@@ -4,6 +4,7 @@ export interface typeSnippet {
   description: string;
   content: string;
   language: supportedSnippetTypes;
+  link?: string;
   favorited: Favorited;
   creationTimestamp: number;
 }
@@ -14,6 +15,7 @@ export interface typeNewSnippet {
   description: string;
   content: string;
   language: supportedSnippetTypes;
+  link?: string;
   favorited: Favorited;
   creationTimestamp: number;
 }

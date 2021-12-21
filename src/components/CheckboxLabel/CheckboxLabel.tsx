@@ -1,8 +1,8 @@
 import React, { useContext } from "react";
 import { v4 as uuidv4 } from "uuid";
-import styles from "./CheckboxLabel.module.css";
-import { typeLabelData } from "../../config/config";
 import { AppContext } from "../../context/context";
+import { typeLabelData } from "../../config/config";
+import styles from "./CheckboxLabel.module.css";
 
 export function CheckboxLabel(props: { labelInputData: typeLabelData; labelGroupName: string }) {
   const mycontext = useContext(AppContext);

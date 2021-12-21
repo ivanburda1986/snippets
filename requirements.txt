@@ -27,9 +27,9 @@ Version3
 --Improve the Add new snippet button 
 
 Additional 
-Refactor all code
-If there is no snippet being displayed, show a message and an option to create a snippet 
-Add an option to attach a link to each snippet. The link would open in a new window.
+--Refactor all code
+--If there is no snippet being displayed, show a message and an option to create a snippet 
+--Add an option to attach a link to each snippet. The link would open in a new window.
 Introduce an option to set a snippet as private -> it will be displayed only for a logged-in user 
 Write unit tests in Jest 
 Come up with a better site name

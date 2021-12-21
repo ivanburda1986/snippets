@@ -1,0 +1,6 @@
+.noSnippetMessage {
+  border: 3px dashed var(--lightBlue);
+  padding: 2em 1em;
+  margin-bottom: 0.5em;
+  text-align: center;
+}

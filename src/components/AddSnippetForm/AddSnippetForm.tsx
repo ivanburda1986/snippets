@@ -14,6 +14,7 @@ export const AddSnippetForm = React.memo(() => {
   const [title, setTitle] = useState<string>("");
   const [description, setDescription] = useState<string>("");
   const [content, setContent] = useState<string>("");
+  const [link, setLink] = useState<string>("");
   const [assignedLanguage, setAssignedLanguage] = useState<supportedSnippetTypes>();
   const userIsAuthenticated = useContext(AuthContext);
 
@@ -29,8 +30,13 @@ export const AddSnippetForm = React.memo(() => {
       description: description,
       content: `${content}`,
       language: assignedLanguage!,
+      link: link,
       favorited: 0,
       creationTimestamp: Date.now(),
+    };
+
+    const cbDeleteSuccess = () => {
+      mycontext.addSnackbarMessage({ type: "success", text: `The item'${snippetToAdd.title}' has been successfully deleted.`, queuePosition: mycontext.snackbarMessages.length, id: uuidv4() });
     };
 
     const cbSuccess = () => {
@@ -38,7 +44,7 @@ export const AddSnippetForm = React.memo(() => {
     };
     const cbError = () => {
       mycontext.addSnackbarMessage({ type: "error", text: `Saving the item '${snippetToAdd.title}' to the server has failed.`, queuePosition: mycontext.snackbarMessages.length, id: uuidv4() });
-      deleteServerItem(snippetToAdd.id);
+      deleteServerItem({ itemId: snippetToAdd.id, cbDeleteSuccess: cbDeleteSuccess });
     };
 
     if (userIsAuthenticated) {
@@ -48,6 +54,7 @@ export const AddSnippetForm = React.memo(() => {
         setTitle("");
         setDescription("");
         setContent("");
+        setLink("");
         mycontext.toggleDisplayAddSnippetForm();
       } else {
         mycontext.addSnackbarMessage({ type: "error", text: "Please provide all details for a new snippet.", queuePosition: mycontext.snackbarMessages.length, id: uuidv4() });
@@ -67,6 +74,8 @@ export const AddSnippetForm = React.memo(() => {
         <input type="text" id="SnippetInputDescription" name="SnippetInputDescription" value={description} placeholder="Description" onChange={(event) => setDescription(event.target.value)} />
         <label htmlFor="SnippetInputContent">Snippet</label>
         <textarea id="SnippetInputContent" name="SnippetInputContent" value={content} placeholder="The snippet goes here ..." onChange={(event) => setContent(event.target.value)} />
+        <label htmlFor="SnippetInputLink">Link</label>
+        <input type="text" id="SnippetInputLink" name="SnippetInputLink" value={link} placeholder="Link (optional)" onChange={(event) => setLink(event.target.value)} />
         <div className={styles.labelSelection}>
           {labels.map((item) => (
             <RadioLabel key={item.name} labelInputData={{ name: item.name, lang: item.lang, bgColor: item.bgColor, color: item.color, toggleAction: () => assignLanguageHandler(item.lang) }} labelGroupName="newSnippetLabels" />

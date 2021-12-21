@@ -66,6 +66,24 @@
   border-radius: 3px;
 }
 
+.snippetInputLink {
+  width: 100%;
+  border-radius: 3px;
+}
+
+.link {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  font-size: 0.9rem;
+  padding: 0.2em;
+  margin: 0 0.25em;
+}
+
+.link a {
+  margin-left: 0.25em;
+}
+
 body {
   padding: 0.2em;
 }
@@ -74,6 +92,8 @@ body {
   margin: 0 0.25em;
   margin-bottom: 0;
   max-width: 99%;
+  min-height: 150px;
+  height: auto;
 }
 
 .body pre {
@@ -85,6 +105,13 @@ body {
   white-space: -pre-wrap; /* Opera 4-6 */
   white-space: -o-pre-wrap; /* Opera 7 */
   word-wrap: break-word; /* Internet Explorer 5.5+ */
+  margin-bottom: 0.25em;
+}
+
+.codeContent {
+  border-radius: 3px;
+  background-color: var(--darkBg);
+  color: var(--darkBlue);
 }
 
 .footer {

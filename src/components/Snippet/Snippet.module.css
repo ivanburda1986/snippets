@@ -47,7 +47,6 @@
   border-radius: 3px;
 }
 
-.titleRight,
 .titleLeft {
   justify-content: flex-start;
   align-items: center;
@@ -55,6 +54,11 @@
   flex-wrap: wrap;
 }
 
+.titleRight {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
 .description {
   font-size: 0.9rem;
   padding: 0.2em;
@@ -117,6 +121,10 @@ body {
 .footer {
   display: flex;
   padding: 0.2em;
+  background-color: var(--lightBlue);
+  padding: 0.2em;
+  border-bottom-left-radius: 3px;
+  border-bottom-right-radius: 3px;
 }
 
 .confirmDelete {

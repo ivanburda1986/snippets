@@ -12,7 +12,7 @@ import { RadioLabel } from "../RadioLabel/RadioLabel";
 import { deleteServerItem, updateServerItem } from "../../api/api";
 import { AuthContext } from "../../context/AuthContext";
 
-export const Snippet = React.memo(({ id, title, description, content, link, language, favorited, creationTimestamp }: typeSnippet) => {
+export const Snippet = ({ id, title, description, content, link, language, favorited, creationTimestamp }: typeSnippet) => {
   let assignedLabel = labels.filter((label) => label.lang === language)[0];
   const mycontext = useContext(AppContext);
   const [editing, setEditing] = useState(false);
@@ -68,7 +68,7 @@ export const Snippet = React.memo(({ id, title, description, content, link, lang
         title: title,
         description: description,
         content: content,
-        link: link,
+        link: link ? link : linkToUpdate,
         language: language,
         favorited: favorited === 1 ? 0 : 1,
         creationTimestamp: creationTimestamp,
@@ -112,9 +112,11 @@ export const Snippet = React.memo(({ id, title, description, content, link, lang
           <div id="snippetHeader" className={styles.snippetHeader}>
             <div className={styles.titleLeft}>
               <p className={styles.title}>{title}</p>
-              <FavoriteButton favorited={favorited} onClick={() => handleToggleFavorite(id)} />
             </div>
-            <div className={styles.titleRight}>{assignedLabel && <ReadonlyLabel key={assignedLabel.name} name={assignedLabel.name} lang={assignedLabel.lang} bgColor={assignedLabel.bgColor} color={assignedLabel.color} />}</div>
+            <div className={styles.titleRight}>
+              <FavoriteButton favorited={favorited} onClick={() => handleToggleFavorite(id)} />
+              {assignedLabel && <ReadonlyLabel key={assignedLabel.name} name={assignedLabel.name} lang={assignedLabel.lang} bgColor={assignedLabel.bgColor} color={assignedLabel.color} />}
+            </div>
           </div>
           <div id="snippetBody" className={styles.body}>
             <p className={styles.description}>{description}</p>
@@ -125,8 +127,8 @@ export const Snippet = React.memo(({ id, title, description, content, link, lang
               <div className={styles.link}>
                 <BsLink45Deg />
                 Link:
-                <a href={link} target="_blank">
-                  {link}
+                <a href={link ? link : linkToUpdate} target="_blank">
+                  {link ? link : linkToUpdate}
                 </a>
               </div>
             }
@@ -175,4 +177,4 @@ export const Snippet = React.memo(({ id, title, description, content, link, lang
       </div>
     );
   }
-});
+};

@@ -47,18 +47,14 @@
   border-radius: 3px;
 }
 
-.titleLeft {
+.titleLeft,
+.titleRight {
   justify-content: flex-start;
   align-items: center;
   display: flex;
   flex-wrap: wrap;
 }
 
-.titleRight {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
 .description {
   font-size: 0.9rem;
   padding: 0.2em;

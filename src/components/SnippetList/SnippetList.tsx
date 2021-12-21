@@ -15,7 +15,7 @@ export function SnippetList() {
     setFilteredSnippets(
       snippets
         .filter((snippet) => filter.includes(snippet.language))
-        .sort((a, b) => a.creationTimestamp - b.creationTimestamp)
+        .sort((a, b) => b.creationTimestamp - a.creationTimestamp)
         .sort((a, b) => b.favorited - a.favorited)
     );
   }, [filter, snippets]);

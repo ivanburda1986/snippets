@@ -1,13 +1,13 @@
 import React, { useContext, useState } from "react";
 import { v4 as uuidv4 } from "uuid";
-import { labels, supportedSnippetTypes, typeNewSnippet } from "../../config/config";
-import { addServerItem, deleteServerItem } from "../../api/api";
-import sharedStyles from "../sharedStyles/sharedStyles.module.css";
-import styles from "./AddSnippetForm.module.css";
 import { AppContext } from "../../context/context";
 import { AuthContext } from "../../context/AuthContext";
+import { labels, supportedSnippetTypes, typeNewSnippet } from "../../config/config";
+import { addServerItem, deleteServerItem } from "../../api/api";
 import { RadioLabel } from "../RadioLabel/RadioLabel";
 import { validateInputs } from "./AddSnippetFormService";
+import sharedStyles from "../sharedStyles/sharedStyles.module.css";
+import styles from "./AddSnippetForm.module.css";
 
 export const AddSnippetForm = React.memo(() => {
   const mycontext = useContext(AppContext);

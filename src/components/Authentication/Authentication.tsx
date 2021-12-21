@@ -1,11 +1,11 @@
-import React, { useState, useEffect, useContext, useRef } from "react";
+import React, { useContext, useRef } from "react";
 import { v4 as uuidv4 } from "uuid";
 import { AuthContext } from "../../context/AuthContext";
-import styles from "./Authentication.module.css";
-import sharedStyles from "../sharedStyles/sharedStyles.module.css";
 import { auth } from "../../firebaseSetup";
 import { AppContext } from "../../context/context";
 import { FiLogIn } from "react-icons/fi";
+import sharedStyles from "../sharedStyles/sharedStyles.module.css";
+import styles from "./Authentication.module.css";
 
 export function Authentication() {
   const user = useContext(AuthContext);

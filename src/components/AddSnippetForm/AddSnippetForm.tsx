@@ -17,8 +17,6 @@ export const AddSnippetForm = React.memo(() => {
   const [assignedLanguage, setAssignedLanguage] = useState<supportedSnippetTypes>();
   const userIsAuthenticated = useContext(AuthContext);
 
-  const clearInputs = () => {};
-
   const assignLanguageHandler = (lang: supportedSnippetTypes) => {
     setAssignedLanguage(lang);
   };
@@ -40,7 +38,6 @@ export const AddSnippetForm = React.memo(() => {
     };
     const cbError = () => {
       mycontext.addSnackbarMessage({ type: "error", text: `Saving the item '${snippetToAdd.title}' to the server has failed.`, queuePosition: mycontext.snackbarMessages.length, id: uuidv4() });
-
       deleteServerItem(snippetToAdd.id);
     };
 

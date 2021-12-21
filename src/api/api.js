@@ -37,16 +37,16 @@ export async function addServerItem(newItem, cbSuccess, cbError) {
 }
 
 // Update a server item
-export async function updateServerItem(updatedItem) {
+export async function updateServerItem(updatedItem, cbSuccess, cbError) {
   const response = await firebase
     .database()
     .ref(`/snippets/${updatedItem.id}`)
     .update(updatedItem, (error) => {
       if (error) {
-        console.log("Updating the items on the server has failed");
+        cbError();
         return "nok";
       } else {
-        console.log("The item has been updated on the server successfully");
+        cbSuccess();
         return "ok";
       }
     });
@@ -56,5 +56,6 @@ export async function updateServerItem(updatedItem) {
 // Delete a server item
 export async function deleteServerItem(itemId) {
   const response = await firebase.database().ref(`/snippets/${itemId}`).remove();
+
   return response;
 }

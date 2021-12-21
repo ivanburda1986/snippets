@@ -5,7 +5,6 @@ import { typeSnippet, labels, supportedSnippetTypes, typeNewSnippet } from "../.
 import sharedStyles from "../sharedStyles/sharedStyles.module.css";
 import styles from "./Snippet.module.css";
 
-import { Button } from "../Button/Button";
 import { FavoriteButton } from "../FavoriteButton/FavoriteButton";
 import { ReadonlyLabel } from "../ReadonlyLabel/ReadonlyLabel";
 import { RadioLabel } from "../RadioLabel/RadioLabel";
@@ -22,6 +21,14 @@ export const Snippet = React.memo(({ id, title, description, content, language, 
   const [contentToUpdate, setContentToUpdate] = useState(content);
   const [deleteConfirmation, setDeleteConfirmation] = useState(false);
   const userIsAuthenticated = useContext(AuthContext);
+
+  const cbSuccess = () => {
+    mycontext.addSnackbarMessage({ type: "success", text: `The item '${title}' has been successfully updated on the server`, queuePosition: mycontext.snackbarMessages.length, id: uuidv4() });
+  };
+  const cbError = () => {
+    mycontext.addSnackbarMessage({ type: "error", text: `Updating the item '${title}' at the server has failed.`, queuePosition: mycontext.snackbarMessages.length, id: uuidv4() });
+    deleteServerItem(id);
+  };
 
   function handleEdit() {
     setEditing(true);
@@ -41,7 +48,7 @@ export const Snippet = React.memo(({ id, title, description, content, language, 
       mycontext.deleteSnippetHandler(id);
       mycontext.updateSnippetHandler(snippetToAdd);
       setEditing(false);
-      updateServerItem(snippetToAdd);
+      updateServerItem(snippetToAdd, cbSuccess, cbError);
     } else {
       mycontext.addSnackbarMessage({ type: "warning", text: "Please login if you wish to save the changes.", queuePosition: mycontext.snackbarMessages.length, id: uuidv4() });
     }
@@ -61,7 +68,7 @@ export const Snippet = React.memo(({ id, title, description, content, language, 
       mycontext.deleteSnippetHandler(id);
       mycontext.updateSnippetHandler(snippetToAdd);
       setEditing(false);
-      updateServerItem(snippetToAdd);
+      updateServerItem(snippetToAdd, cbSuccess, cbError);
     } else {
       mycontext.addSnackbarMessage({ type: "warning", text: `Please login if you wish to do this action.`, queuePosition: mycontext.snackbarMessages.length, id: uuidv4() });
     }

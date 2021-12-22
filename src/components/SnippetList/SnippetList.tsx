@@ -24,7 +24,7 @@ export function SnippetList() {
     <div className={sharedStyles.container}>
       {filteredSnippets.length === 0 && <div className={styles.noSnippetMessage}>No snippets to display. Change the filtering preferences above or create a new snippet.</div>}
       {filteredSnippets.map((snippet) => (
-        <Snippet key={snippet.id} id={snippet.id} title={snippet.title} description={snippet.description} content={snippet.content} link={snippet.link} language={snippet.language} favorited={snippet.favorited} creationTimestamp={snippet.creationTimestamp} />
+        <Snippet key={snippet.id} id={snippet.id} title={snippet.title} description={snippet.description} content={snippet.content} link={snippet.link} language={snippet.language} privated={snippet.privated} favorited={snippet.favorited} creationTimestamp={snippet.creationTimestamp} />
       ))}
     </div>
   );

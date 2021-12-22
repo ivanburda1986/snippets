@@ -31,6 +31,7 @@ export const AddSnippetForm = React.memo(() => {
       content: `${content}`,
       language: assignedLanguage!,
       link: link,
+      privated: 0,
       favorited: 0,
       creationTimestamp: Date.now(),
     };

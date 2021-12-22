@@ -5,6 +5,7 @@ export interface typeSnippet {
   content: string;
   language: supportedSnippetTypes;
   link?: string;
+  privated: Privated;
   favorited: Favorited;
   creationTimestamp: number;
 }
@@ -16,6 +17,7 @@ export interface typeNewSnippet {
   content: string;
   language: supportedSnippetTypes;
   link?: string;
+  privated: Privated;
   favorited: Favorited;
   creationTimestamp: number;
 }
@@ -30,6 +32,7 @@ export interface typeLabelData {
 
 export type supportedSnippetTypes = "html" | "cs" | "js" | "react" | "ts" | "bash" | "py" | "npm" | "git" | "vsc" | "linux";
 export type Favorited = 1 | 0;
+export type Privated = 1 | 0;
 
 export interface typeMessage {
   type: supportedMessageTypes;

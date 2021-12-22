@@ -7,12 +7,13 @@ import sharedStyles from "../sharedStyles/sharedStyles.module.css";
 import styles from "./Snippet.module.css";
 
 import { FavoriteButton } from "../FavoriteButton/FavoriteButton";
+import { PrivateButton } from "../PrivateButton/PrivateButton";
 import { ReadonlyLabel } from "../ReadonlyLabel/ReadonlyLabel";
 import { RadioLabel } from "../RadioLabel/RadioLabel";
 import { deleteServerItem, updateServerItem } from "../../api/api";
 import { AuthContext } from "../../context/AuthContext";
 
-export const Snippet = ({ id, title, description, content, link, language, favorited, creationTimestamp }: typeSnippet) => {
+export const Snippet = ({ id, title, description, content, link, language, privated, favorited, creationTimestamp }: typeSnippet) => {
   let assignedLabel = labels.filter((label) => label.lang === language)[0];
   const mycontext = useContext(AppContext);
   const [editing, setEditing] = useState(false);
@@ -49,6 +50,7 @@ export const Snippet = ({ id, title, description, content, link, language, favor
         content: contentToUpdate,
         language: assignedLanguage!,
         link: linkToUpdate,
+        privated: 0,
         favorited: 0,
         creationTimestamp: creationTimestamp,
       };
@@ -70,7 +72,30 @@ export const Snippet = ({ id, title, description, content, link, language, favor
         content: content,
         link: link ? link : linkToUpdate,
         language: language,
+        privated: privated,
         favorited: favorited === 1 ? 0 : 1,
+        creationTimestamp: creationTimestamp,
+      };
+      mycontext.deleteSnippetHandler(id);
+      mycontext.updateSnippetHandler(snippetToAdd);
+      setEditing(false);
+      updateServerItem(snippetToAdd, cbSuccess, cbError);
+    } else {
+      mycontext.addSnackbarMessage({ type: "warning", text: `Please login if you wish to do this action.`, queuePosition: mycontext.snackbarMessages.length, id: uuidv4() });
+    }
+  }
+
+  function handleTogglePrivate(id: string) {
+    if (userIsAuthenticated) {
+      const snippetToAdd: typeNewSnippet = {
+        id: id,
+        title: title,
+        description: description,
+        content: content,
+        link: link ? link : linkToUpdate,
+        language: language,
+        favorited: favorited,
+        privated: privated === 1 ? 0 : 1,
         creationTimestamp: creationTimestamp,
       };
       mycontext.deleteSnippetHandler(id);
@@ -114,6 +139,7 @@ export const Snippet = ({ id, title, description, content, link, language, favor
               <p className={styles.title}>{title}</p>
             </div>
             <div className={styles.titleRight}>
+              <PrivateButton privated={privated} onClick={() => handleTogglePrivate(id)} />
               <FavoriteButton favorited={favorited} onClick={() => handleToggleFavorite(id)} />
               {assignedLabel && <ReadonlyLabel key={assignedLabel.name} name={assignedLabel.name} lang={assignedLabel.lang} bgColor={assignedLabel.bgColor} color={assignedLabel.color} />}
             </div>

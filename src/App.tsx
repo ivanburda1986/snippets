@@ -71,16 +71,16 @@ function App() {
     setDisplayAddSnippetFormState(!displayAddSnippetForm);
   }
 
-  function addSnippet({ id, title, description, content, language, favorited, creationTimestamp }: typeNewSnippet) {
-    setSnippets((prevSnippets) => [...prevSnippets, { id: id, title: title, description: description, content: content, language: language, favorited: favorited, creationTimestamp: creationTimestamp }]);
+  function addSnippet({ id, title, description, content, language, privated, favorited, creationTimestamp }: typeNewSnippet) {
+    setSnippets((prevSnippets) => [...prevSnippets, { id: id, title: title, description: description, content: content, language: language, privated: privated, favorited: favorited, creationTimestamp: creationTimestamp }]);
   }
 
   function deleteSnippet(id: string) {
     setSnippets((prevSnippets) => [...prevSnippets].filter((snippet) => snippet.id !== id));
   }
 
-  function updateSnippet({ id, title, description, content, language, favorited, creationTimestamp }: typeNewSnippet) {
-    setSnippets((prevSnippets) => [...prevSnippets, { id: id, title: title, description: description, content: content, language: language, favorited: favorited, creationTimestamp: creationTimestamp }]);
+  function updateSnippet({ id, title, description, content, language, privated, favorited, creationTimestamp }: typeNewSnippet) {
+    setSnippets((prevSnippets) => [...prevSnippets, { id: id, title: title, description: description, content: content, language: language, privated: privated, favorited: favorited, creationTimestamp: creationTimestamp }]);
   }
 
   function addFilter(filterLanguage: supportedSnippetTypes) {

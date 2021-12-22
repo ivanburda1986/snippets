@@ -1,0 +1,18 @@
+.PrivateButton {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  padding: 4px;
+  border: none;
+  margin: 2px;
+  border-radius: 3px;
+  background-color: white;
+  cursor: pointer;
+  width: 20px;
+  height: 20px;
+}
+
+.privated {
+  background-color: var(--darkblue);
+}

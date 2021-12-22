@@ -54,21 +54,21 @@ export const AddSnippetForm = React.memo(() => {
       deleteServerItem({ itemId: snippetToAdd.id, cbDeleteSuccess: cbDeleteSuccess });
     };
 
-    if (userIsAuthenticated) {
-      if (validateInputs({ title, description, content, assignedLanguage })) {
-        addServerItem(snippetToAdd, cbSuccess, cbError);
-        mycontext.submitNewSnippetHandler(snippetToAdd);
-        setTitle("");
-        setPrivated(false);
-        setDescription("");
-        setContent("");
-        setLink("");
-        mycontext.toggleDisplayAddSnippetForm();
-      } else {
-        mycontext.addSnackbarMessage({ type: "error", text: "Please provide all details for a new snippet.", queuePosition: mycontext.snackbarMessages.length, id: uuidv4() });
-      }
-    } else {
+    if (!userIsAuthenticated) {
       mycontext.addSnackbarMessage({ type: "error", text: "Please login to save this new snippet.", queuePosition: mycontext.snackbarMessages.length, id: uuidv4() });
+      return;
+    }
+    if (validateInputs({ title, description, content, assignedLanguage })) {
+      addServerItem(snippetToAdd, cbSuccess, cbError);
+      mycontext.submitNewSnippetHandler(snippetToAdd);
+      setTitle("");
+      setPrivated(false);
+      setDescription("");
+      setContent("");
+      setLink("");
+      mycontext.toggleDisplayAddSnippetForm();
+    } else {
+      mycontext.addSnackbarMessage({ type: "error", text: "Please provide all details for a new snippet.", queuePosition: mycontext.snackbarMessages.length, id: uuidv4() });
     }
   };
 

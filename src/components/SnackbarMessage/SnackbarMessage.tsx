@@ -10,11 +10,11 @@ export function SnackbarMessage({ type, text, queuePosition, id }: typeMessage) 
   React.useEffect(() => {
     setTimeout(function () {
       setMsgClasses(mgsClasses.concat(styles.Disappear));
-    }, 2500);
+    }, 3000);
     setTimeout(function () {
       mycontext.removeSnackbarMessage(id);
       setHide(true);
-    }, 7500);
+    }, 4000);
   }, []);
 
   return (

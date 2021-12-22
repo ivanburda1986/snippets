@@ -139,7 +139,7 @@ export const Snippet = ({ id, title, description, content, link, language, priva
               <p className={styles.title}>{title}</p>
             </div>
             <div className={styles.titleRight}>
-              <PrivateButton privated={privated} onClick={() => handleTogglePrivate(id)} />
+              {userIsAuthenticated && <PrivateButton privated={privated} onClick={() => handleTogglePrivate(id)} />}
               <FavoriteButton favorited={favorited} onClick={() => handleToggleFavorite(id)} />
               {assignedLabel && <ReadonlyLabel key={assignedLabel.name} name={assignedLabel.name} lang={assignedLabel.lang} bgColor={assignedLabel.bgColor} color={assignedLabel.color} />}
             </div>

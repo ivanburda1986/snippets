@@ -1,7 +1,8 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { useNavigate, useLocation } from "react-router-dom";
 import { receiveServerItems } from "./api/api";
 import { AppContext } from "./context/context";
+import { AuthContext } from "./context/AuthContext";
 import { supportedSnippetTypes, typeSnippet, typeNewSnippet, typeMessage } from "./config/config";
 
 import { Header } from "./components/Header/Header";
@@ -16,6 +17,7 @@ function App() {
   const [displayAddSnippetForm, setDisplayAddSnippetFormState] = useState<boolean>(false);
   const [languagesToFilterSnippetsBy, setLanguagesToFilterSnippetsBy] = useState<supportedSnippetTypes[]>([]);
   const [snackbarMessages, setSnackbarMessages] = useState<typeMessage[]>([]);
+  const userIsAuthenticated = useContext(AuthContext);
 
   const location = useLocation();
   const navigate = useNavigate();
@@ -40,10 +42,14 @@ function App() {
     receiveServerItems().then((data) => {
       if (data) {
         serverSnippetsData = Array.from(Object.values(data)) as typeSnippet[];
-        setSnippets(serverSnippetsData);
+        if (userIsAuthenticated) {
+          setSnippets(serverSnippetsData);
+        } else {
+          setSnippets(serverSnippetsData.filter((item) => item.privated === 0));
+        }
       }
     });
-  }, []);
+  }, [userIsAuthenticated]);
 
   // Gets on-load values of the 'filter' query parameters and sets the initial filter
   useEffect(() => {

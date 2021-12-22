@@ -8,6 +8,7 @@ import { RadioLabel } from "../RadioLabel/RadioLabel";
 import { validateInputs } from "./AddSnippetFormService";
 import sharedStyles from "../sharedStyles/sharedStyles.module.css";
 import styles from "./AddSnippetForm.module.css";
+import ToggleSwitch from "../ToggleSwitch/ToggleSwitch";
 
 export const AddSnippetForm = React.memo(() => {
   const mycontext = useContext(AppContext);
@@ -16,10 +17,15 @@ export const AddSnippetForm = React.memo(() => {
   const [content, setContent] = useState<string>("");
   const [link, setLink] = useState<string>("");
   const [assignedLanguage, setAssignedLanguage] = useState<supportedSnippetTypes>();
+  const [privated, setPrivated] = useState<boolean>(false);
   const userIsAuthenticated = useContext(AuthContext);
 
   const assignLanguageHandler = (lang: supportedSnippetTypes) => {
     setAssignedLanguage(lang);
+  };
+
+  const togglePrivated = () => {
+    setPrivated(!privated);
   };
 
   const submitHandler = (event: React.ChangeEvent<HTMLFormElement>) => {
@@ -31,7 +37,7 @@ export const AddSnippetForm = React.memo(() => {
       content: `${content}`,
       language: assignedLanguage!,
       link: link,
-      privated: 0,
+      privated: privated === true ? 1 : 0,
       favorited: 0,
       creationTimestamp: Date.now(),
     };
@@ -53,6 +59,7 @@ export const AddSnippetForm = React.memo(() => {
         addServerItem(snippetToAdd, cbSuccess, cbError);
         mycontext.submitNewSnippetHandler(snippetToAdd);
         setTitle("");
+        setPrivated(false);
         setDescription("");
         setContent("");
         setLink("");
@@ -68,7 +75,10 @@ export const AddSnippetForm = React.memo(() => {
   return (
     <div className={sharedStyles.container}>
       <form onSubmit={submitHandler} className={styles.AddSnippetForm}>
-        <h1>New snippet</h1>
+        <div className={styles.AddSnippetFormHeader}>
+          <h1>New snippet</h1>
+          <ToggleSwitch name="createPrivate" checked={privated} callback={togglePrivated} />
+        </div>
         <label htmlFor="SnippetInputName">Title</label>
         <input type="text" id="SnippetInputName" name="SnippetInputName" value={title} placeholder="Title" onChange={(event) => setTitle(event.target.value)} />
         <label htmlFor="SnippetInputDescription">Description</label>

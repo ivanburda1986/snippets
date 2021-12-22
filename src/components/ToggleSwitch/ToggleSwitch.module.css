@@ -1,0 +1,29 @@
+.ToggleSwitch {
+  position: relative;
+  display: flex;
+  height: 1.5rem;
+  width: 1.5rem;
+}
+
+.ToggleSwitch input {
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 1.5rem;
+  width: 1.5rem;
+  opacity: 0;
+  z-index: 10;
+}
+
+.ToggleSwitch .icon {
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  font-size: 1.5rem;
+}

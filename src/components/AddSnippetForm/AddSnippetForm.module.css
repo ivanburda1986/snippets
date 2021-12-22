@@ -34,3 +34,17 @@ textarea {
   flex-wrap: wrap;
   margin-bottom: 0.25em;
 }
+
+.AddSnippetFormHeader {
+  position: relative;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+}
+
+.AddSnippetForm h1 {
+  margin-bottom: 0.25em;
+  width: 100%;
+}

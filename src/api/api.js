@@ -55,7 +55,6 @@ export async function updateServerItem(updatedItem, cbSuccess, cbError) {
 
 // Delete a server item
 export async function deleteServerItem({ itemId, cbDeleteSuccess }) {
-  console.log(itemId);
   const response = await firebase.database().ref(`/snippets/${itemId}`).remove();
   cbDeleteSuccess();
   return response;

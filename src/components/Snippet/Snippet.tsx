@@ -156,7 +156,7 @@ export const Snippet = ({ id, title, description, content, link, language, priva
               <div className={styles.link}>
                 <BsLink45Deg />
                 Link:
-                <a href={link ? link : linkToUpdate} target="_blank">
+                <a href={link ? link : linkToUpdate} target="_blank" rel="noopener noreferrer">
                   {link ? link : linkToUpdate}
                 </a>
               </div>

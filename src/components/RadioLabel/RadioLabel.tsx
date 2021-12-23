@@ -4,7 +4,7 @@ import styles from "./RadioLabel.module.css";
 import { typeLabelData } from "../../config/config";
 
 export const RadioLabel = React.memo((props: { labelInputData: typeLabelData; labelGroupName: string }) => {
-  const { name, bgColor, color, toggleAction, lang, isChecked }: typeLabelData = props.labelInputData;
+  const { name, bgColor, color, toggleAction, isChecked }: typeLabelData = props.labelInputData;
   const labelGroupName = props.labelGroupName;
 
   function onToggleHandler() {

@@ -1,4 +1,4 @@
-import React, { useContext, useRef } from "react";
+import React, { useContext, useEffect, useRef } from "react";
 import { v4 as uuidv4 } from "uuid";
 import { AuthContext } from "../../context/AuthContext";
 import { auth } from "../../firebaseSetup";
@@ -12,6 +12,10 @@ export function Authentication() {
   const emailRef = useRef<HTMLInputElement>(null);
   const passwordRef = useRef<HTMLInputElement>(null);
   const mycontext = useContext(AppContext);
+
+  useEffect(() => {
+    user && mycontext.addSnackbarMessage({ type: "success", text: "You have successfully logged in.", queuePosition: mycontext.snackbarMessages.length, id: uuidv4() });
+  }, [user]);
 
   const signIn = async () => {
     try {

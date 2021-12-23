@@ -48,7 +48,7 @@ export const labels: typeLabelData[] = [
   { name: "CSS", lang: "css", bgColor: "mediumpurple", color: "white" },
   { name: "JS", lang: "js", bgColor: "gold", color: "black" },
   { name: "React", lang: "react", bgColor: "cyan", color: "black" },
-  { name: "TS", lang: "ts", bgColor: "#3e9fe6", color: "black" },
+  { name: "TS", lang: "ts", bgColor: "#2b7489", color: "white" },
   { name: "Bash", lang: "bash", bgColor: "#8d8d8d", color: "white" },
   { name: "Python", lang: "py", bgColor: "#6ea8e9", color: "black" },
   { name: "NPM", lang: "npm", bgColor: "#c4656c", color: "white" },

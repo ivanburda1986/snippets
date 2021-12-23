@@ -24,9 +24,6 @@ export const Snippet = ({ id, title, description, content, link, language, priva
   const [linkToUpdate, setLinkToUpdate] = useState(link);
   const [deleteConfirmation, setDeleteConfirmation] = useState(false);
   const userIsAuthenticated = useContext(AuthContext);
-  console.log("assignedLabel: ", assignedLabel);
-  console.log("Snippet language: ", language);
-  console.log("assignedLanguage: ", assignedLanguage);
 
   const cbDeleteSuccess = () => {
     mycontext.addSnackbarMessage({ type: "success", text: `The item'${title}' has been successfully deleted.`, queuePosition: mycontext.snackbarMessages.length, id: uuidv4() });
@@ -52,7 +49,7 @@ export const Snippet = ({ id, title, description, content, link, language, priva
         description: descriptionToUpdate,
         content: contentToUpdate,
         language: assignedLanguage!,
-        link: linkToUpdate,
+        link: linkToUpdate === "" ? linkToUpdate : "x",
         privated: 0,
         favorited: 0,
         creationTimestamp: creationTimestamp,
@@ -73,7 +70,7 @@ export const Snippet = ({ id, title, description, content, link, language, priva
         title: title,
         description: description,
         content: content,
-        link: link ? link : linkToUpdate,
+        link: linkToUpdate,
         language: language,
         privated: privated,
         favorited: favorited === 1 ? 0 : 1,
@@ -95,7 +92,7 @@ export const Snippet = ({ id, title, description, content, link, language, priva
         title: title,
         description: description,
         content: content,
-        link: link ? link : linkToUpdate,
+        link: linkToUpdate,
         language: language,
         favorited: favorited,
         privated: privated === 1 ? 0 : 1,
@@ -156,8 +153,8 @@ export const Snippet = ({ id, title, description, content, link, language, priva
               <div className={styles.link}>
                 <BsLink45Deg />
                 Link:
-                <a href={link ? link : linkToUpdate} target="_blank" rel="noopener noreferrer">
-                  {link ? link : linkToUpdate}
+                <a href={linkToUpdate} target="_blank" rel="noopener noreferrer">
+                  {linkToUpdate}
                 </a>
               </div>
             }

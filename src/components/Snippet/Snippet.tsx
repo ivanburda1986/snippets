@@ -182,7 +182,7 @@ export const Snippet = ({ id, title, description, content, link, language, priva
             <input type="text" className={styles.snippetInputName} id="SnippetInputName" name="SnippetInputName" value={titleToUpdate} onChange={(event) => setTitleToUpdate(event.target.value)} />
             <div className={styles.titleRight}>
               {labels.map((item) => (
-                <RadioLabel key={item.name} labelInputData={{ name: item.name, isChecked: item.lang === language, lang: item.lang, bgColor: item.bgColor, color: item.color, toggleAction: () => assignLanguageHandler(item.lang) }} labelGroupName={`snippet-${id}-EditingLabelGroup`} />
+                <RadioLabel key={item.name} labelInputData={{ name: item.name, isChecked: item.lang === assignedLanguage, lang: item.lang, bgColor: item.bgColor, color: item.color, toggleAction: () => assignLanguageHandler(item.lang) }} labelGroupName={`snippet-${id}-EditingLabelGroup`} />
               ))}
             </div>
           </div>

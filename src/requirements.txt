@@ -36,6 +36,10 @@ Additional
 --Deploy
 --Add to my portfolio 
 
+Bugs to fix:
+Make sure a snackbar appears fully also on mobile small screen 
+When editing fix that a different label can be selected
+
 Techstact: 
 React, TypeScript, Firebase, Google Code Pretify, Jest
 

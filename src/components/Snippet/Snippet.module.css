@@ -20,8 +20,10 @@
   flex-wrap: wrap;
   background-color: var(--lightBlue);
   padding: 0.2em;
+
   border-top-left-radius: 3px;
   border-top-right-radius: 3px;
+  padding-top: 0.5em;
 }
 
 .snippetEditMode {

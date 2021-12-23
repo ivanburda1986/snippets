@@ -24,6 +24,9 @@ export const Snippet = ({ id, title, description, content, link, language, priva
   const [linkToUpdate, setLinkToUpdate] = useState(link);
   const [deleteConfirmation, setDeleteConfirmation] = useState(false);
   const userIsAuthenticated = useContext(AuthContext);
+  console.log("assignedLabel: ", assignedLabel);
+  console.log("Snippet language: ", language);
+  console.log("assignedLanguage: ", assignedLanguage);
 
   const cbDeleteSuccess = () => {
     mycontext.addSnackbarMessage({ type: "success", text: `The item'${title}' has been successfully deleted.`, queuePosition: mycontext.snackbarMessages.length, id: uuidv4() });
@@ -107,10 +110,6 @@ export const Snippet = ({ id, title, description, content, link, language, priva
     }
   }
 
-  const assignLanguageHandler = (lang: supportedSnippetTypes) => {
-    setAssignedLanguage(lang);
-  };
-
   function handleCancel() {
     setEditing(false);
   }
@@ -128,6 +127,10 @@ export const Snippet = ({ id, title, description, content, link, language, priva
       mycontext.addSnackbarMessage({ type: "warning", text: `Please login if you wish to delete the snippet.`, queuePosition: mycontext.snackbarMessages.length, id: uuidv4() });
     }
   }
+
+  const assignLanguageHandler = (lang: supportedSnippetTypes) => {
+    setAssignedLanguage(lang);
+  };
 
   if (editing === false) {
     return (

@@ -30,7 +30,7 @@ export interface typeLabelData {
   toggleAction?: Function | void;
 }
 
-export type supportedSnippetTypes = "html" | "css" | "js" | "react" | "ts" | "bash" | "py" | "npm" | "git" | "vsc" | "linux" | "other";
+export type supportedSnippetTypes = "html" | "css" | "js" | "react" | "ts" | "jest" | "bash" | "py" | "npm" | "git" | "vsc" | "linux" | "other";
 export type Favorited = 1 | 0;
 export type Privated = 1 | 0;
 
@@ -49,6 +49,7 @@ export const labels: typeLabelData[] = [
   { name: "JS", lang: "js", bgColor: "gold", color: "black" },
   { name: "React", lang: "react", bgColor: "cyan", color: "black" },
   { name: "TS", lang: "ts", bgColor: "#2b7489", color: "white" },
+  { name: "Jest", lang: "jest", bgColor: "#ADFF2F", color: "black" },
   { name: "Bash", lang: "bash", bgColor: "#8d8d8d", color: "white" },
   { name: "Python", lang: "py", bgColor: "#6ea8e9", color: "black" },
   { name: "NPM", lang: "npm", bgColor: "#c4656c", color: "white" },

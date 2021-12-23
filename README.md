@@ -1,4 +1,3 @@
-https://snippets.ivanburda.com/
 
 # Getting Started with Create React App
 

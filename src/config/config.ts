@@ -30,7 +30,7 @@ export interface typeLabelData {
   toggleAction?: Function | void;
 }
 
-export type supportedSnippetTypes = "html" | "css" | "js" | "react" | "ts" | "jest" | "bash" | "regex" | "py" | "npm" | "git" | "vsc" | "linux" | "other";
+export type supportedSnippetTypes = "html" | "css" | "js" | "react" | "ts" | "jest" | "bash" | "regex" | "py" | "npm" | "git" | "vsc" | "linux" | "firebase" | "other";
 export type Favorited = 1 | 0;
 export type Privated = 1 | 0;
 
@@ -57,5 +57,6 @@ export const labels: typeLabelData[] = [
   { name: "GIT", lang: "git", bgColor: "lightcoral", color: "black" },
   { name: "VSC", lang: "vsc", bgColor: "#2d7ec0", color: "white" },
   { name: "Linux", lang: "linux", bgColor: "#2d7ec0", color: "white" },
+  { name: "Firebase", lang: "firebase", bgColor: "#FF7F50", color: "white" },
   { name: "Other", lang: "other", bgColor: "#FF69B4", color: "white" },
 ];

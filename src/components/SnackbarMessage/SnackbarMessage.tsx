@@ -3,7 +3,7 @@ import styles from "./SnackbarMessage.module.css";
 import { AppContext } from "../../context/context";
 import { typeMessage } from "../../config/config";
 
-export function SnackbarMessage({ type, text, queuePosition, id }: typeMessage) {
+export const SnackbarMessage: React.FC<typeMessage> = ({ type, text, queuePosition, id }) => {
   const [mgsClasses, setMsgClasses] = React.useState([styles.SnackbarMessage, styles[`SnackbarMessage-${type}`]]);
   const [hide, setHide] = React.useState(false);
   const mycontext = useContext(AppContext);
@@ -22,4 +22,4 @@ export function SnackbarMessage({ type, text, queuePosition, id }: typeMessage) 
       <p>{text}</p>
     </div>
   );
-}
+};

@@ -13,7 +13,7 @@ import { RadioLabel } from "../RadioLabel/RadioLabel";
 import { deleteServerItem, updateServerItem } from "../../api/api";
 import { AuthContext } from "../../context/AuthContext";
 
-export const Snippet = ({ id, title, description, content, link, language, privated, favorited, creationTimestamp }: typeSnippet) => {
+export const Snippet: React.FC<typeSnippet> = ({ id, title, description, content, link, language, privated, favorited, creationTimestamp }) => {
   let assignedLabel = labels.filter((label) => label.lang === language)[0];
   const mycontext = useContext(AppContext);
   const [editing, setEditing] = useState(false);
@@ -139,7 +139,7 @@ export const Snippet = ({ id, title, description, content, link, language, priva
               <p className={styles.title}>{title}</p>
             </div>
             <div className={styles.titleRight}>
-              {userIsAuthenticated && <PrivateButton privated={privated} onClick={() => handleTogglePrivate(id)} />}
+              {userIsAuthenticated && <PrivateButton privated={privated} action={() => handleTogglePrivate(id)} />}
               <FavoriteButton favorited={favorited} onClick={() => handleToggleFavorite(id)} />
               {assignedLabel && <ReadonlyLabel key={assignedLabel.name} name={assignedLabel.name} lang={assignedLabel.lang} bgColor={assignedLabel.bgColor} color={assignedLabel.color} />}
             </div>

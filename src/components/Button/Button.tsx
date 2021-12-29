@@ -1,9 +1,15 @@
 import React from "react";
 
-export function Button({ title, onClick, disabled }: { title: string; onClick: any; disabled: boolean }) {
+interface Button {
+  title: string;
+  action: any;
+  disabled: boolean;
+}
+
+export const Button: React.FC<Button> = ({ title, action, disabled }) => {
   return (
-    <button onClick={onClick} disabled={disabled}>
+    <button onClick={action} disabled={disabled}>
       {title}
     </button>
   );
-}
+};

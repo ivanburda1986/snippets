@@ -4,7 +4,7 @@ import { AppContext } from "../../context/context";
 import { typeLabelData } from "../../config/config";
 import styles from "./CheckboxLabel.module.css";
 
-export function CheckboxLabel(props: { labelInputData: typeLabelData; labelGroupName: string }) {
+export const CheckboxLabel: React.FC<{ labelInputData: typeLabelData; labelGroupName: string }> = (props) => {
   const mycontext = useContext(AppContext);
   const { name, bgColor, color, toggleAction, lang }: typeLabelData = props.labelInputData;
   const labelGroupName = props.labelGroupName;
@@ -22,4 +22,4 @@ export function CheckboxLabel(props: { labelInputData: typeLabelData; labelGroup
       <label htmlFor={`label-${name}-${randomNamePart}`}> {name}</label>
     </div>
   );
-}
+};

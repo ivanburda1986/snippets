@@ -8,9 +8,9 @@ import { RadioLabel } from "../RadioLabel/RadioLabel";
 import { validateInputs } from "./AddSnippetFormService";
 import sharedStyles from "../sharedStyles/sharedStyles.module.css";
 import styles from "./AddSnippetForm.module.css";
-import ToggleSwitch from "../ToggleSwitch/ToggleSwitch";
+import { ToggleSwitch } from "../ToggleSwitch/ToggleSwitch";
 
-export const AddSnippetForm = React.memo(() => {
+export const AddSnippetForm: React.FC = React.memo(() => {
   const mycontext = useContext(AppContext);
   const [title, setTitle] = useState<string>("");
   const [description, setDescription] = useState<string>("");

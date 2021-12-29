@@ -7,7 +7,7 @@ import { FiLogIn } from "react-icons/fi";
 import sharedStyles from "../sharedStyles/sharedStyles.module.css";
 import styles from "./Authentication.module.css";
 
-export function Authentication() {
+export const Authentication: React.FC = () => {
   const user = useContext(AuthContext);
   const emailRef = useRef<HTMLInputElement>(null);
   const passwordRef = useRef<HTMLInputElement>(null);
@@ -54,4 +54,4 @@ export function Authentication() {
       )}
     </div>
   );
-}
+};

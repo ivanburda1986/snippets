@@ -8,7 +8,7 @@ import { AddSnippetBtn } from "../AddSnippetBtn/AddSnippetBtn";
 import { AppContext } from "../../context/context";
 import { Authentication } from "../Authentication/Authentication";
 
-export function Header() {
+export const Header: React.FC = () => {
   const mycontext = useContext(AppContext);
 
   return (
@@ -28,4 +28,4 @@ export function Header() {
       </div>
     </div>
   );
-}
+};

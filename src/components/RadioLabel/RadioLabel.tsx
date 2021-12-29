@@ -3,7 +3,12 @@ import { v4 as uuidv4 } from "uuid";
 import styles from "./RadioLabel.module.css";
 import { typeLabelData } from "../../config/config";
 
-export const RadioLabel = React.memo((props: { labelInputData: typeLabelData; labelGroupName: string }) => {
+interface RadioLabel {
+  labelInputData: typeLabelData;
+  labelGroupName: string;
+}
+
+export const RadioLabel: React.FC<RadioLabel> = React.memo((props) => {
   const { name, bgColor, color, toggleAction, isChecked }: typeLabelData = props.labelInputData;
   const labelGroupName = props.labelGroupName;
 

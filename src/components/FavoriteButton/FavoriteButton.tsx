@@ -4,7 +4,12 @@ import { AiFillStar } from "react-icons/ai";
 import styles from "./FavoriteButton.module.css";
 import { Favorited } from "../../config/config";
 
-export function FavoriteButton({ favorited, onClick }: { favorited: Favorited; onClick: any }) {
+interface FavoriteButton {
+  favorited: Favorited;
+  onClick: any;
+}
+
+export const FavoriteButton: React.FC<FavoriteButton> = ({ favorited, onClick }) => {
   return (
     <div>
       <button className={`${styles.FavoriteButton} ${favorited && styles.favorited}`} onClick={onClick}>
@@ -12,4 +17,4 @@ export function FavoriteButton({ favorited, onClick }: { favorited: Favorited; o
       </button>
     </div>
   );
-}
+};

@@ -9,11 +9,11 @@ interface ToggleSwitchType {
   callback: () => void;
 }
 
-export default function ToggleSwitch({ name, checked, callback }: ToggleSwitchType) {
+export const ToggleSwitch: React.FC<ToggleSwitchType> = ({ name, checked, callback }) => {
   return (
     <label htmlFor={`toggleSwitch-${name}`} className={styles.ToggleSwitch}>
       <input type="checkbox" name={`toggleSwitch-${name}`} onChange={callback} />
       <span className={styles.icon}>{checked ? <RiGitRepositoryPrivateFill /> : <RiGitRepositoryPrivateLine />}</span>
     </label>
   );
-}
+};

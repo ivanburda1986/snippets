@@ -5,7 +5,7 @@ import { Snippet } from "../Snippet/Snippet";
 import sharedStyles from "../sharedStyles/sharedStyles.module.css";
 import styles from "./SnippetList.module.css";
 
-export function SnippetList() {
+export const SnippetList: React.FC = () => {
   const mycontext = useContext(AppContext);
   const snippets: typeSnippet[] = mycontext.snippets;
   const filter: supportedSnippetTypes[] = mycontext.languagesToFilterSnippetsBy;
@@ -28,4 +28,4 @@ export function SnippetList() {
       ))}
     </div>
   );
-}
+};

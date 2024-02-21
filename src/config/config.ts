@@ -30,7 +30,7 @@ export interface typeLabelData {
   toggleAction?: Function | void;
 }
 
-export type supportedSnippetTypes = "html" | "css" | "js" | "react" | "ts" | "jest" | "bash" | "regex" | "py" | "npm" | "git" | "vsc" | "linux" | "firebase" | "webstorm"|"other";
+export type supportedSnippetTypes = "html" | "css" | "js" | "react" | "ts" | "jest" | "regex" | "py" | "firebase" | "other";
 export type Favorited = 1 | 0;
 export type Privated = 1 | 0;
 
@@ -50,14 +50,6 @@ export const labels: typeLabelData[] = [
   { name: "React", lang: "react", bgColor: "cyan", color: "black" },
   { name: "TS", lang: "ts", bgColor: "#2b7489", color: "white" },
   { name: "Jest", lang: "jest", bgColor: "#ADFF2F", color: "black" },
-  { name: "Bash", lang: "bash", bgColor: "#8d8d8d", color: "white" },
   { name: "Regex", lang: "regex", bgColor: "#fff", color: "black" },
   { name: "Python", lang: "py", bgColor: "#6ea8e9", color: "black" },
-  { name: "NPM", lang: "npm", bgColor: "#c4656c", color: "white" },
-  { name: "GIT", lang: "git", bgColor: "lightcoral", color: "black" },
-  { name: "VSC", lang: "vsc", bgColor: "#2d7ec0", color: "white" },
-  { name: "Linux", lang: "linux", bgColor: "#2d7ec0", color: "white" },
-  { name: "Webstorm", lang: "webstorm", bgColor: "#cce862", color: "black" },
-  { name: "Firebase", lang: "firebase", bgColor: "#FF7F50", color: "white" },
-  { name: "Other", lang: "other", bgColor: "#FF69B4", color: "white" },
 ];
